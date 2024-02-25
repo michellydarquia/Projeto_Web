@@ -22,7 +22,7 @@ const Home: React.FC = () => {
             <IonPage id="main-content">
                 <IonHeader>
                     <IonToolbar color={'success'}>
-                        <IonTitle>Page Title</IonTitle>
+                        <IonTitle>HOME</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent className="ion-padding">
