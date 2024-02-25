@@ -8,7 +8,9 @@ import {
     IonMenu,
     IonMenuButton,
     IonButtons,
-    IonIcon
+    IonIcon,
+    IonButton,
+    IonTextarea
 } from '@ionic/react';
 
 import React, { useState } from 'react';
@@ -17,25 +19,11 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <IonMenu type='reveal' contentId="main-content">
-                <IonHeader>
-                    <IonToolbar color={'success'}>
-                        <IonTitle>Menu Content</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <IonContent className="ion-padding">
-                    This is the menu content.
-                </IonContent>
-            </IonMenu>
-
             <IonPage id="main-content">
 
                 <IonHeader>
                     <IonToolbar color={'success'}>
-                        <IonButtons slot="start">
-                            <IonMenuButton></IonMenuButton>
-                        </IonButtons>
-                        <IonTitle>Page Title</IonTitle>
+                        <IonTitle>Login</IonTitle>
                     </IonToolbar>
                 </IonHeader>
 
@@ -48,7 +36,21 @@ const Login: React.FC = () => {
                         height: '100%',
                         }}
                     >
-                        Login content.
+                        <IonTextarea
+                            label="CPF"
+                            labelPlacement="floating"
+                            fill="outline"
+                            placeholder="Enter text"
+                            color={'success'}
+                        ></IonTextarea>
+                        <IonTextarea
+                            label="Senha"
+                            labelPlacement="floating"
+                            fill="outline"
+                            placeholder="Enter text"
+                            color={'success'}
+                        ></IonTextarea>
+                        <IonButton>Login</IonButton>
                     </div>
                 </IonContent>
             </IonPage>
