@@ -4,10 +4,6 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonFooter,
-    IonMenu,
-    IonMenuButton,
-    IonButtons,
     IonIcon,
     IonButton,
     IonTextarea

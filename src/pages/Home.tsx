@@ -4,13 +4,8 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonFooter,
-    IonMenu,
-    IonMenuButton,
-    IonButtons,
     IonIcon,
     IonButton,
-    IonMenuToggle
 } from '@ionic/react';
 import React from 'react';
 
