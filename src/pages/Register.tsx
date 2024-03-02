@@ -12,6 +12,8 @@ import {
 } from '@ionic/react';
 
 import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 const Register: React.FC = () => {
 
@@ -24,9 +26,22 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
 
+    const [msg, setMsg] = useState<any>('a');
+
     
 
     const registrar = () => {
+
+        createUserWithEmailAndPassword(auth, email, senha)
+        .then((userCredencial) => {
+            const user = userCredencial.user;
+            setMsg('Registrado')
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setMsg('erro')
+        });
 
     }
 
@@ -48,7 +63,7 @@ const Register: React.FC = () => {
                 >
                     <form>
 
-                    <IonInput
+                    {/* <IonInput
                         label="CPF"
                         labelPlacement="floating"
                         fill="outline"
@@ -86,7 +101,7 @@ const Register: React.FC = () => {
                         color={'success'}
                         onIonChange={(e) => setEndereco(e.target.value)}
 
-                    ></IonInput>
+                    ></IonInput> */}
 
                     <IonInput
                         label="E-mail"
@@ -98,7 +113,7 @@ const Register: React.FC = () => {
 
                     ></IonInput>
 
-                    <IonInput
+                    {/* <IonInput
                         label="Nome da mãe"
                         labelPlacement="floating"
                         fill="outline"
@@ -115,7 +130,7 @@ const Register: React.FC = () => {
                         placeholder="Enter text"
                         color={'success'}
                         onIonChange={(e) => setRG(e.target.value)}
-                    ></IonInput>
+                    ></IonInput> */}
 
                     <IonInput
                         type='password'
@@ -141,6 +156,7 @@ const Register: React.FC = () => {
                     </IonRadioGroup>
 
                     <IonButton onClick={registrar}>Registrar</IonButton>
+                    <p>{msg}</p>
                     </form>
                 </div>
 

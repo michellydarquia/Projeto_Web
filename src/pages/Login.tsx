@@ -9,12 +9,34 @@ import {
     IonInput
 } from '@ionic/react';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { Redirect } from 'react-router';
 
 const Login: React.FC = () => {
     
-    const [CPF, setCPF] = useState<any>('');
+    const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
+    const [logado, setLogado] = useState<boolean>(false);
+    const [msg, setMsg] = useState<any>('');
+
+    const login = () => {
+        signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredencial) => {
+            const user = userCredencial.user;
+            setLogado(true);
+        })
+        .catch((error) => {
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            setMsg('algo deu errado')
+        });
+    }
+
+    if (logado){
+        return <Redirect from='/login' to='/perfil' />
+    }
 
     return (
         <>
@@ -43,7 +65,7 @@ const Login: React.FC = () => {
                                 labelPlacement="floating"
                                 fill="outline"
                                 placeholder="Enter text"
-                                onIonChange={(e) => setCPF(e.target.value)}
+                                onIonChange={(e) => setEmail(e.target.value)}
                                 color={'success'}
                                 
                             ></IonInput>
@@ -59,7 +81,8 @@ const Login: React.FC = () => {
                                 color={'success'}
 
                             ></IonInput>
-                            <IonButton>Login</IonButton>
+                            <IonButton onClick={login}>Login</IonButton>
+                            <p>{msg}</p>
                         </form>
                     </div>
                 </IonContent>

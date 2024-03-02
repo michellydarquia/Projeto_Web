@@ -1,7 +1,38 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
-import React from 'react';
+import {
+    IonContent, 
+    IonHeader, 
+    IonPage, 
+    IonTitle, 
+    IonToolbar, 
+    IonAvatar, 
+    IonButton 
+} from '@ionic/react';
+
+import React, { useState } from 'react';
+import { Redirect } from 'react-router';
+
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 const perfilPaciente: React.FC = () => {
+
+    const [logado, setLogado] = useState<boolean>(true);
+    const [msg, setMsg] = useState<any>('a');
+
+    
+
+    const logout = () => {
+        signOut(auth).then(() => {
+            setLogado(false)
+        }).catch((error) => {
+
+        });
+    }
+
+    if (!logado){
+        return <Redirect from='/perfil' to='/home' />
+    }
+
 
     return (
         <>
@@ -24,7 +55,8 @@ const perfilPaciente: React.FC = () => {
                     DADOS: <br/>
                     DADOS: <br/>
                     <IonButton color={'success'} href='/listaexames'>Exames</IonButton>
-                    <IonButton color={'danger'} href='/'>Logout</IonButton>
+                    <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
+                    <p>{msg}</p>
                 </IonContent>
             </IonPage>
         </>

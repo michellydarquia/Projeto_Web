@@ -35,19 +35,20 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route component={Home} path="/" exact />
-        <Route component={Login} path="/login" exact />
-        <Route component={Register} path="/register" exact />
-        <Route component={listaPacientes} path="/listaPacientes" exact />
-        <Route component={listaExames} path="/listaExames" exact />
-        <Route component={Exame} path="/Exame" exact />
-        <Route component={perfilPaciente} path="/perfilPaciente" exact />
-        <Route component={perfilProfissional} path="/perfilProfissional" exact />
-        <Route component={perfilPacienteProfissional} path="/perfilPacienteProfissional" exact />
-      </IonRouterOutlet>
-    </IonReactRouter>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route component={Home} path="/home" exact />
+          <Route component={Login} path="/login" exact />
+          <Route component={Register} path="/registrar" exact />
+          <Route component={listaPacientes} path="/lista-pacientes" exact />
+          <Route component={listaExames} path="/lista-exames" exact />
+          <Route component={Exame} path="/exame" exact />
+          <Route component={perfilPaciente} path="/perfil" exact />
+          <Route component={perfilProfissional} path="/perfil-adm" exact />
+          <Route component={perfilPacienteProfissional} path="/paciente" exact />
+          <Redirect from='/' to='/home' exact/>
+        </IonRouterOutlet>
+      </IonReactRouter>
   </IonApp>
 );
 
