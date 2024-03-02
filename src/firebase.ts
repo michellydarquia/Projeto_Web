@@ -1,17 +1,19 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const config = {
-    apiKey: "AIzaSyBrUtjJ16pqoMBV8W-cwjXX-QT0zPHy37M",
-    authDomain: "projeto-exames.firebaseapp.com",
-    projectId: "projeto-exames",
-    storageBucket: "projeto-exames.appspot.com",
-    messagingSenderId: "450945606205",
-    appId: "1:450945606205:web:8833aad912c1723c5e0054",
-    measurementId: "G-7SYXBGR34W"
+    apiKey: "AIzaSyAIdICA1fmRb0s7KLgnW_LN3LKOug9fyvo",
+    authDomain: "exames-9598c.firebaseapp.com",
+    projectId: "exames-9598c",
+    storageBucket: "exames-9598c.appspot.com",
+    messagingSenderId: "984016399229",
+    appId: "1:984016399229:web:9d021dad9091820a85fa14",
+    measurementId: "G-PY8QMQFDKQ"
 }
 
 const app = initializeApp(config);
-const auth = getAuth(app)
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
-export { app, auth };
+export { app, auth, firestore };

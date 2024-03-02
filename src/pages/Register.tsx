@@ -8,12 +8,14 @@ import {
     IonButton,
     IonRadioGroup,
     IonRadio,
-    IonItem
+    IonItem,
+    RadioGroupChangeEventDetail
 } from '@ionic/react';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, firestore } from "../firebase";
+import { collection, addDoc } from 'firebase/firestore';
 
 const Register: React.FC = () => {
 
@@ -25,25 +27,44 @@ const Register: React.FC = () => {
     const [email, setEmail] = useState<any>('');
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
+    const [conta, setConta] = useState<any>('paciente');
 
-    const [msg, setMsg] = useState<any>('a');
+    const [msg, setMsg] = useState<any>('paciente');
 
-    
+
+    const addDados = async () => {
+        try {
+            const docRef = await addDoc(collection(firestore, "users"), {
+              nome: nome,
+              CPF: CPF,
+              CEP: CEP,
+              endereco: endereco,
+              nomeDaMae: nomemae,
+              RG: RG,
+              email: email,
+              conta: conta
+            });
+            console.log("ID do doc: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
 
     const registrar = () => {
 
         createUserWithEmailAndPassword(auth, email, senha)
         .then((userCredencial) => {
             const user = userCredencial.user;
+            addDados()
             setMsg('Registrado')
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
             setMsg('erro')
         });
 
     }
+
+    
 
     return (
         <IonPage>
@@ -63,16 +84,6 @@ const Register: React.FC = () => {
                 >
                     <form>
 
-                    {/* <IonInput
-                        label="CPF"
-                        labelPlacement="floating"
-                        fill="outline"
-                        placeholder="Enter text"
-                        color={'success'}
-                        onIonChange={(e) => setCPF(e.target.value)}
-
-                    ></IonInput>
-
                     <IonInput
                         label="Nome"
                         labelPlacement="floating"
@@ -80,6 +91,16 @@ const Register: React.FC = () => {
                         placeholder="Enter text"
                         color={'success'}
                         onIonChange={(e) => setNome(e.target.value)}
+
+                    ></IonInput>
+
+                    <IonInput
+                        label="CPF"
+                        labelPlacement="floating"
+                        fill="outline"
+                        placeholder="Enter text"
+                        color={'success'}
+                        onIonChange={(e) => setCPF(e.target.value)}
 
                     ></IonInput>
 
@@ -101,7 +122,7 @@ const Register: React.FC = () => {
                         color={'success'}
                         onIonChange={(e) => setEndereco(e.target.value)}
 
-                    ></IonInput> */}
+                    ></IonInput>
 
                     <IonInput
                         label="E-mail"
@@ -113,7 +134,7 @@ const Register: React.FC = () => {
 
                     ></IonInput>
 
-                    {/* <IonInput
+                    <IonInput
                         label="Nome da mãe"
                         labelPlacement="floating"
                         fill="outline"
@@ -130,7 +151,7 @@ const Register: React.FC = () => {
                         placeholder="Enter text"
                         color={'success'}
                         onIonChange={(e) => setRG(e.target.value)}
-                    ></IonInput> */}
+                    ></IonInput>
 
                     <IonInput
                         type='password'
@@ -142,22 +163,24 @@ const Register: React.FC = () => {
                         onIonChange={(e) => setSenha(e.target.value)}
                     ></IonInput>
 
-                    <IonRadioGroup>
+                    <IonRadioGroup value={conta} onIonChange={(e) => setConta(e.target.value)}>
                         <IonItem>
-                            <IonRadio value="paciente">
+                            <IonRadio value='paciente'>
                                 <code>Paciente</code>
                             </IonRadio>
                         </IonItem>
                         <IonItem>
-                            <IonRadio value="profissional">
+                            <IonRadio value='profissional'>
                                 <code>Profissional</code>
                             </IonRadio>
                         </IonItem>
                     </IonRadioGroup>
 
                     <IonButton onClick={registrar}>Registrar</IonButton>
-                    <p>{msg}</p>
+                    <p>{conta}</p>
                     </form>
+
+                    
                 </div>
 
 
