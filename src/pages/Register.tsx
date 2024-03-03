@@ -12,10 +12,10 @@ import {
     RadioGroupChangeEventDetail
 } from '@ionic/react';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 
 const Register: React.FC = () => {
 
@@ -32,9 +32,27 @@ const Register: React.FC = () => {
     const [msg, setMsg] = useState<any>('paciente');
 
 
-    const addDados = async () => {
+    // const addDados = async () => {
+    //     try {
+    //         const docRef = await addDoc(collection(firestore, "users"), {
+    //           nome: nome,
+    //           CPF: CPF,
+    //           CEP: CEP,
+    //           endereco: endereco,
+    //           nomeDaMae: nomemae,
+    //           RG: RG,
+    //           email: email,
+    //           conta: conta
+    //         });
+    //         console.log("ID do doc: ", docRef.id);
+    //       } catch (e) {
+    //         console.error("Error adding document: ", e);
+    //       }
+    // }
+
+    const addDados = async (user: any) => {
         try {
-            const docRef = await addDoc(collection(firestore, "users"), {
+            const docRef = {
               nome: nome,
               CPF: CPF,
               CEP: CEP,
@@ -43,10 +61,10 @@ const Register: React.FC = () => {
               RG: RG,
               email: email,
               conta: conta
-            });
-            console.log("ID do doc: ", docRef.id);
+            };
+            await setDoc(doc(firestore, "users", user.uid), docRef);
           } catch (e) {
-            console.error("Error adding document: ", e);
+            console.error("Erro: ", e);
           }
     }
 
@@ -55,16 +73,16 @@ const Register: React.FC = () => {
         createUserWithEmailAndPassword(auth, email, senha)
         .then((userCredencial) => {
             const user = userCredencial.user;
-            addDados()
-            setMsg('Registrado')
+            addDados(user)
+            console.log('Registrado')
         })
-        .catch((error) => {
-            setMsg('erro')
+        .catch((error: any) => {
+            const errorCode = error.code;
+            const errorMsg = error.message;
+            console.log('Erro: ', errorCode, errorMsg)
         });
 
     }
-
-    
 
     return (
         <IonPage>
