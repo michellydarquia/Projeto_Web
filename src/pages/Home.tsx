@@ -7,7 +7,7 @@ import {
     IonIcon,
     IonButton,
 } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Home: React.FC = () => {
 

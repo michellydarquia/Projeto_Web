@@ -15,7 +15,7 @@ import {
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 
 const Register: React.FC = () => {
 
@@ -28,27 +28,6 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
-
-    const [msg, setMsg] = useState<any>('paciente');
-
-
-    // const addDados = async () => {
-    //     try {
-    //         const docRef = await addDoc(collection(firestore, "users"), {
-    //           nome: nome,
-    //           CPF: CPF,
-    //           CEP: CEP,
-    //           endereco: endereco,
-    //           nomeDaMae: nomemae,
-    //           RG: RG,
-    //           email: email,
-    //           conta: conta
-    //         });
-    //         console.log("ID do doc: ", docRef.id);
-    //       } catch (e) {
-    //         console.error("Error adding document: ", e);
-    //       }
-    // }
 
     const addDados = async (user: any) => {
         try {
@@ -71,12 +50,12 @@ const Register: React.FC = () => {
     const registrar = () => {
 
         createUserWithEmailAndPassword(auth, email, senha)
-        .then((userCredencial) => {
-            const user = userCredencial.user;
+        .then((userCredential) => {
+            const user = userCredential.user;
             addDados(user)
             console.log('Registrado')
         })
-        .catch((error: any) => {
+        .catch((error) => {
             const errorCode = error.code;
             const errorMsg = error.message;
             console.log('Erro: ', errorCode, errorMsg)
@@ -195,10 +174,7 @@ const Register: React.FC = () => {
                     </IonRadioGroup>
 
                     <IonButton onClick={registrar}>Registrar</IonButton>
-                    <p>{conta}</p>
-                    </form>
-
-                    
+                    </form>              
                 </div>
 
 

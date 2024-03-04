@@ -9,8 +9,8 @@ import {
     IonInput
 } from '@ionic/react';
 
-import React, { useEffect, useState } from 'react';
-import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
 
@@ -19,18 +19,17 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
     const [logado, setLogado] = useState<boolean>(false);
-    const [msg, setMsg] = useState<any>('');
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, senha)
-        .then((userCredencial) => {
-            const user = userCredencial.user;
+        .then((userCredential) => {
+            const user = userCredential.user;
             setLogado(true);
         })
         .catch((error) => {
-            // const errorCode = error.code;
-            // const errorMessage = error.message;
-            setMsg('algo deu errado')
+            const errorCode = error.code;
+            const errorMsg = error.message;
+            console.log('ERRO:', errorCode, errorMsg)
         });
     }
 
@@ -82,7 +81,6 @@ const Login: React.FC = () => {
 
                             ></IonInput>
                             <IonButton onClick={login}>Login</IonButton>
-                            <p>{msg}</p>
                         </form>
                     </div>
                 </IonContent>
