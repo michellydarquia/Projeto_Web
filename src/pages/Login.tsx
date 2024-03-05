@@ -57,17 +57,19 @@ const Login: React.FC = () => {
                         }}
                     >
                         <form>
-                            <IonInput
+                            <IonInput class=""
 
                                 type='text'
                                 label="CPF"
                                 labelPlacement="floating"
                                 fill="outline"
-                                placeholder="Enter text"
+                                placeholder="Digite seu CPF"
                                 onIonChange={(e) => setEmail(e.target.value)}
                                 color={'success'}
                                 
                             ></IonInput>
+                           
+                           
 
                             <IonInput
 
@@ -75,12 +77,12 @@ const Login: React.FC = () => {
                                 label="Senha"
                                 labelPlacement="floating"
                                 fill="outline"
-                                placeholder="Enter text"
+                                placeholder="Digite sua senha"
                                 onIonChange={(e) => setSenha(e.target.value)}
                                 color={'success'}
 
                             ></IonInput>
-                            <IonButton onClick={login}>Login</IonButton>
+                            <IonButton onClick={login}>Entrar</IonButton>
                         </form>
                     </div>
                 </IonContent>

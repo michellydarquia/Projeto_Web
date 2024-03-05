@@ -8,6 +8,7 @@ import {
     IonButton,
 } from '@ionic/react';
 import React from 'react';
+import '../theme/home_login.css';
 
 const Home: React.FC = () => {
 
@@ -15,8 +16,8 @@ const Home: React.FC = () => {
         <>
             <IonPage id="main-content">
                 <IonHeader>
-                    <IonToolbar color={'success'}>
-                        <IonTitle>HOME</IonTitle>
+                    <IonToolbar class="toolBar" color={'teste'}>
+                        <IonTitle class="homeTitle">HOME</IonTitle>
           
                     </IonToolbar>
                 </IonHeader>
