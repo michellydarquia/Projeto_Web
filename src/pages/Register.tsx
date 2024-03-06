@@ -39,7 +39,8 @@ const Register: React.FC = () => {
               nomeDaMae: nomemae,
               RG: RG,
               email: email,
-              conta: conta
+              conta: conta,
+              exames: []
             };
             await setDoc(doc(firestore, "users", user.uid), docRef);
           } catch (e) {
@@ -60,7 +61,6 @@ const Register: React.FC = () => {
             const errorMsg = error.message;
             console.log('Erro: ', errorCode, errorMsg)
         });
-
     }
 
     return (

@@ -52,6 +52,7 @@ const Home: React.FC = () => {
                                         <IonButton href='/perfil'>/perfil</IonButton>
                                         <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
                                         <IonButton href='/paciente'>/paciente</IonButton>
+                                        <IonButton href='/criar-exame'>/criar-exame</IonButton>
 
                                 </div>
                             </IonCol>

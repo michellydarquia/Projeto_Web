@@ -23,6 +23,8 @@ const PerfilPacienteProfissional: React.FC = () => {
         }
     };
 
+    const [novoExame, setNovoExame] = useState<any>([]);
+    
     return (
         <>
             <IonPage>
