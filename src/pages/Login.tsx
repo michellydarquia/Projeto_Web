@@ -6,13 +6,18 @@ import {
     IonToolbar,
     IonIcon,
     IonButton,
-    IonInput
+    IonInput,
+    IonText,
+    IonNavLink,
+    IonNav
 } from '@ionic/react';
 
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import Register from './Register';
 
 const Login: React.FC = () => {
     
@@ -39,7 +44,7 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <IonPage id="main-content">
+            <IonPage id="main-content1">
 
                 <IonHeader>
                     <IonToolbar color={'success'}>
@@ -72,7 +77,7 @@ const Login: React.FC = () => {
                            
 
                             <IonInput
-
+                                className='ion-margin-top'
                                 type='password'
                                 label="Senha"
                                 labelPlacement="floating"
@@ -80,9 +85,21 @@ const Login: React.FC = () => {
                                 placeholder="Digite sua senha"
                                 onIonChange={(e) => setSenha(e.target.value)}
                                 color={'success'}
+                                
 
                             ></IonInput>
-                            <IonButton onClick={login}>Entrar</IonButton>
+                            <IonButton 
+                            type="submit" 
+                            expand='block' 
+                            onClick={login}
+                            className='ion-padding-top'
+                            >Entrar</IonButton>
+
+                            <IonText className='ion-padding-top'>
+                                Não tem uma conta? <IonButton routerLink='./'>Cadastra-se</IonButton>
+                            </IonText>
+                            
+
                         </form>
                     </div>
                 </IonContent>
