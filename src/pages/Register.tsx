@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonRadioGroup, IonItem, IonLabel, IonRadio, IonButton, RadioGroupChangeEventDetail } from '@ionic/react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
-import { setDoc, doc } from 'firebase/firestore';
-import { Redirect } from 'react-router';
+import { setDoc, doc } from 'firebase/firestore';  
 
 const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onUserRegistered }) => {
 
@@ -16,7 +15,7 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
-    const [registrado, setRegistrado] = useState<boolean>(true);
+
 
     const addDados = async (user: any) => {
         try {
@@ -32,7 +31,7 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             };
             await setDoc(doc(firestore, "users", user.uid), docRef);
             onUserRegistered(docRef);
-            setRegistrado(true); 
+
         } catch (e) {
             console.error("Erro: ", e);
         }
@@ -51,10 +50,6 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             const errorMsg = error.message;
             console.log('Erro: ', errorCode, errorMsg)
         });
-    if (registrado){
-            return <Redirect from='/register' to='/login' />
-
-    }
 
     }
 
