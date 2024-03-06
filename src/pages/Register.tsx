@@ -174,6 +174,8 @@ const Register: React.FC = () => {
                     </IonRadioGroup>
 
                     <IonButton onClick={registrar}>Registrar</IonButton>
+                    <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
+
                     </form>              
                 </div>
 

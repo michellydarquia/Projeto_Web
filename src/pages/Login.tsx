@@ -96,9 +96,8 @@ const Login: React.FC = () => {
                             >Entrar</IonButton>
 
                             <IonText className='ion-padding-top'>
-                                Não tem uma conta? <IonButton routerLink='./Register.tsx'>Cadastra-se</IonButton>
+                            <IonButton fill="clear" href='/'>Esqueci minha senha</IonButton> 
                             </IonText>
-                            
 
                         </form>
                     </div>

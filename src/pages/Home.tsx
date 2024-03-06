@@ -44,23 +44,20 @@ const Home: React.FC = () => {
                                  <div className='ion-text-right'>
                                         <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
                                         <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
+                                
+                                        <IonButton href='/registrar'>/registrar</IonButton>
+                                        <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
+                                        <IonButton href='/lista-exames'>/lista-exames</IonButton>
+                                        <IonButton href='/exame'>/exame</IonButton>
+                                        <IonButton href='/perfil'>/perfil</IonButton>
+                                        <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
+                                        <IonButton href='/paciente'>/paciente</IonButton>
+
                                 </div>
                             </IonCol>
-                            
-                         
                         </IonRow>
                     </IonGrid>
-                
-                 
-              
-                   
-                
-              
                 </IonContent>
-                
-               
-                
-
             </IonPage>
         </>
     );

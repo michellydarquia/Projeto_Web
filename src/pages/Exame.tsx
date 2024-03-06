@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import React from 'react';
 
 const Exames: React.FC = () => {
@@ -11,7 +11,9 @@ const Exames: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                UI goes here...
+
+                <IonButton fill="clear" >BAIXAR RESULTADO DO EXAME</IonButton>
+
             </IonContent>
         </IonPage>
     );
