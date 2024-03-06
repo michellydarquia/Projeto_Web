@@ -21,9 +21,11 @@ const perfilProfissional: React.FC = () => {
                 DADOS: <br/>
                 DADOS: <br/>
                 DADOS: <br/>
+                
                 <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
                 <IonButton color={'success'} href='/registrar'>Registrar Perfil</IonButton>
                 <IonButton color={'danger'} href='/'>Logout</IonButton>
+
 
             </IonContent>
         </IonPage>

@@ -96,9 +96,8 @@ const Login: React.FC = () => {
                             >Entrar</IonButton>
 
                             <IonText className='ion-padding-top'>
-                            <IonButton fill="clear" href='/'>Esqueci minha senha</IonButton>
+                            <IonButton fill="clear" href='/'>Esqueci minha senha</IonButton> 
                             </IonText>
-                            
 
                         </form>
                     </div>

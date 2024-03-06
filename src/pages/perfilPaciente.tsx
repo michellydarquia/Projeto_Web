@@ -57,6 +57,7 @@ const perfilPaciente: React.FC = () => {
                     <IonButton color={'success'} href='/lista-exames'>Exames</IonButton>
                     <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
                     <p>{msg}</p>
+                    
                 </IonContent>
             </IonPage>
         </>
