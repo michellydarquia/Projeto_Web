@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 
 const config = {
     apiKey: "AIzaSyAIdICA1fmRb0s7KLgnW_LN3LKOug9fyvo",
@@ -15,5 +17,6 @@ const config = {
 const app = initializeApp(config);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
+const storage = getStorage(app); // usada para upload e download
 
-export { app, auth, firestore };
+export { app, auth, firestore, storage };

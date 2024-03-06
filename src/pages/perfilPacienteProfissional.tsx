@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonIcon, IonCardContent, IonInput } from '@ionic/react';
 import { cloudUploadOutline } from 'ionicons/icons';
+import { storage } from "../firebase" 
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const PerfilPacienteProfissional: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -10,21 +12,29 @@ const PerfilPacienteProfissional: React.FC = () => {
         if (files && files.length > 0) {
             setSelectedFile(files[0]);
         }
-    }; // abrindo os meu arquivos opara escolher o arquivo a ser enviado
+    };
 
-    const handleUpload = () => {
-        // Lógica
+    const handleUpload = async () => {
         if (selectedFile) {
-            // Lógica para onde o uploud vai
-            console.log("Arquivo selecionado:", selectedFile.name);
+            const storageRef = ref(storage, 'caminho/para/o/diretorio/' + selectedFile.name);
+// local de armazenamento no firebase com caminho para o diretório junto ao nome do arquivo
+           
+            try {// tenta realizar o up do arv usando uploadBytes
+                // uplo do arquivo
+                await uploadBytes(storageRef, selectedFile);
 
+                //  ter URL do arquivo após o upload (opcional)
+                const downloadURL = await getDownloadURL(storageRef);
+
+                console.log('Arquivo enviado com sucesso. URL:', downloadURL);
+            } catch (error) {
+                console.error('Erro ao enviar o arquivo:', error);
+            }
         } else {
-            console.log("Nenhum arquivo selecionado.");
+            console.log('Nenhum arquivo selecionado.');
         }
     };
 
-    const [novoExame, setNovoExame] = useState<any>([]);
-    
     return (
         <>
             <IonPage>
@@ -48,7 +58,7 @@ const PerfilPacienteProfissional: React.FC = () => {
 
                     <IonCardContent>
                         <IonIcon icon={cloudUploadOutline} size="large" />
-                        <IonInput type="file" onInput={handleFileChange} />
+                        <input type="file" onChange={handleFileChange} />
                         <IonButton onClick={handleUpload}>Enviar Arquivo</IonButton>
                     </IonCardContent>
                 </IonContent>
@@ -58,4 +68,3 @@ const PerfilPacienteProfissional: React.FC = () => {
 };
 
 export default PerfilPacienteProfissional;
-
