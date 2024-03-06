@@ -1,8 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
-import React from 'react';
+import React, {useState} from 'react';
 
 const perfilPacienteProfissional: React.FC = () => {
 
+    const [novoExame, setNovoExame] = useState<any>([]);
+    
     return (
         <>
             <IonPage>

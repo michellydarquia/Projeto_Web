@@ -39,7 +39,7 @@ const Login: React.FC = () => {
     }
 
     if (logado){
-        return <Redirect from='/login' to='/perfil' />
+        return <Redirect to='/perfil' />
     }
 
     return (
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
 
                             ></IonInput>
                             <IonButton 
-                            type="submit" 
+                            // type="submit" 
                             expand='block' 
                             onClick={login}
                             className='ion-padding-top'
