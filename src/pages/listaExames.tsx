@@ -1,0 +1,47 @@
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton } from '@ionic/react';
+import React from 'react';
+
+const listaExames: React.FC = () => {
+
+    return (
+        <IonPage>            
+            <IonHeader>
+                <IonToolbar>
+                    <IonTitle>LISTAS DE EXAMES</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+
+            <IonContent className="ion-padding">
+
+                <IonCard>
+                    <IonCardHeader>
+                        <IonCardTitle>EXAME 1</IonCardTitle>
+                        <IonCardSubtitle>dr francisico</IonCardSubtitle>
+                    </IonCardHeader>
+
+                    <IonCardContent>exame de sangue tal e tal.</IonCardContent>
+
+                    <IonButton fill="clear" href='/exame'>Ver detalhes</IonButton>
+                    <IonButton fill="clear">Action 2</IonButton>
+                </IonCard>
+
+
+                <IonCard>
+                    <IonCardHeader>
+                        <IonCardTitle>EXAME 2</IonCardTitle>
+                        <IonCardSubtitle>dr juliana</IonCardSubtitle>
+                    </IonCardHeader>
+
+                    <IonCardContent>exame de sangue tal e tal.</IonCardContent>
+
+                    <IonButton fill="clear" href='/exame'>Ver detalhes</IonButton>
+                    <IonButton fill="clear">Action 2</IonButton>
+                </IonCard>
+
+            </IonContent>
+
+        </IonPage>
+    );
+};
+
+export default listaExames;
