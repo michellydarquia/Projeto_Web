@@ -16,6 +16,8 @@ import React from 'react';
 import '../theme/home_login.css';
 import schImg from '../imagens/sch.png';
 
+import * as shared from '../shared'
+
 const Home: React.FC = () => {
 
     return (
@@ -41,18 +43,18 @@ const Home: React.FC = () => {
                
                             </IonCol>
                             <IonCol>
-                                 <div className='ion-text-right'>
-                                        <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
-                                        <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
+                                <div className='ion-text-right'>
+                                    <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
+                                    <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
                                 
-                                        <IonButton href='/registrar'>/registrar</IonButton>
-                                        <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
-                                        <IonButton href='/lista-exames'>/lista-exames</IonButton>
-                                        <IonButton href='/exame'>/exame</IonButton>
-                                        <IonButton href='/perfil'>/perfil</IonButton>
-                                        <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
-                                        <IonButton href='/paciente'>/paciente</IonButton>
-                                        <IonButton href='/criar-exame'>/criar-exame</IonButton>
+                                    <IonButton href='/registrar'>/registrar</IonButton>
+                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
+                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
+                                    <IonButton href='/exame'>/exame</IonButton>
+                                    <IonButton href='/perfil'>/perfil</IonButton>
+                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
+                                    <IonButton href='/paciente'>/paciente</IonButton>
+                                    <IonButton href='/criar-exame'>/criar-exame</IonButton>
 
                                 </div>
                             </IonCol>

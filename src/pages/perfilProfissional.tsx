@@ -22,6 +22,12 @@ const perfilProfissional: React.FC = () => {
     const [conta, setConta] = useState<any>('');
     const [exames, setExames] = useState<any>([]);
 
+    const [novo, setNovo] = useState<any>({
+        titulo: 'asdf',
+        descricao: 'qwer',
+        url: 'zxcv'
+    });
+
     const [update, setUpdate] = useState<any>(0);
 
     useEffect(()=>{
@@ -53,7 +59,7 @@ const perfilProfissional: React.FC = () => {
                 }
 
             } else {
-                return <Redirect from='/perfil' to='/home' />
+                return <Redirect to='/home' />
             }
         });
     }, [update])
@@ -62,7 +68,7 @@ const perfilProfissional: React.FC = () => {
             onAuthStateChanged(auth, async (user) => {
                 if (user){
                 await updateDoc(doc(firestore, "users", user.uid), {
-                    exames: [...exames, ]
+                    exames: []
                 });
             }
         });

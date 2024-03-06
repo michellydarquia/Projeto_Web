@@ -1,11 +1,22 @@
+import { 
+    IonContent, 
+    IonHeader, 
+    IonPage, 
+    IonTitle, 
+    IonToolbar, 
+    IonAvatar, 
+    IonButton, 
+    IonIcon, 
+    IonCardContent, 
+    IonInput 
+} from '@ionic/react';
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonIcon, IonCardContent, IonInput } from '@ionic/react';
 import { cloudUploadOutline } from 'ionicons/icons';
 
 const PerfilPacienteProfissional: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = (event: any) => {
         const files = event.target.files;
         if (files && files.length > 0) {
             setSelectedFile(files[0]);
@@ -48,7 +59,7 @@ const PerfilPacienteProfissional: React.FC = () => {
 
                     <IonCardContent>
                         <IonIcon icon={cloudUploadOutline} size="large" />
-                        <IonInput type="file" onInput={handleFileChange} />
+                        <IonInput type='file' onInput={handleFileChange} />
                         <IonButton onClick={handleUpload}>Enviar Arquivo</IonButton>
                     </IonCardContent>
                 </IonContent>
