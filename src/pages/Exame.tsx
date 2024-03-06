@@ -2,18 +2,30 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 
 const Exames: React.FC = () => {
-  const handleDownloadClick = () => {
-    // lógica
-    const urlDoExame = 'URL_DO_EXAME_AQUI';
+  const handleDownloadClick = async () => {
+    try {
+      const urlDoExame = 'https://firebasestorage.googleapis.com/v0/b/exames-9598c.appspot.com/o/caminho%2Fpara%2Fo%2Fdiretorio%2F2019%201%20BM%202EE%20VG%20RUAS%20-%20RESPOSTA.pdf?alt=media&token=31cd7515-8146-4940-8f77-d151f9341d93';
 
-    // Iniciar o download
-    const link = document.createElement('a');
-    link.href = urlDoExame;
-    link.target = '_blank';
-    link.download = 'nome_do_arquivo_do_exame';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const link: HTMLAnchorElement = document.createElement('a');
+      link.href = urlDoExame;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.type = 'application/pdf'
+
+      // Verificar se o navegador suporta o atributo 'download'
+      if ('download' in link) {
+        link.download = 'nome_do_arquivo_do_exame';
+      } else {
+        // Se não suporta, abra o link em uma nova janela
+        link.target = '_blank';
+      }
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Erro ao fazer o download:', error.message);
+    }
   };
 
   return (
