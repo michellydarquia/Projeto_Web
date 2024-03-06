@@ -10,7 +10,10 @@ import {
 import React from 'react';
 import '../theme/home_login.css';
 
+
+
 const Home: React.FC = () => {
+
 
     return (
         <>
@@ -22,10 +25,11 @@ const Home: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
                 <IonContent className="ion-padding">
-                    <IonButton href='/login'>Login como paciente</IonButton>
-                    <IonButton href='/login'>Login como profissional</IonButton>
-                </IonContent>
-
+                <IonButton href='/login'>Login como paciente</IonButton>
+                <IonButton href='/login'>Login como profissional</IonButton>
+                <IonButton href='/register'>Cadastro como paciente</IonButton>
+                <IonButton href='/register'>Cadastro como profissional</IonButton>
+            </IonContent>
             </IonPage>
         </>
     );

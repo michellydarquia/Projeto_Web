@@ -1,23 +1,11 @@
-import {
-    IonContent,
-    IonHeader,
-    IonPage,
-    IonTitle,
-    IonToolbar,
-    IonInput,
-    IonButton,
-    IonRadioGroup,
-    IonRadio,
-    IonItem,
-    RadioGroupChangeEventDetail
-} from '@ionic/react';
-
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonRadioGroup, IonItem, IonLabel, IonRadio, IonButton, RadioGroupChangeEventDetail } from '@ionic/react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { setDoc, doc } from 'firebase/firestore';
+import { Redirect } from 'react-router';
 
-const Register: React.FC = () => {
+const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onUserRegistered }) => {
 
     const [CPF, setCPF] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
@@ -28,23 +16,26 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
+    const [registrado, setRegistrado] = useState<boolean>(true);
 
     const addDados = async (user: any) => {
         try {
             const docRef = {
-              nome: nome,
-              CPF: CPF,
-              CEP: CEP,
-              endereco: endereco,
-              nomeDaMae: nomemae,
-              RG: RG,
-              email: email,
-              conta: conta
+                nome: nome,
+                CPF: CPF,
+                CEP: CEP,
+                endereco: endereco,
+                nomeDaMae: nomemae,
+                RG: RG,
+                email: email,
+                conta: conta
             };
             await setDoc(doc(firestore, "users", user.uid), docRef);
-          } catch (e) {
+            onUserRegistered(docRef);
+            setRegistrado(true); 
+        } catch (e) {
             console.error("Erro: ", e);
-          }
+        }
     }
 
     const registrar = () => {
@@ -60,16 +51,21 @@ const Register: React.FC = () => {
             const errorMsg = error.message;
             console.log('Erro: ', errorCode, errorMsg)
         });
+    if (registrado){
+            return <Redirect from='/register' to='/login' />
+
+    }
 
     }
 
     return (
-        <IonPage>
+        <IonPage id="main-content">
             <IonHeader>
                 <IonToolbar color={'success'}>
                     <IonTitle>Registrar</IonTitle>
                 </IonToolbar>
             </IonHeader>
+
             <IonContent className="ion-padding">
                 <div
                     style={{
@@ -79,88 +75,87 @@ const Register: React.FC = () => {
                     height: '100%',
                     }}
                 >
-                    <form>
-
+            <form>
+                    <IonLabel position="floating">Nome</IonLabel>
                     <IonInput
-                        label="Nome"
-                        labelPlacement="floating"
-                        fill="outline"
-                        placeholder="Enter text"
-                        color={'success'}
+                        type="text"
+                        value={nome}
                         onIonChange={(e) => setNome(e.target.value)}
-
-                    ></IonInput>
-
-                    <IonInput
-                        label="CPF"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                     />
+
+                    <IonLabel position="floating">CPF</IonLabel>
+                    <IonInput
+                        type="text"
+                        value={CPF}
                         onIonChange={(e) => setCPF(e.target.value)}
-
-                    ></IonInput>
-
-                    <IonInput
-                        label="CEP"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+                    
+                    <IonLabel position="floating">CEP</IonLabel>
+                    <IonInput
+                        type="text"
+                        value={CEP}
                         onIonChange={(e) => setCEP(e.target.value)}
-
-                    ></IonInput>
-
-                    <IonInput
-                        label="Endereço"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+
+                    <IonLabel position="floating">Endereço</IonLabel>
+                    <IonInput
+                        type="text"
+                        value={endereco}
                         onIonChange={(e) => setEndereco(e.target.value)}
-
-                    ></IonInput>
-
-                    <IonInput
-                        label="E-mail"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+
+                    <IonLabel position="floating">E-mail</IonLabel>
+                    <IonInput
+                        type="email"
+                        value={email}
                         onIonChange={(e) => setEmail(e.target.value)}
-
-                    ></IonInput>
-
-                    <IonInput
-                        label="Nome da mãe"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+
+                    <IonLabel position="floating">Nome da Mãe</IonLabel>
+                    <IonInput
+                        type="text"
+                        value={nomemae}
                         onIonChange={(e) => setNomeMae(e.target.value)}
-                        
-                    ></IonInput>
-
-                    <IonInput
-                        label="RG"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+
+                    <IonLabel position="floating">RG</IonLabel>
+                    <IonInput
+                        type="text"
+                        value={RG}
                         onIonChange={(e) => setRG(e.target.value)}
-                    ></IonInput>
-
-                    <IonInput
-                        type='password'
-                        label="Senha"
-                        labelPlacement="floating"
-                        fill="outline"
                         placeholder="Enter text"
-                        color={'success'}
+                        color="success"
+                        fill="outline"
+                    />
+                    <IonLabel position="floating">Senha</IonLabel>
+                    <IonInput
+                        type="password"
+                        value={senha}
                         onIonChange={(e) => setSenha(e.target.value)}
-                    ></IonInput>
+                        placeholder="Enter text"
+                        color="success"
+                        fill="outline"
+                    /> 
 
-                    <IonRadioGroup value={conta} onIonChange={(e) => setConta(e.target.value)}>
+                    <IonRadioGroup value={conta} onIonChange={(e: CustomEvent) => setConta(e.detail)}>
                         <IonItem>
                             <IonRadio value='paciente'>
                                 <code>Paciente</code>
