@@ -1,32 +1,43 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
+import { storage, auth, firestore } from "../firebase" 
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Exames: React.FC = () => {
+
+
   const handleDownloadClick = async () => {
-    try {
-      const urlDoExame = 'https://firebasestorage.googleapis.com/v0/b/exames-9598c.appspot.com/o/caminho%2Fpara%2Fo%2Fdiretorio%2F2019%201%20BM%202EE%20VG%20RUAS%20-%20RESPOSTA.pdf?alt=media&token=31cd7515-8146-4940-8f77-d151f9341d93';
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
 
-      const link: HTMLAnchorElement = document.createElement('a');
-      link.href = urlDoExame;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.type = 'application/pdf'
+          const dados = doc(firestore, "users", user.uid)
+          const info = await getDoc(dados);
 
-      // Verificar se o navegador suporta o atributo 'download'
-      if ('download' in link) {
-        link.download = 'nome_do_arquivo_do_exame';
-      } else {
-        // Se não suporta, abra o link em uma nova janela
-        link.target = '_blank';
+          if (info.exists()) {
+
+
+            // lógica
+            const urlDoExame = info.data().exames[0].url;
+
+            // Iniciar o download
+            const link = document.createElement('a');
+            link.href = urlDoExame;
+            link.target = '_blank';
+            link.download = 'nome_do_arquivo_do_exame';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+    
+              info.data().exames
+              console.log("DADOS:", info.data());
+
+          }
       }
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error('Erro ao fazer o download:', error.message);
-    }
-  };
+    });
+  }
 
   return (
     <IonPage>
