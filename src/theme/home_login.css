@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+#main-content{
+    background-color: #254875;
+}
+
+/*.toolBar {
+    background-color: #254875 ;
+}*/
+.homeTitle {
+    color: aliceblue;
+    font-size: large;
+    padding-left: 4rem;
+}
