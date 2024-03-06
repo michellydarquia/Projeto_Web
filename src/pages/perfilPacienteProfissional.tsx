@@ -69,11 +69,7 @@ const PerfilPacienteProfissional: React.FC = () => {
 
                     <IonCardContent>
                         <IonIcon icon={cloudUploadOutline} size="large" />
-<<<<<<< HEAD
                         <IonInput type='file' onInput={handleFileChange} />
-=======
-                        <input type="file" onChange={handleFileChange} />
->>>>>>> bf828daf91cb107f8d9792a3f6f4cb48bbfbf970
                         <IonButton onClick={handleUpload}>Enviar Arquivo</IonButton>
                     </IonCardContent>
                 </IonContent>
