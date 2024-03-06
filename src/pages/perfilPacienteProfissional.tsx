@@ -12,10 +12,13 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { cloudUploadOutline } from 'ionicons/icons';
-import { storage } from "../firebase" 
+import { storage, auth, firestore } from "../firebase" 
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const PerfilPacienteProfissional: React.FC = () => {
+
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleFileChange = (event: any) => {
@@ -28,15 +31,37 @@ const PerfilPacienteProfissional: React.FC = () => {
     const handleUpload = async () => {
         if (selectedFile) {
             const storageRef = ref(storage, 'caminho/para/o/diretorio/' + selectedFile.name);
-// local de armazenamento no firebase com caminho para o diretório junto ao nome do arquivo
-           
-            try {// tenta realizar o up do arv usando uploadBytes
-                // uplo do arquivo
+
+            try {
                 await uploadBytes(storageRef, selectedFile);
 
-                //  ter URL do arquivo após o upload (opcional)
-                const downloadURL = await getDownloadURL(storageRef);
+                const downloadURL = await getDownloadURL(storageRef)
 
+                onAuthStateChanged(auth, async (user) => {
+
+
+
+                    if (user){
+                        const dados = doc(firestore, "users", user.uid)
+                        const info = await getDoc(dados);
+
+
+                        if (info.exists()){
+
+                        //OBS: lembrar de fazer copia do info.data().exame para 
+                        //     alterar o url de um exame específico e não criar um novo
+                            await updateDoc(doc(firestore, "users", user.uid), {
+
+                                exames: {
+                                    titulo: 'teste2',
+                                    descricao: 'teste2',
+                                    url: downloadURL
+                                }
+                            });
+                        }
+                    }
+                });
+                
                 console.log('Arquivo enviado com sucesso. URL:', downloadURL);
             } catch (error) {
                 console.error('Erro ao enviar o arquivo:', error);
@@ -45,6 +70,8 @@ const PerfilPacienteProfissional: React.FC = () => {
             console.log('Nenhum arquivo selecionado.');
         }
     };
+
+
 
     return (
         <>
