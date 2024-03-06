@@ -5,9 +5,13 @@
     font-family: 'Nunito', sans-serif;
 }
 
-.toolBar {
-    background-color: #254875 ;
+#main-content{
+    background-color: #254875;
 }
+
+/*.toolBar {
+    background-color: #254875 ;
+}*/
 .homeTitle {
     color: aliceblue;
     font-size: large;

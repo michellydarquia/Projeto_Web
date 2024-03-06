@@ -6,14 +6,17 @@ import {
     IonToolbar,
     IonIcon,
     IonButton,
+    IonImg,
 } from '@ionic/react';
 import React from 'react';
 import '../theme/home_login.css';
+import schImg from '../imagens/sch.png';
 
 const Home: React.FC = () => {
 
     return (
         <>
+        
             <IonPage id="main-content">
                 <IonHeader>
                     <IonToolbar class="toolBar" color={'teste'}>
@@ -21,10 +24,17 @@ const Home: React.FC = () => {
           
                     </IonToolbar>
                 </IonHeader>
+               
+
                 <IonContent className="ion-padding">
+                
+                    <IonImg src={schImg}/>
                     <IonButton href='/login'>Login como paciente</IonButton>
                     <IonButton href='/login'>Login como profissional</IonButton>
                 </IonContent>
+               
+               
+                
 
             </IonPage>
         </>
