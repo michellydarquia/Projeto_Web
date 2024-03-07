@@ -81,16 +81,22 @@ const PerfilPacienteProfissional: React.FC = () => {
                         <IonAvatar>
                             <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle>.................NOME COMPLETO</IonTitle>
+                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente-Profissional</IonTitle>
+                        <IonTitle>NOME COMPLETO</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent className="ion-padding">
                     <br />
-                    DADOS: <br />
-                    DADOS: <br />
-                    DADOS: <br />
-                    DADOS: <br />
-                    DADOS: <br />
+                    <br />
+                    <br />
+                    NOME DA MÃE: <br />
+                    CPF: <br />
+                    RG: <br />
+                    CEP: <br />
+                    ENDEREÇO: <br />
+                    E-MAIL: <br />
+                    
+                    <div className="ion-text-center" style={{ marginTop: '200px' }}>
                     <IonButton color={'success'}>Exames</IonButton>
                     <IonButton color={'success'}>Marcar exames</IonButton>
 
@@ -99,6 +105,7 @@ const PerfilPacienteProfissional: React.FC = () => {
                         <IonInput type='file' onInput={handleFileChange} />
                         <IonButton onClick={handleUpload}>Enviar Arquivo</IonButton>
                     </IonCardContent>
+                    </div>
                 </IonContent>
             </IonPage>
         </>
