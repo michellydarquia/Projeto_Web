@@ -4,21 +4,16 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonIcon,
     IonButton,
     IonInput,
     IonText,
-    IonNavLink,
-    IonNav
+
 } from '@ionic/react';
 
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
-import {Register} from './registrar';
-
 const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
@@ -89,9 +84,6 @@ const Login: React.FC = () => {
 
                             ></IonInput>
                             <IonButton type="submit" expand='block' onClick={login} className='ion-padding-top'>Entrar</IonButton>
-                            <IonText className='ion-padding-top'>
-                                Não tem uma conta? <Link to="/registrar"><IonButton>Cadastra-se</IonButton></Link>
-                            </IonText>
                             
 
                         </form>
