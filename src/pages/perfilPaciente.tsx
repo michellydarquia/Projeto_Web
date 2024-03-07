@@ -64,3 +64,35 @@ const perfilPaciente: React.FC = () => {
 };
 
 export default perfilPaciente;
+
+
+
+
+const PerfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
+    return (
+        <IonPage>
+            <IonHeader>
+                <IonToolbar>
+                    <IonAvatar>
+                        <img alt="Imagem do perfil"
+                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                    </IonAvatar>
+                    <IonTitle>{dados.nomeCompleto}</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+            <IonContent className="ion-padding">
+                {/* Exibe os outros dados inseridos pelo paciente */}
+                <p>Endereço: {dados.nome}</p>
+                <p>CPF: {dados.CPF}</p>
+                <p>CEP: {dados.CEP}</p>
+                <p>Endereço: {dados.endereco}</p>
+                <p>Endereço: {dados.email}</p>
+                <p>Endereço: {dados.endereco}</p>
+                <p>Endereço: {dados.nomemae}</p>
+                <p>Endereço: {dados.RG}</p>
+                <IonButton color={'success'} href='/listaexames'>Exames</IonButton>
+                <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
+            </IonContent>
+        </IonPage>
+    );
+};

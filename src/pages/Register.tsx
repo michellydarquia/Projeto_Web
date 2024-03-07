@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonRadioGroup, IonItem, IonLabel, IonRadio, IonButton, RadioGroupChangeEventDetail } from '@ionic/react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
-import { setDoc, doc } from 'firebase/firestore';  
+import { setDoc, doc } from 'firebase/firestore';
+import {Login} from './login';
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import {perfilPaciente} from './perfil';
 
 const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onUserRegistered }) => {
 
@@ -36,7 +40,7 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             console.error("Erro: ", e);
         }
     }
-
+ 
     const registrar = () => {
 
         createUserWithEmailAndPassword(auth, email, senha)
@@ -51,6 +55,25 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             console.log('Erro: ', errorCode, errorMsg)
         });
 
+    }
+
+    const [redirect, setRedirect] = useState<boolean>(false);
+
+    const handleRegistrarClick = () => {
+        registrar()
+            .then((user) => {
+                onUserRegistered(user);
+  
+                setRedirect(true);
+            })
+            .catch((error) => {
+                console.error("Erro ao registrar:", error);
+
+            });
+    };
+
+    if (redirect) {
+        return <Redirect to="/perfil" />;
     }
 
     return (
@@ -163,7 +186,10 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         </IonItem>
                     </IonRadioGroup>
 
-                    <IonButton onClick={registrar}>Registrar</IonButton>
+                    <Link to="/login"><IonButton>Registrar</IonButton></Link>
+
+
+
                     </form>              
                 </div>
 
