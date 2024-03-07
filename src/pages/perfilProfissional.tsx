@@ -100,9 +100,9 @@ const perfilProfissional: React.FC = () => {
                 <IonToolbar>
                     <IonAvatar>
                         <img alt="Imagem do perfil"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                        src="file:///C:/Users/bella/Downloads/undraw_doctors_p6aq.svg" />
                     </IonAvatar>
-                    <IonTitle>.................{nome}</IonTitle>
+                    <IonTitle>{nome}</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">

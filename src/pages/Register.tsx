@@ -1,12 +1,28 @@
 import { useState } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonRadioGroup, IonItem, IonLabel, IonRadio, IonButton, RadioGroupChangeEventDetail } from '@ionic/react';
+import {
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonButton,
+    IonImg,
+    IonTextarea,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonRadio,
+    IonRadioGroup,
+    IonLabel,
+    IonInput,
+    IonItem,
+} from '@ionic/react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { setDoc, doc } from 'firebase/firestore';
-import {Login} from './login';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import {perfilPaciente} from './perfil';
+
 
 const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onUserRegistered }) => {
 
@@ -77,25 +93,29 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
     }
 
     return (
-        <IonPage id="main-content">
-            <IonHeader>
-                <IonToolbar color={'success'}>
-                    <IonTitle>Registrar</IonTitle>
-                </IonToolbar>
-            </IonHeader>
+        <>
+            <IonPage id="main-content">
+                <IonHeader>
+                
+                </IonHeader>
+               
 
-            <IonContent className="ion-padding">
-                <div
-                    style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '100%',
-                    }}
-                >
-            <form>
-                    <IonLabel position="floating">Nome</IonLabel>
-                    <IonInput
+                <IonContent className='ion-padding'>
+                    <IonGrid className='grid-container'>
+                        <IonRow>
+                        <IonCol>
+                           <div className="container">
+                           <IonTitle> Registro </IonTitle>
+                           </div>
+                        </IonCol>
+
+                        </IonRow>
+
+
+                    <IonCol className="ion-align-items-center">
+                      <div className='ion-text-center'>
+                      <IonLabel position="floating">Nome</IonLabel>
+                      <IonInput
                         type="text"
                         value={nome}
                         onIonChange={(e) => setNome(e.target.value)}
@@ -104,8 +124,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                      />
 
-                    <IonLabel position="floating">CPF</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">CPF</IonLabel>
+                      <IonInput
                         type="text"
                         value={CPF}
                         onIonChange={(e) => setCPF(e.target.value)}
@@ -114,8 +134,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     />
                     
-                    <IonLabel position="floating">CEP</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">CEP</IonLabel>
+                      <IonInput
                         type="text"
                         value={CEP}
                         onIonChange={(e) => setCEP(e.target.value)}
@@ -124,8 +144,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     />
 
-                    <IonLabel position="floating">Endereço</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">Endereço</IonLabel>
+                      <IonInput
                         type="text"
                         value={endereco}
                         onIonChange={(e) => setEndereco(e.target.value)}
@@ -134,8 +154,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     />
 
-                    <IonLabel position="floating">E-mail</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">E-mail</IonLabel>
+                      <IonInput
                         type="email"
                         value={email}
                         onIonChange={(e) => setEmail(e.target.value)}
@@ -144,8 +164,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     />
 
-                    <IonLabel position="floating">Nome da Mãe</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">Nome da Mãe</IonLabel>
+                      <IonInput
                         type="text"
                         value={nomemae}
                         onIonChange={(e) => setNomeMae(e.target.value)}
@@ -154,8 +174,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     />
 
-                    <IonLabel position="floating">RG</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">RG</IonLabel>
+                      <IonInput
                         type="text"
                         value={RG}
                         onIonChange={(e) => setRG(e.target.value)}
@@ -163,8 +183,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         color="success"
                         fill="outline"
                     />
-                    <IonLabel position="floating">Senha</IonLabel>
-                    <IonInput
+                      <IonLabel position="floating">Senha</IonLabel>
+                      <IonInput
                         type="password"
                         value={senha}
                         onIonChange={(e) => setSenha(e.target.value)}
@@ -173,7 +193,7 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         fill="outline"
                     /> 
 
-                    <IonRadioGroup value={conta} onIonChange={(e: CustomEvent) => setConta(e.detail)}>
+                      <IonRadioGroup value={conta} onIonChange={(e: CustomEvent) => setConta(e.detail)}>
                         <IonItem>
                             <IonRadio value='paciente'>
                                 <code>Paciente</code>
@@ -184,19 +204,17 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                                 <code>Profissional</code>
                             </IonRadio>
                         </IonItem>
-                    </IonRadioGroup>
+                      </IonRadioGroup>
 
-                    <IonButton onClick={registrar}>Registrar</IonButton>
-                    <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
-
-                    </form>              
-                </div>
-
-
-                
+                      <IonButton onClick={registrar}>Registrar</IonButton>
+                      <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
+                      </div>
+                            </IonCol>
+              </IonGrid>
             </IonContent>
         </IonPage>
+
+        </>
     );
 };
-
 export default Register;

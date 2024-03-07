@@ -118,7 +118,7 @@ export default perfilPaciente;
 
 
 
-const PerfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
+const perfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
     return (
         <IonPage>
             <IonHeader>
