@@ -118,15 +118,14 @@ export default perfilPaciente;
 
 
 
-const perfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
+const PerfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonAvatar>
-                        <img alt="Imagem do perfil"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                    </IonAvatar>
+                <IonAvatar>
+                         <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                </IonAvatar>
                     <IonTitle>{dados.nomeCompleto}</IonTitle>
                 </IonToolbar>
             </IonHeader>
