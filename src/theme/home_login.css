@@ -9,28 +9,47 @@
   
 
 
-/*.toolBar {
-    background-color: #254875 ;
-}*/
+.ion-padding{
+    --ion-padding:0px;
+  }
+
 .homeTitle {
     color: aliceblue;
     font-size: large;
     padding-left: 4rem;
 }
 
-.grid-container{
+/*.grid-container{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+}*/
+
+.colImg {
+    height: 100vh;
+    background-color: #F6F5F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.colBtt{
+    height: 100vh;
+    background-color: #748BA8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
 }
 
 #imagem{
     width: 85%;
-    margin-left: 10%;
     margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: 10%;
     
 }
