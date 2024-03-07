@@ -13,7 +13,6 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import '../theme/home_login.css';
-import { Link } from 'react-router-dom'; 
 import schImg from '../imagens/sch.png';
 
 
@@ -25,17 +24,13 @@ const Home: React.FC = () => {
     return (
         <>
             <IonPage id="main-content">
-                <IonHeader>
-                
-                </IonHeader>
-               
 
                 <IonContent id='ImgBtt' className='ion-padding'>
                     <IonGrid className='grid-container'>
                         <IonRow>
                             <IonCol class='colImg'>
                                 <div className="container">
-                                    <IonTitle>Acompanhe o resultado dos exames feitos</IonTitle>
+                                    <IonTitle id='introText'>Acompanhe o resultado dos exames feitos</IonTitle>
                                     <div className='image-container'>
                                         <IonImg src={schImg} id="imagem" class='ion-float-left'/>
 
@@ -44,19 +39,17 @@ const Home: React.FC = () => {
                
                             </IonCol>
                             <IonCol class='colBtt'>
-                                <div className='ion-text-right'>
+                                <div id='buttons' className='ion-text-right'>
+                                    <IonRow>
                                     <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
-                                    <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
-                                
-                                    <IonButton href='/registrar'>/registrar</IonButton>
-                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
-                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
-                                    <IonButton href='/exame'>/exame</IonButton>
-                                    <IonButton href='/perfil'>/perfil</IonButton>
-                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
-                                    <IonButton href='/paciente'>/paciente</IonButton>
-                                    <IonButton href='/criar-exame'>/criar-exame</IonButton>
 
+                                    </IonRow>
+                                    <IonRow>
+                                    <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
+
+                                    </IonRow>
+                                
+                                   
                                 </div>
                             </IonCol>
                         </IonRow>
@@ -68,3 +61,12 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+/* <IonButton href='/registrar'>/registrar</IonButton> 
+                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
+                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
+                                    <IonButton href='/exame'>/exame</IonButton>
+                                    <IonButton href='/perfil'>/perfil</IonButton>
+                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
+                                    <IonButton href='/paciente'>/paciente</IonButton>
+                                    <IonButton href='/criar-exame'>/criar-exame</IonButton> 
+*/ 
