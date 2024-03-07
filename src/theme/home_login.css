@@ -1,13 +1,13 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
-}
+* {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal; /* Substitua "<weight>" pelo valor real, por exemplo, "bold" ou "normal" */
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+  
 
-#main-content{
-    background-color: #254875;
-}
 
 /*.toolBar {
     background-color: #254875 ;
@@ -16,4 +16,21 @@
     color: aliceblue;
     font-size: large;
     padding-left: 4rem;
+}
+
+.grid-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagem{
+    width: 85%;
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    
 }

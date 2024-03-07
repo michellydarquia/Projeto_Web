@@ -11,6 +11,7 @@ import Exame from './pages/Exame';
 import perfilPaciente from './pages/perfilPaciente';
 import perfilProfissional from './pages/perfilProfissional';
 import perfilPacienteProfissional from './pages/perfilPacienteProfissional';
+import criarExame from './pages/criarExame';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -46,6 +47,7 @@ const App: React.FC = () => (
           <Route component={perfilPaciente} path="/perfil" exact />
           <Route component={perfilProfissional} path="/perfil-adm" exact />
           <Route component={perfilPacienteProfissional} path="/paciente" exact />
+          <Route component={criarExame} path="/criar-exame" exact />
           <Redirect from='/' to='/home' exact/>
         </IonRouterOutlet>
       </IonReactRouter>

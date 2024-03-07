@@ -24,14 +24,15 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
     const addDados = async (user: any) => {
         try {
             const docRef = {
-                nome: nome,
-                CPF: CPF,
-                CEP: CEP,
-                endereco: endereco,
-                nomeDaMae: nomemae,
-                RG: RG,
-                email: email,
-                conta: conta
+              nome: nome,
+              CPF: CPF,
+              CEP: CEP,
+              endereco: endereco,
+              nomeDaMae: nomemae,
+              RG: RG,
+              email: email,
+              conta: conta,
+              exames: []
             };
             await setDoc(doc(firestore, "users", user.uid), docRef);
             onUserRegistered(docRef);
@@ -54,7 +55,6 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             const errorMsg = error.message;
             console.log('Erro: ', errorCode, errorMsg)
         });
-
     }
 
     const [redirect, setRedirect] = useState<boolean>(false);
@@ -186,9 +186,8 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                         </IonItem>
                     </IonRadioGroup>
 
-                    <Link to="/login"><IonButton>Registrar</IonButton></Link>
-
-
+                    <IonButton onClick={registrar}>Registrar</IonButton>
+                    <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
 
                     </form>              
                 </div>
