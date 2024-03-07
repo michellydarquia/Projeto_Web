@@ -17,13 +17,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import Register from './Register';
+import {Register} from './registrar';
 
 const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
-    const [logado, setLogado] = useState<boolean>(true);
+    const [logado, setLogado] = useState<boolean>(false);
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, senha)
@@ -88,15 +88,9 @@ const Login: React.FC = () => {
                                 
 
                             ></IonInput>
-                            <IonButton 
-                            type="submit" 
-                            expand='block' 
-                            onClick={login}
-                            className='ion-padding-top'
-                            >Entrar</IonButton>
-
+                            <IonButton type="submit" expand='block' onClick={login} className='ion-padding-top'>Entrar</IonButton>
                             <IonText className='ion-padding-top'>
-                                Não tem uma conta? <IonButton routerLink='./'>Cadastra-se</IonButton>
+                                Não tem uma conta? <Link to="/registrar"><IonButton>Cadastra-se</IonButton></Link>
                             </IonText>
                             
 
