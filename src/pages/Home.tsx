@@ -16,6 +16,7 @@ import React from 'react';
 import '../theme/home_login.css';
 import schImg from '../imagens/sch.png';
 
+
 import * as shared from '../shared'
 
 const Home: React.FC = () => {
@@ -30,13 +31,13 @@ const Home: React.FC = () => {
                
 
                 <IonContent id='ImgBtt' className='ion-padding'>
-                    <IonGrid>
+                    <IonGrid className='grid-container'>
                         <IonRow>
                             <IonCol>
                                 <div className="container">
                                     <IonTitle>Acompanhe o resultado dos exames feitos</IonTitle>
                                     <div className='image-container'>
-                                        <IonImg src={schImg} id="imagem" class='ion-float-right'/>
+                                        <IonImg src={schImg} id="imagem" class='ion-float-left'/>
 
                                     </div>
                                 </div>
