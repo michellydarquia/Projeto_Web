@@ -10,61 +10,70 @@ import {
     IonGrid,
     IonRow,
     IonCol,
+    IonCard,
+    IonText,
 } from '@ionic/react';
-import React, {useEffect} from 'react';
-import '../theme/home_login.css';
-import { Link } from 'react-router-dom'; 
+import React, { useEffect } from 'react';
+import '../theme/home.css';
+//import { Link } from 'react-router-dom'; 
 import axios from 'axios'
-
-
-import * as shared from '../shared'
+import schImg from '../imagens/sch-removebg.png';
 
 const Home: React.FC = () => {
-
-    useEffect(()=>{
-        axios.get('http://localhost:3000/aaa')
-        .then(response => console.log(response.data)) 
-        .catch(error => console.log(error))
-    },[])
 
     return (
         <>
             <IonPage id="main-content">
-                <IonHeader>
-                
-                </IonHeader>
-               
 
                 <IonContent id='ImgBtt' className='ion-padding'>
                     <IonGrid className='grid-container'>
                         <IonRow>
-                            <IonCol>
+                            <IonCol class='colImg'>
                                 <div className="container">
-                                    <IonTitle>Acompanhe o resultado dos exames feitos</IonTitle>
+                                    <IonTitle id='introText'>Acesse o resultado de seus exames aqui</IonTitle>
                                     <div className='image-container'>
                                         <IonImg 
-                                        //src={schImg} 
+                                        src={schImg} 
                                         id="imagem" class='ion-float-left'/>
 
                                     </div>
-                                </div>
-               
+                                </div>               
                             </IonCol>
-                            <IonCol>
-                                <div className='ion-text-right'>
-                                    <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
-                                    <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
-                                
-                                    <IonButton href='/registrar'>/registrar</IonButton>
-                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
-                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
-                                    <IonButton href='/exame'>/exame</IonButton>
-                                    <IonButton href='/perfil'>/perfil</IonButton>
-                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
-                                    <IonButton href='/paciente'>/paciente</IonButton>
-                                    <IonButton href='/criar-exame'>/criar-exame</IonButton>
+                            <IonCol class='colBtt'>
+                                <IonCard id='homeCard'>
+                                <IonRow>
+                                        <IonTitle id='loginTitle'>
+                                            <h2>Escolha seu tipo de login:</h2>
+                                        </IonTitle>
+                                    </IonRow>
+                                <div id='buttonsDiv' className='ion-text-right'>
+                                    
+                                    <IonRow id='rowPac'>
+                                    <IonButton href='/login' id="bttPac" 
+                                    className='buttonPacMed' 
+                                    expand='block'
+                                    shape='round'
+                                    >Login como paciente</IonButton>
+                                    </IonRow>
+                                    <IonRow id='lineText'>
+                                        <div id='linha_separacao'></div>
+                                        <IonText>
+                                            <p>OU</p>
+                                        </IonText>
+                                        <div id='linha_separacao'></div>
 
+                                    </IonRow>
+                                    <IonRow>
+                                    <IonButton href='/login' id="bttMed" 
+                                    className='buttonPacMed' 
+                                    expand='block' 
+                                    shape='round'
+                                    >Login como profissional</IonButton>
+
+                                    </IonRow>                                                                   
                                 </div>
+
+                                </IonCard>                               
                             </IonCol>
                         </IonRow>
                     </IonGrid>
@@ -75,3 +84,12 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+/* <IonButton href='/registrar'>/registrar</IonButton> 
+                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
+                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
+                                    <IonButton href='/exame'>/exame</IonButton>
+                                    <IonButton href='/perfil'>/perfil</IonButton>
+                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
+                                    <IonButton href='/paciente'>/paciente</IonButton>
+                                    <IonButton href='/criar-exame'>/criar-exame</IonButton> 
+*/ 

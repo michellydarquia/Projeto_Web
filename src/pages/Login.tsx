@@ -7,6 +7,10 @@ import {
     IonButton,
     IonInput,
     IonText,
+    IonImg,
+    IonGrid,
+    IonRow,
+    IonCard,
 
 } from '@ionic/react';
 
@@ -14,6 +18,10 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
+import axios from 'axios'
+
+import '../theme/login.css'
+
 const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
@@ -21,16 +29,14 @@ const Login: React.FC = () => {
     const [logado, setLogado] = useState<boolean>(false);
 
     const login = () => {
-        signInWithEmailAndPassword(auth, email, senha)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            setLogado(true);
+        axios.get('http://localhost:3000/login',{
+            params: { 
+                email: email,
+                senha: senha,
+            }
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMsg = error.message;
-            console.log('ERRO:', errorCode, errorMsg)
-        });
+        .then(response => setLogado(response.data))
+        .catch(error => console.log(error))
     }
 
     if (logado){
@@ -39,31 +45,39 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <IonPage id="main-content1">
-
-                <IonHeader>
-                    <IonToolbar color={'success'}>
-                        <IonTitle>Login</IonTitle>
+            <IonPage id="main-content">
+            
+                
+                <IonHeader class='teste'>
+                                
+                    <IonToolbar  id='loginTbar'>
+                        <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
                     </IonToolbar>
-                </IonHeader>
-
-                <IonContent className="ion-padding">
+                </IonHeader>                                 
+              
+                <IonContent id='contentLogin' className="ion-padding">
+                    
                     <div
                         style={{
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
                         height: '100%',
                         }}
                     >
+                        <IonCard id='loginCard'>
+                        <IonText id='loginText'>
+                            <h3 id='hLogin'>Login</h3>
+                        </IonText>
                         <form>
-                            <IonInput class=""
+                            <IonInput id='emailBtt'
 
                                 type='text'
-                                label="CPF"
+                                label="Email"
                                 labelPlacement="floating"
                                 fill="outline"
-                                placeholder="Digite seu CPF"
+                                placeholder="Digite seu email"
                                 onIonChange={(e) => setEmail(e.target.value)}
                                 color={'success'}
                                 
@@ -71,7 +85,7 @@ const Login: React.FC = () => {
                            
                            
 
-                            <IonInput
+                            <IonInput id='senhaBtt'
                                 className='ion-margin-top'
                                 type='password'
                                 label="Senha"
@@ -83,20 +97,29 @@ const Login: React.FC = () => {
                                 
 
                             ></IonInput>
-                            <IonButton 
+                            <IonButton id='entrarBtt'
                             // type="submit" 
                             expand='block' 
+                            shape='round'
                             onClick={login}
                             className='ion-padding-top'
                             >Entrar</IonButton>
 
                             <IonText className='ion-padding-top'>
-                            <IonButton fill="clear" href='/'>Esqueci minha senha</IonButton> 
+                            <IonButton id='esqueciBtt'
+                            fill="clear" 
+                            href='/'
+                            expand='block'
+                            className='ion-padding-center'
+                            >Esqueci minha senha</IonButton> 
                             </IonText>
 
                         </form>
+                        </IonCard>
+                        
                     </div>
                 </IonContent>
+           
             </IonPage>
         </>
     );

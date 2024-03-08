@@ -4,11 +4,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev2": "nodemon backend.js",
+    "dev": "nodemon src/back-end/backend.js && vite",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "teste": "echo \"Error: no test specified\" && exit 1",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
     "lint": "eslint"
@@ -33,6 +32,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^5.0.0",
