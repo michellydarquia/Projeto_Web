@@ -40,7 +40,7 @@ const Home: React.FC = () => {
                                 </div>               
                             </IonCol>
                             <IonCol class='colBtt'>
-                                <IonCard id='card'>
+                                <IonCard id='homeCard'>
                                 <IonRow>
                                         <IonTitle id='loginTitle'>
                                             <h2>Escolha seu tipo de login:</h2>
@@ -50,12 +50,12 @@ const Home: React.FC = () => {
                                     
                                     <IonRow id='rowPac'>
                                     <IonButton href='/login' id="bttPac" 
-                                    className='button' 
+                                    className='buttonPacMed' 
                                     expand='block'
                                     shape='round'
                                     >Login como paciente</IonButton>
                                     </IonRow>
-                                    <IonRow id='loginText'>
+                                    <IonRow id='lineText'>
                                         <div id='linha_separacao'></div>
                                         <IonText>
                                             <p>OU</p>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
                                     </IonRow>
                                     <IonRow>
                                     <IonButton href='/login' id="bttMed" 
-                                    className='button' 
+                                    className='buttonPacMed' 
                                     expand='block' 
                                     shape='round'
                                     >Login como profissional</IonButton>

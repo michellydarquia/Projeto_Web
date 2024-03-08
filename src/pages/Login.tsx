@@ -10,6 +10,7 @@ import {
     IonImg,
     IonGrid,
     IonRow,
+    IonCard,
 
 } from '@ionic/react';
 
@@ -17,7 +18,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
-import examImg from '../imagens/medicaImg.png'
+import '../theme/login.css'
 const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
@@ -43,22 +44,17 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <IonPage id="main-content1">
+            <IonPage id="main-content">
             
-
+                
                 <IonHeader class='teste'>
                                 
-                    <IonToolbar color={'success'}>
-                        <IonTitle>Resultado de Exames</IonTitle>
+                    <IonToolbar  id='loginTbar'>
+                        <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
                     </IonToolbar>
-                </IonHeader>
-
-               
-                       
-                  
+                </IonHeader>                                 
               
-
-                <IonContent className="ion-padding">
+                <IonContent id='contentLogin' className="ion-padding">
                     
                     <div
                         style={{
@@ -69,11 +65,12 @@ const Login: React.FC = () => {
                         height: '100%',
                         }}
                     >
-                        <IonText>
-                            <h3>Login</h3>
+                        <IonCard id='loginCard'>
+                        <IonText id='loginText'>
+                            <h3 id='hLogin'>Login</h3>
                         </IonText>
                         <form>
-                            <IonInput class=""
+                            <IonInput id='emailBtt'
 
                                 type='text'
                                 label="Email"
@@ -87,7 +84,7 @@ const Login: React.FC = () => {
                            
                            
 
-                            <IonInput
+                            <IonInput id='senhaBtt'
                                 className='ion-margin-top'
                                 type='password'
                                 label="Senha"
@@ -99,18 +96,26 @@ const Login: React.FC = () => {
                                 
 
                             ></IonInput>
-                            <IonButton 
+                            <IonButton id='entrarBtt'
                             // type="submit" 
                             expand='block' 
+                            shape='round'
                             onClick={login}
                             className='ion-padding-top'
                             >Entrar</IonButton>
 
                             <IonText className='ion-padding-top'>
-                            <IonButton fill="clear" href='/'>Esqueci minha senha</IonButton> 
+                            <IonButton id='esqueciBtt'
+                            fill="clear" 
+                            href='/'
+                            expand='block'
+                            className='ion-padding-center'
+                            >Esqueci minha senha</IonButton> 
                             </IonText>
 
                         </form>
+                        </IonCard>
+                        
                     </div>
                 </IonContent>
            
