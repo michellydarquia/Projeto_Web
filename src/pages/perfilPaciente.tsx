@@ -14,6 +14,7 @@ import { Redirect } from 'react-router';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import '../theme/register_perfil.css';
 
 const perfilPaciente: React.FC = () => {
 
@@ -88,7 +89,8 @@ const perfilPaciente: React.FC = () => {
                             <img alt="Imagem do perfil"
                             src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle>.................{nome}</IonTitle>
+                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente</IonTitle>
+                        <IonTitle>{nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent className="ion-padding">
@@ -101,12 +103,13 @@ const perfilPaciente: React.FC = () => {
                     Nome da mãe: {nomemae}<br/><br/>
                     RG: {RG}<br/><br/>
                     Tipo da conta: {conta}<br/><br/>
-
+                    
+                    <div className="ion-text-center" style={{ marginTop: '200px' }}>
                     <IonButton color={'success'} href='/lista-exames'>Exames</IonButton>
                     <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
                     
                     <p>{msg}</p>
-                    
+                    </div>
                 </IonContent>
             </IonPage>
         </>

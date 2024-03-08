@@ -20,6 +20,7 @@ import {
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { setDoc, doc } from 'firebase/firestore';
+import '../theme/register_perfil.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
@@ -96,24 +97,24 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
         <>
             <IonPage id="main-content">
                 <IonHeader>
-                
+                <IonRow>
+                <IonCol>
+                <div className="container">
+                    <IonTitle> Cadastro </IonTitle>
+                </div>
+               </IonCol>
+               </IonRow>
+
                 </IonHeader>
                
-
                 <IonContent className='ion-padding'>
+                    <div className="form-container">
                     <IonGrid className='grid-container'>
-                        <IonRow>
-                        <IonCol>
-                           <div className="container">
-                           <IonTitle> Registro </IonTitle>
-                           </div>
-                        </IonCol>
-
-                        </IonRow>
+                    <IonRow>
+                         <IonCol size="12" size-md="3" offsetMd="5" className="ion-align-items-center">
+                         <div className='ion-text-center'>
 
 
-                    <IonCol className="ion-align-items-center">
-                      <div className='ion-text-center'>
                       <IonLabel position="floating">Nome</IonLabel>
                       <IonInput
                         type="text"
@@ -205,16 +206,16 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
                             </IonRadio>
                         </IonItem>
                       </IonRadioGroup>
-
-                      <IonButton onClick={registrar}>Registrar</IonButton>
+                      <IonButton href='/perfil-adm'>Registrar</IonButton>
                       <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
                       </div>
                             </IonCol>
-              </IonGrid>
+                        </IonRow>
+                    </IonGrid>
+                </div>
             </IonContent>
         </IonPage>
-
-        </>
-    );
+    </>
+);
 };
 export default Register;

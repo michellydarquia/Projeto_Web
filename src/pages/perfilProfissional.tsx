@@ -102,6 +102,8 @@ const perfilProfissional: React.FC = () => {
                         <img alt="Imagem do perfil"
                         src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                     </IonAvatar>
+                    <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Administrativo</IonTitle>
+                    
                     <IonTitle>{nome}</IonTitle>
                 </IonToolbar>
             </IonHeader>
@@ -115,12 +117,13 @@ const perfilProfissional: React.FC = () => {
                 Nome da mãe: {nomemae}<br/><br/>
                 RG: {RG}<br/><br/>
                 Tipo da conta: {conta}<br/><br/>
-
+                
+                <div className="ion-text-center">
                 <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
                 <IonButton color={'success'} href='/registrar'>Registrar Perfil</IonButton>
                 <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                <IonButton color={'light'} onClick={addExames}>aaa</IonButton>
-
+                <IonButton color={'light'} onClick={addExames}>aDD</IonButton>
+                </div>
 
             </IonContent>
         </IonPage>
