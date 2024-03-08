@@ -11,15 +11,21 @@ import {
     IonRow,
     IonCol,
 } from '@ionic/react';
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../theme/home_login.css';
 import { Link } from 'react-router-dom'; 
+import axios from 'axios'
 
 
 import * as shared from '../shared'
 
 const Home: React.FC = () => {
 
+    useEffect(()=>{
+        axios.get('http://localhost:3000/aaa')
+        .then(response => console.log(response.data)) 
+        .catch(error => console.log(error))
+    },[])
 
     return (
         <>
@@ -36,7 +42,9 @@ const Home: React.FC = () => {
                                 <div className="container">
                                     <IonTitle>Acompanhe o resultado dos exames feitos</IonTitle>
                                     <div className='image-container'>
-                                        <IonImg src={schImg} id="imagem" class='ion-float-left'/>
+                                        <IonImg 
+                                        //src={schImg} 
+                                        id="imagem" class='ion-float-left'/>
 
                                     </div>
                                 </div>
