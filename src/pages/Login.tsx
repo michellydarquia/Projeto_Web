@@ -7,6 +7,9 @@ import {
     IonButton,
     IonInput,
     IonText,
+    IonImg,
+    IonGrid,
+    IonRow,
 
 } from '@ionic/react';
 
@@ -14,6 +17,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Redirect } from 'react-router';
+import examImg from '../imagens/medicaImg.png'
 const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
@@ -40,30 +44,42 @@ const Login: React.FC = () => {
     return (
         <>
             <IonPage id="main-content1">
+            
 
-                <IonHeader>
+                <IonHeader class='teste'>
+                                
                     <IonToolbar color={'success'}>
-                        <IonTitle>Login</IonTitle>
+                        <IonTitle>Resultado de Exames</IonTitle>
                     </IonToolbar>
                 </IonHeader>
 
+               
+                       
+                  
+              
+
                 <IonContent className="ion-padding">
+                    
                     <div
                         style={{
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
                         height: '100%',
                         }}
                     >
+                        <IonText>
+                            <h3>Login</h3>
+                        </IonText>
                         <form>
                             <IonInput class=""
 
                                 type='text'
-                                label="CPF"
+                                label="Email"
                                 labelPlacement="floating"
                                 fill="outline"
-                                placeholder="Digite seu CPF"
+                                placeholder="Digite seu email"
                                 onIonChange={(e) => setEmail(e.target.value)}
                                 color={'success'}
                                 
@@ -97,6 +113,7 @@ const Login: React.FC = () => {
                         </form>
                     </div>
                 </IonContent>
+           
             </IonPage>
         </>
     );

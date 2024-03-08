@@ -10,9 +10,10 @@ import {
     IonGrid,
     IonRow,
     IonCol,
+    IonCard,
 } from '@ionic/react';
 import React from 'react';
-import '../theme/home_login.css';
+import '../theme/home.css';
 import schImg from '../imagens/sch.png';
 
 
@@ -35,22 +36,30 @@ const Home: React.FC = () => {
                                         <IonImg src={schImg} id="imagem" class='ion-float-left'/>
 
                                     </div>
-                                </div>
-               
+                                </div>               
                             </IonCol>
                             <IonCol class='colBtt'>
-                                <div id='buttons' className='ion-text-right'>
-                                    <IonRow>
-                                    <IonButton href='/login' id="bttPac" className='button'>Login como paciente</IonButton>
-
+                                <IonCard id='card'>
+                                <div id='buttonsDiv' className='ion-text-right'>
+                                    <IonRow id='rowPac'>
+                                    <IonButton href='/login' id="bttPac" 
+                                    className='button' 
+                                    expand='block'
+                                    shape='round'
+                                    >Login como paciente</IonButton>
+                                    
                                     </IonRow>
                                     <IonRow>
-                                    <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
+                                    <IonButton href='/login' id="bttMed" 
+                                    className='button' 
+                                    expand='block' 
+                                    shape='round'
+                                    >Login como profissional</IonButton>
 
-                                    </IonRow>
-                                
-                                   
+                                    </IonRow>                                                                   
                                 </div>
+
+                                </IonCard>                               
                             </IonCol>
                         </IonRow>
                     </IonGrid>
