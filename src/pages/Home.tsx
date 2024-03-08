@@ -46,7 +46,6 @@ const Home: React.FC = () => {
                                     </IonRow>
                                     <IonRow>
                                     <IonButton href='/login' id="bttMed" className='button' >Login como profissional</IonButton>
-
                                     </IonRow>
                                 
                                    

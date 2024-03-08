@@ -14,6 +14,7 @@ import { Redirect } from 'react-router';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import '../theme/register_perfil.css';
 
 const perfilPaciente: React.FC = () => {
 

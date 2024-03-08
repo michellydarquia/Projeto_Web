@@ -20,7 +20,7 @@ import {
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "../firebase";
 import { setDoc, doc } from 'firebase/firestore';
-import '../theme/register.css';
+import '../theme/register_perfil.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
@@ -98,13 +98,13 @@ const Register: React.FC<{ onUserRegistered: (userData: any) => void }> = ({ onU
             <IonPage id="main-content">
                 <IonHeader>
                 <IonRow>
-                        <IonCol>
-                           <div className="container">
-                           <IonTitle> Cadastro </IonTitle>
-                           </div>
-                        </IonCol>
+                <IonCol>
+                <div className="container">
+                    <IonTitle> Cadastro </IonTitle>
+                </div>
+               </IonCol>
+               </IonRow>
 
-                </IonRow>
                 </IonHeader>
                
                 <IonContent className='ion-padding'>
