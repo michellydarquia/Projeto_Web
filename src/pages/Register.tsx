@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import {
     IonContent,
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar,
     IonButton,
-    IonImg,
-    IonTextarea,
     IonGrid,
     IonRow,
     IonCol,
@@ -17,15 +13,12 @@ import {
     IonInput,
     IonItem,
 } from '@ionic/react';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, firestore } from "../firebase";
-import { setDoc, doc } from 'firebase/firestore';
-import '../theme/register_perfil.css';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 
-//<{ onUserRegistered: (userData: any) => void }>
-//{ onUserRegistered }
+import { useState, useEffect } from 'react';
+
+import '../theme/register_perfil.css';
+
+import axios from 'axios';
 
 const Register: React.FC = () => {
 
@@ -38,59 +31,39 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
-    const [redirect, setRedirect] = useState<boolean>(false);
+    const [lightDark, setLightDark] = useState<any>('')
 
-    const addDados = async (user: any) => {
-        try {
-            const docRef = {
-              nome: nome,
-              CPF: CPF,
-              CEP: CEP,
-              endereco: endereco,
-              nomeDaMae: nomemae,
-              RG: RG,
-              email: email,
-              conta: conta,
-              exames: []
-            };
-            await setDoc(doc(firestore, "users", user.uid), docRef);
-            //onUserRegistered(docRef);
+    useEffect(() => {
 
-        } catch (e) {
-            console.error("Erro: ", e);
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches){
+            setLightDark('light')
+        } else {
+            setLightDark('dark')
         }
-    }
+        
+    }, []);
  
     const registrar = () => {
-
-        createUserWithEmailAndPassword(auth, email, senha)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            addDados(user)
-            console.log('Registrado')
+        axios.get('http://localhost:3000/registrar',{
+            params: {
+                uData: {
+                    nome: nome,
+                    CPF: CPF,
+                    CEP: CEP,
+                    endereco: endereco,
+                    nomeDaMae: nomemae,
+                    RG: RG,
+                    email: email,
+                    conta: conta,
+                    senha: senha
+                },
+                senha: senha
+            }
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMsg = error.message;
-            console.log('Erro: ', errorCode, errorMsg)
-        });
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     }
-
-
-
-    // const handleRegistrarClick = () => {
-    //     registrar()
-    //         .then((user) => {
-    //             onUserRegistered(user);
-  
-    //             setRedirect(true);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Erro ao registrar:", error);
-
-    //         });
-    // };
-
+    
     return (
         <>
             <IonPage id="main-content">
@@ -113,7 +86,7 @@ const Register: React.FC = () => {
                         <div className='ion-text-center'>
 
 
-                            <IonLabel position="floating">Nome</IonLabel>
+                            <IonLabel color={lightDark} position="floating">Nome</IonLabel>
                             <IonInput
                                 type="text"
                                 value={nome}
@@ -123,7 +96,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
 
-                            <IonLabel position="floating">CPF</IonLabel>
+                            <IonLabel color={lightDark} position="floating">CPF</IonLabel>
                             <IonInput
                                 type="text"
                                 value={CPF}
@@ -133,7 +106,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
                             
-                            <IonLabel position="floating">CEP</IonLabel>
+                            <IonLabel color={lightDark} position="floating">CEP</IonLabel>
                             <IonInput
                                 type="text"
                                 value={CEP}
@@ -143,7 +116,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
 
-                            <IonLabel position="floating">Endereço</IonLabel>
+                            <IonLabel color={lightDark} position="floating">Endereço</IonLabel>
                             <IonInput
                                 type="text"
                                 value={endereco}
@@ -153,7 +126,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
 
-                            <IonLabel position="floating">E-mail</IonLabel>
+                            <IonLabel color={lightDark} position="floating">E-mail</IonLabel>
                             <IonInput
                                 type="email"
                                 value={email}
@@ -163,7 +136,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
 
-                            <IonLabel position="floating">Nome da Mãe</IonLabel>
+                            <IonLabel color={lightDark} position="floating">Nome da Mãe</IonLabel>
                             <IonInput
                                 type="text"
                                 value={nomemae}
@@ -173,7 +146,7 @@ const Register: React.FC = () => {
                                 fill="outline"
                             />
 
-                            <IonLabel position="floating">RG</IonLabel>
+                            <IonLabel color={lightDark} position="floating">RG</IonLabel>
                             <IonInput
                                 type="text"
                                 value={RG}
@@ -182,7 +155,7 @@ const Register: React.FC = () => {
                                 color="success"
                                 fill="outline"
                             />
-                            <IonLabel position="floating">Senha</IonLabel>
+                            <IonLabel color={lightDark} position="floating">Senha</IonLabel>
                             <IonInput
                                 type="password"
                                 value={senha}

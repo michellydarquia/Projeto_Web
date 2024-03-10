@@ -7,27 +7,24 @@ import {
     IonAvatar, 
     IonButton,
     IonFooter
-} from '@ionic/react';
+} from '@ionic/react'
 
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router';
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router'
 
 import axios from 'axios'
 
-import '../theme/register_perfil.css';
+import '../theme/register_perfil.css'
 
 const perfilPaciente: React.FC = () => {
 
-    const [logado, setLogado] = useState<boolean>(true);
+    const [logado, setLogado] = useState<boolean>(true)
     const [dados, setDados] = useState<any>({})
 
-   useEffect(()=>{
+    useEffect(()=>{
         axios.get('http://localhost:3000/getinfo')
         .then(response => {
             setDados(response.data)
-            if (dados.nullOrNotLogged){
-                return <Redirect to='/home' />
-            }
         })
         .catch(error => console.log(error))
     }, [])
@@ -62,7 +59,7 @@ const perfilPaciente: React.FC = () => {
                     CPF: {dados.CPF}<br/><br/>
                     CEP: {dados.CEP}<br/><br/>
                     Endereço: {dados.endereco}<br/><br/>
-                    Nome da mãe: {dados.nomeMae}<br/><br/>
+                    Nome da mãe: {dados.nomeDaMae}<br/><br/>
                     RG: {dados.RG}<br/><br/>
                     Tipo da conta: {dados.conta}<br/><br/>
                     

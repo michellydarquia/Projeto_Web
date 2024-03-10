@@ -1,26 +1,27 @@
 import {
     IonContent,
-    IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar,
     IonButton,
     IonImg,
-    IonTextarea,
     IonGrid,
     IonRow,
     IonCol,
     IonCard,
     IonText,
 } from '@ionic/react';
-import React, { useEffect } from 'react';
+
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 import '../theme/home.css';
-//import { Link } from 'react-router-dom'; 
-import axios from 'axios'
+
 import schImg from '../imagens/sch-removebg.png';
 
 const Home: React.FC = () => {
 
+    const history = useHistory<any>();
+    
     return (
         <>
             <IonPage id="main-content">
@@ -53,24 +54,37 @@ const Home: React.FC = () => {
                                     className='buttonPacMed' 
                                     expand='block'
                                     shape='round'
+                                    onClick={()=>{
+                                        history.push({
+                                            pathname: '/login',
+                                            state: { prof: false }
+                                        })
+                                    }}
                                     >Login como paciente</IonButton>
                                     </IonRow>
+
                                     <IonRow id='lineText'>
                                         <div id='linha_separacao'></div>
                                         <IonText>
                                             <p>OU</p>
                                         </IonText>
                                         <div id='linha_separacao'></div>
-
                                     </IonRow>
+
                                     <IonRow>
                                     <IonButton href='/login' id="bttMed" 
                                     className='buttonPacMed' 
                                     expand='block' 
                                     shape='round'
+                                    onClick={()=>{
+                                        history.push({
+                                            pathname: '/login',
+                                            state: { prof: true }
+                                        })
+                                    }}
                                     >Login como profissional</IonButton>
+                                    </IonRow>   
 
-                                    </IonRow>                                                                   
                                 </div>
 
                                 </IonCard>                               

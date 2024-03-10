@@ -7,26 +7,30 @@ import {
     IonButton,
     IonInput,
     IonText,
-    IonImg,
-    IonGrid,
-    IonRow,
     IonCard,
-
 } from '@ionic/react';
 
-import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-import { Redirect } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router';
+
 import axios from 'axios'
 
 import '../theme/login.css'
 
 const Login: React.FC = () => {
+
+    const history = useHistory<any>()
     
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
+    const [redirect, setRedirect] = useState<any>('/perfil');
     const [logado, setLogado] = useState<boolean>(false);
+
+    useEffect(()=>{
+        if (history.location.state.prof){
+            setRedirect('/perfil-adm')
+        }
+    }, [])
 
     const login = () => {
         axios.get('http://localhost:3000/login',{
@@ -40,7 +44,7 @@ const Login: React.FC = () => {
     }
 
     if (logado){
-        return <Redirect to='/perfil' />
+        return <Redirect to={redirect} />
     }
 
     return (
@@ -49,7 +53,6 @@ const Login: React.FC = () => {
             
                 
                 <IonHeader class='teste'>
-                                
                     <IonToolbar  id='loginTbar'>
                         <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
                     </IonToolbar>
