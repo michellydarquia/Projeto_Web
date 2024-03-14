@@ -11,6 +11,7 @@ import {
 
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -18,15 +19,20 @@ import '../theme/register_perfil.css'
 
 const perfilPaciente: React.FC = () => {
 
+    const history = useHistory<any>()
+
     const [logado, setLogado] = useState<boolean>(true)
     const [dados, setDados] = useState<any>({})
+
+    setDados(history.location.state.data)
 
     useEffect(()=>{
         axios.get('http://localhost:3000/getinfo')
         .then(response => {
-            setDados(response.data)
+            setDados(response.data.Data)
         })
         .catch(error => console.log(error))
+
     }, [])
 
     const logout = () => {
@@ -55,6 +61,7 @@ const perfilPaciente: React.FC = () => {
                 <IonContent className="ion-padding">
                     
                     <br/>
+                    Data de criação: {dados.data}<br/><br/>
                     E-mail: {dados.email}<br/><br/>
                     CPF: {dados.CPF}<br/><br/>
                     CEP: {dados.CEP}<br/><br/>

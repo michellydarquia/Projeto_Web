@@ -15,12 +15,17 @@ import {
 } from '@ionic/react';
 
 import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router'
+import { useHistory } from 'react-router-dom'
+
 
 import '../theme/register_perfil.css';
 
 import axios from 'axios';
 
 const Register: React.FC = () => {
+
+    const history = useHistory<any>()
 
     const [CPF, setCPF] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
@@ -31,19 +36,11 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
-    const [lightDark, setLightDark] = useState<any>('')
-
-    useEffect(() => {
-
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches){
-            setLightDark('light')
-        } else {
-            setLightDark('dark')
-        }
-        
-    }, []);
  
     const registrar = () => {
+
+        const data = new Date()
+
         axios.get('http://localhost:3000/registrar',{
             params: {
                 uData: {
@@ -55,7 +52,7 @@ const Register: React.FC = () => {
                     RG: RG,
                     email: email,
                     conta: conta,
-                    senha: senha
+                    data: data.toLocaleDateString('pt-br')
                 },
                 senha: senha
             }
@@ -86,82 +83,82 @@ const Register: React.FC = () => {
                         <div className='ion-text-center'>
 
 
-                            <IonLabel color={lightDark} position="floating">Nome</IonLabel>
+                            <IonLabel position="floating">Nome</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={nome}
                                 onIonChange={(e) => setNome(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
 
-                            <IonLabel color={lightDark} position="floating">CPF</IonLabel>
+                            <IonLabel position="floating">CPF</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={CPF}
                                 onIonChange={(e) => setCPF(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
                             
-                            <IonLabel color={lightDark} position="floating">CEP</IonLabel>
+                            <IonLabel position="floating">CEP</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={CEP}
                                 onIonChange={(e) => setCEP(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
 
-                            <IonLabel color={lightDark} position="floating">Endereço</IonLabel>
+                            <IonLabel position="floating">Endereço</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={endereco}
                                 onIonChange={(e) => setEndereco(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
 
-                            <IonLabel color={lightDark} position="floating">E-mail</IonLabel>
+                            <IonLabel position="floating">E-mail</IonLabel>
                             <IonInput
                                 type="email"
+                                color='success'
                                 value={email}
                                 onIonChange={(e) => setEmail(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
 
-                            <IonLabel color={lightDark} position="floating">Nome da Mãe</IonLabel>
+                            <IonLabel position="floating">Nome da Mãe</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={nomemae}
                                 onIonChange={(e) => setNomeMae(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
 
-                            <IonLabel color={lightDark} position="floating">RG</IonLabel>
+                            <IonLabel position="floating">RG</IonLabel>
                             <IonInput
                                 type="text"
+                                color='success'
                                 value={RG}
                                 onIonChange={(e) => setRG(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             />
-                            <IonLabel color={lightDark} position="floating">Senha</IonLabel>
+                            <IonLabel position="floating">Senha</IonLabel>
                             <IonInput
                                 type="password"
+                                color='success'
                                 value={senha}
                                 onIonChange={(e) => setSenha(e.target.value)}
                                 placeholder="Digite aqui"
-                                color="success"
                                 fill="outline"
                             /> 
 
@@ -180,7 +177,18 @@ const Register: React.FC = () => {
 
                             <IonButton onClick={registrar}>Registrar</IonButton>
 
-                            <IonButton color={'danger'} href='/perfil-adm'>Voltar</IonButton>
+                            <IonButton color={'danger'} onClick={()=>{
+                                try{
+                                    history.push({
+                                    pathname: '/perfil-adm',
+                                    state: {
+                                        Dados: history.location.state.Dados
+                                    }
+                                })
+                                }finally{
+                                    <Redirect to='/perfil-adm' />
+                                }
+                            }}>Voltar</IonButton>
                         </div>
                         </IonCol>
                         </IonRow>

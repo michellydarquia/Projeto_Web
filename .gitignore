@@ -25,5 +25,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#exames-9598c-firebase-adminsdk-cvzs6-761da459ad.json
+
 # Optional eslint cache
 .eslintcache

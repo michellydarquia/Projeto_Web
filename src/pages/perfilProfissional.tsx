@@ -1,26 +1,26 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom'
+
 
 import axios from 'axios';
 
 
 const perfilProfissional: React.FC = () => {
 
+    const history = useHistory<any>()
+
     const [logado, setLogado] = useState<boolean>(true);
     const [dados, setDados] = useState<any>({});
+    const change = false;
 
-    
     useEffect(()=>{
-        axios.get('http://localhost:3000/getinfo')
-        .then(response => {
-            setDados(response.data);
-            if (dados.conta != 'profissional'){
-                return <Redirect to='/perfil' />
-            }
-        })
-        .catch(error => console.log(error))
-    }, [])
+        
+        if (history.location.state.Dados)
+            setDados(history.location.state.Dados);
+
+    }, [change])
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
@@ -28,7 +28,7 @@ const perfilProfissional: React.FC = () => {
         .catch(error => console.log(error));
     }
 
-    if (!logado || dados.nullOrNotLogged){
+    if (!logado){
         return <Redirect to='/home' />
     }
 
@@ -48,6 +48,7 @@ const perfilProfissional: React.FC = () => {
             <IonContent className="ion-padding">
 
                 <br/>
+                Data de criação: {dados.data}<br/><br/>
                 E-mail: {dados.email}<br/><br/>
                 CPF: {dados.CPF}<br/><br/>
                 CEP: {dados.CEP}<br/><br/>
@@ -58,9 +59,31 @@ const perfilProfissional: React.FC = () => {
                 
                 <div className="ion-text-center">
                 <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
-                <IonButton color={'success'} href='/registrar'>Registrar Perfil</IonButton>
+                <IonButton color={'success'} href='/registrar'
+                onClick={()=>{
+                    try{
+                        history.push({
+                        pathname: '/registrar',
+                        state: {
+                            Dados: dados
+                        }
+                    })
+                    }finally{
+                        <Redirect to='/registrar' />
+                    }
+                }}
+                >Registrar Perfil</IonButton>
                 <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
+                <IonButton color={'danger'} onClick={()=>{
+
+                    axios.get('http://localhost:3000/getdocs')
+                    .then(response => console.log('foi'))
+                    .catch(error => console.log(error));
+
+                }
+                    }>aaaaaa</IonButton>
                 {/* <IonButton color={'light'} onClick={addExames}>aDD</IonButton> */}
+                
                 </div>
 
             </IonContent>

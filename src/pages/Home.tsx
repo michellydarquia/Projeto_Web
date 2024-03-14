@@ -55,10 +55,12 @@ const Home: React.FC = () => {
                                     expand='block'
                                     shape='round'
                                     onClick={()=>{
-                                        history.push({
-                                            pathname: '/login',
-                                            state: { prof: false }
-                                        })
+                                        if (history){
+                                            history.push({
+                                                pathname: '/login',
+                                                state: { prof: false }
+                                            })
+                                        }
                                     }}
                                     >Login como paciente</IonButton>
                                     </IonRow>

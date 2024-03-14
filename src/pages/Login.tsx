@@ -11,7 +11,8 @@ import {
 } from '@ionic/react';
 
 import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import axios from 'axios'
 
@@ -39,12 +40,22 @@ const Login: React.FC = () => {
                 senha: senha,
             }
         })
-        .then(response => setLogado(response.data))
-        .catch(error => console.log(error))
-    }
+        .then(response => {
 
-    if (logado){
-        return <Redirect to={redirect} />
+        try {
+            setLogado(response.data.log)
+            history.push({
+                pathname: redirect,
+                state: {
+                    Dados: response.data.id
+                }
+            })
+        } finally {
+            return <Redirect to={redirect} />
+        }
+        
+        })
+        .catch(error => console.log(error))
     }
 
     return (
