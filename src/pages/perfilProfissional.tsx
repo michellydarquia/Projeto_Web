@@ -3,7 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import axios from 'axios';
 
-import '../theme/PerfilProfissional.css'
+import '../theme/PerfilProfissional.css';
 
 const PerfilProfissional: React.FC = () => {
     const history = useHistory<any>();
@@ -27,14 +27,14 @@ const PerfilProfissional: React.FC = () => {
     }
 
     return (
-        <IonPage>
+        <IonPage className="page-background"> {/* Adicionando a classe para a cor de fundo */}
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>{dados.nome}</IonTitle>
                     <IonButton slot="end" color="danger" onClick={logout}>Logout</IonButton>
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
+            <IonContent id='contentPrinc' className="ion-padding">
                 <IonGrid>
                     <IonRow>
                         <IonCol size="4">
@@ -57,15 +57,13 @@ const PerfilProfissional: React.FC = () => {
                     </IonRow>
                     <IonRow>
                             <div id="buttonsContainer">
-                                <IonButton color="success" href='/lista-pacientes'>Pacientes</IonButton>
-                                <IonButton color="success" href='/registrar'>Registrar Perfil</IonButton>
-                                <IonButton color="danger" onClick={() => {
-                                    axios.get('http://localhost:3000/getdocs')
-                                        .then(response => console.log('foi'))
-                                        .catch(error => console.log(error));
+                                <IonButton className="customButton" href='/lista-pacientes'>Pacientes</IonButton>
+                                <IonButton className="customButton" href='/registrar'>Registrar Perfil</IonButton>
+                                <IonButton className="customButton" onClick={() => {
+                                axios.get('http://localhost:3000/getdocs').then(response => console.log('foi')).catch(error => console.log(error));
                                 }}>aaaaaa</IonButton>
                             </div>
-                    </IonRow>
+                        </IonRow>
                 </IonGrid>
             </IonContent>
         </IonPage>

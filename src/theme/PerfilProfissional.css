@@ -1,4 +1,11 @@
 /* Estilização do avatar */
+/* Adicione este estilo ao seu arquivo CSS */
+
+#contentPrinc{
+  --background:var(--ion-color-powderBlue, #A7B6C8);
+
+}
+
 #avatarContainer {
     display: flex;
     justify-content: center;
@@ -12,9 +19,9 @@
 
 /* Estilização do container de informações */
 #infoContainer {
-    background: /*#F6F5F8*//*#E9E7EE*/#A7B6C8;
+    background: /*#F6F5F8*//*#E9E7EE*/#ffffff;
     border-radius: 10px; /* Borda arredondada */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.34);
     padding: 20px; /* Espaçamento interno do container de informações */
 }
 
@@ -29,7 +36,23 @@
 
 /* Estilização dos botões */
 #buttonsContainer {
-    margin-top: 150px; /* Espaçamento superior dos botões */
+    display: flex; /* Faz os botões ficarem lado a lado */
+    justify-content: space-around; /* Distribui os botões igualmente no espaço disponível */
+    margin-top: 100px; /* Espaçamento superior dos botões */
+;}
+
+.customButton {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.34); /* Adiciona sombra ao botão */
+  color: white; /* Altera a cor do texto para branco */
+  margin-right: 100px; /* Espaçamento entre os botões */
+  --background:var(--ion-color-darkRed, #8C1C13);
+  font-weight: bold; /* Ajusta a espessura do texto para negrito */
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer; 
+  letter-spacing: 3px;  /* espacamento entre as letras*/
+  outline: none;
+
 }
 
-  
