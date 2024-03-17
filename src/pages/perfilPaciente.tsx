@@ -84,17 +84,20 @@ const perfilPaciente: React.FC = () => {
         <>
             <IonPage>
                 <IonHeader>
-                    <IonToolbar>
+                    <IonToolbar id= 'perfilTbar'>
                         <IonAvatar>
                             <img alt="Imagem do perfil"
                             src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente</IonTitle>
+                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Noto Sans' }} className="ion-text-end">Perfil Paciente</IonTitle>
                         <IonTitle>{nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent className="ion-padding">
-                    
+                <IonContent  className="ion-padding">
+                    <div className="dados-paciente">
+                    <div id='dado'>
+                        <h2>Dados  Pessoais</h2>
+                    </div>
                     <br/>
                     E-mail: {email}<br/><br/>
                     CPF: {CPF}<br/><br/>
@@ -103,12 +106,12 @@ const perfilPaciente: React.FC = () => {
                     Nome da mãe: {nomemae}<br/><br/>
                     RG: {RG}<br/><br/>
                     Tipo da conta: {conta}<br/><br/>
-                    
+
+                    </div>
                     <div className="ion-text-center" style={{ marginTop: '200px' }}>
-                    <IonButton color={'success'} href='/lista-exames'>Exames</IonButton>
-                    <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                    
-                    <p>{msg}</p>
+                    <IonButton className="perfilButton" color={'medium'} href='/lista-exames'>Exames</IonButton>
+                    <IonButton className="perfilButton" color={'danger'} onClick={logout}>Logout</IonButton>
+
                     </div>
                 </IonContent>
             </IonPage>
@@ -120,31 +123,3 @@ export default perfilPaciente;
 
 
 
-
-const PerfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
-    return (
-        <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                <IonAvatar>
-                         <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                </IonAvatar>
-                    <IonTitle>{dados.nomeCompleto}</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-            <IonContent className="ion-padding">
-                {/* Exibe os outros dados inseridos pelo paciente */}
-                <p>Endereço: {dados.nome}</p>
-                <p>CPF: {dados.CPF}</p>
-                <p>CEP: {dados.CEP}</p>
-                <p>Endereço: {dados.endereco}</p>
-                <p>Endereço: {dados.email}</p>
-                <p>Endereço: {dados.endereco}</p>
-                <p>Endereço: {dados.nomemae}</p>
-                <p>Endereço: {dados.RG}</p>
-                <IonButton color={'success'} href='/listaexames'>Exames</IonButton>
-                <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-            </IonContent>
-        </IonPage>
-    );
-};

@@ -7,6 +7,35 @@
     height: 100vh; /*Isso garante que a página ocupe toda a altura da tela */
   }
 
+
+  #perfilTbar{
+    --background: var(--ion-color-oxfordBlue, #000829);
+    color: white;
+  
+  }
+
+.ion-text-end {
+  font-size: 30px; /* Defina o tamanho da fonte desejado */
+}
+
+.dados-paciente {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  padding: 10px;
+  background-color: #e4e3e3; 
+}
+#dado {
+  font-size: 15px; 
+  font-weight: bold; 
+}
+
+
+
+
   .container {
     margin-bottom: 20px;
     font-family: "Noto Sans", sans-serif;

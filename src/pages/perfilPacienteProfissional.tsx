@@ -16,6 +16,7 @@ import { storage, auth, firestore } from "../firebase"
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import '../theme/register_perfil.css';
 
 const PerfilPacienteProfissional: React.FC = () => {
 
@@ -77,7 +78,7 @@ const PerfilPacienteProfissional: React.FC = () => {
         <>
             <IonPage>
                 <IonHeader>
-                    <IonToolbar>
+                    <IonToolbar id='perfilTbar'>
                         <IonAvatar>
                             <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
