@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
-    const [logado, setLogado] = useState<boolean>(false);
+    const [logado, setLogado] = useState<boolean>(true);
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, senha)
