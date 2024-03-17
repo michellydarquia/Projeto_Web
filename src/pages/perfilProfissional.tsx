@@ -5,24 +5,37 @@ import axios from 'axios';
 
 import '../theme/PerfilProfissional.css';
 
+export const keepInfo = (history: any, path: string) => {
+    history.push({
+        pathname: path,
+        state: {
+            Dados: history.location.state.Dados,
+        }
+    })
+}
+
 const PerfilProfissional: React.FC = () => {
     const history = useHistory<any>();
-    const [logado, setLogado] = useState<boolean>(true);
+    const [logged, setLogged] = useState<boolean>(true);
     const [dados, setDados] = useState<any>({});
 
     useEffect(() => {
-        if (history.location.state.Dados) {
+        if (history.location.state?.Dados != undefined){
             setDados(history.location.state.Dados);
+        } else {
+            setLogged(false)
         }
-    }, [history.location.state.Dados]);
+    }, []);
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-            .then(response => setLogado(response.data))
+            .then(response => setLogged(response.data))
             .catch(error => console.log(error));
     }
 
-    if (!logado) {
+    
+
+    if (!logged) {
         return <Redirect to='/home' />;
     }
 
@@ -57,11 +70,25 @@ const PerfilProfissional: React.FC = () => {
                     </IonRow>
                     <IonRow>
                             <div id="buttonsContainer">
-                                <IonButton className="customButton" href='/lista-pacientes'>Pacientes</IonButton>
-                                <IonButton className="customButton" href='/registrar'>Registrar Perfil</IonButton>
-                                <IonButton className="customButton" onClick={() => {
-                                axios.get('http://localhost:3000/getdocs').then(response => console.log('foi')).catch(error => console.log(error));
-                                }}>aaaaaa</IonButton>
+                                <IonButton className="customButton" 
+                                onClick={()=>{
+                                    try{
+                                        keepInfo(history, '/lista-pacientes')
+                                    }finally{
+                                        <Redirect to='/lista-pacientes' />
+                                    }
+                                }}
+                                >Pacientes</IonButton>
+
+                                <IonButton className="customButton" 
+                                onClick={()=>{
+                                    try{
+                                        keepInfo(history, '/registrar')
+                                    }finally{
+                                        <Redirect to='/registrar' />
+                                    }
+                                }}
+                                >Registrar Perfil</IonButton>
                             </div>
                         </IonRow>
                 </IonGrid>
