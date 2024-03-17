@@ -1,0 +1,35 @@
+/* Estilização do avatar */
+#avatarContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espaçamento inferior do avatar */
+}
+
+#avatarIcon {
+    font-size: 300rem; /* Tamanho do ícone do avatar */
+    color: #3498db; /* Cor azul claro */
+}
+
+/* Estilização do container de informações */
+#infoContainer {
+    background: /*#F6F5F8*//*#E9E7EE*/#A7B6C8;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Espaçamento interno do container de informações */
+}
+
+.infoItem {
+    margin-bottom: 10px; /* Espaçamento inferior entre os itens de informação */
+    color: #333; /* Cor do texto */
+}
+
+.infoItem strong {
+    color: #c0392b; /* Cor vermelho clarinho para o texto forte (negrito) */
+}
+
+/* Estilização dos botões */
+#buttonsContainer {
+    margin-top: 150px; /* Espaçamento superior dos botões */
+}
+
+  

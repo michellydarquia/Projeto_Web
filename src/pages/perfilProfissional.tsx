@@ -1,94 +1,75 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
-import React, { useState, useEffect, useRef } from 'react';
-import { Redirect } from 'react-router';
-import { useHistory } from 'react-router-dom'
-
-
+import React, { useState, useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import axios from 'axios';
 
+import '../theme/PerfilProfissional.css'
 
-const perfilProfissional: React.FC = () => {
-
-    const history = useHistory<any>()
-
+const PerfilProfissional: React.FC = () => {
+    const history = useHistory<any>();
     const [logado, setLogado] = useState<boolean>(true);
     const [dados, setDados] = useState<any>({});
-    const change = false;
 
-    useEffect(()=>{
-        
-        if (history.location.state.Dados)
+    useEffect(() => {
+        if (history.location.state.Dados) {
             setDados(history.location.state.Dados);
-
-    }, [change])
+        }
+    }, [history.location.state.Dados]);
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-        .then(response => setLogado(response.data))
-        .catch(error => console.log(error));
+            .then(response => setLogado(response.data))
+            .catch(error => console.log(error));
     }
 
-    if (!logado){
-        return <Redirect to='/home' />
+    if (!logado) {
+        return <Redirect to='/home' />;
     }
 
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonAvatar>
-                        <img alt="Imagem do perfil"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                    </IonAvatar>
-                    <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Administrativo</IonTitle>
-                    
                     <IonTitle>{dados.nome}</IonTitle>
+                    <IonButton slot="end" color="danger" onClick={logout}>Logout</IonButton>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-
-                <br/>
-                Data de criação: {dados.data}<br/><br/>
-                E-mail: {dados.email}<br/><br/>
-                CPF: {dados.CPF}<br/><br/>
-                CEP: {dados.CEP}<br/><br/>
-                Endereço: {dados.endereco}<br/><br/>
-                Nome da mãe: {dados.nomeDaMae}<br/><br/>
-                RG: {dados.RG}<br/><br/>
-                Tipo da conta: {dados.conta}<br/><br/>
-                
-                <div className="ion-text-center">
-                <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
-                <IonButton color={'success'} href='/registrar'
-                onClick={()=>{
-                    try{
-                        history.push({
-                        pathname: '/registrar',
-                        state: {
-                            Dados: dados
-                        }
-                    })
-                    }finally{
-                        <Redirect to='/registrar' />
-                    }
-                }}
-                >Registrar Perfil</IonButton>
-                <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                <IonButton color={'danger'} onClick={()=>{
-
-                    axios.get('http://localhost:3000/getdocs')
-                    .then(response => console.log('foi'))
-                    .catch(error => console.log(error));
-
-                }
-                    }>aaaaaa</IonButton>
-                {/* <IonButton color={'light'} onClick={addExames}>aDD</IonButton> */}
-                
-                </div>
-
+                <IonGrid>
+                    <IonRow>
+                        <IonCol size="4">
+                            <div id="avatarContainer">
+                                <IonAvatar>
+                                    <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                </IonAvatar>
+                            </div>
+                        </IonCol>
+                        <IonCol size="8">
+                            <div id="infoContainer">
+                                <p className="infoItem"><strong>Nome da mãe:</strong> {dados.nomeDaMae}</p>
+                                <p className="infoItem"><strong>E-mail:</strong> {dados.email}</p>
+                                <p className="infoItem"><strong>CPF:</strong> {dados.CPF}</p>
+                                <p className="infoItem"><strong>CEP:</strong> {dados.CEP}</p>
+                                <p className="infoItem"><strong>Endereço:</strong> {dados.endereco}</p>
+                                <p className="infoItem"><strong>RG:</strong> {dados.RG}</p>
+                            </div>
+                        </IonCol>
+                    </IonRow>
+                    <IonRow>
+                            <div id="buttonsContainer">
+                                <IonButton color="success" href='/lista-pacientes'>Pacientes</IonButton>
+                                <IonButton color="success" href='/registrar'>Registrar Perfil</IonButton>
+                                <IonButton color="danger" onClick={() => {
+                                    axios.get('http://localhost:3000/getdocs')
+                                        .then(response => console.log('foi'))
+                                        .catch(error => console.log(error));
+                                }}>aaaaaa</IonButton>
+                            </div>
+                    </IonRow>
+                </IonGrid>
             </IonContent>
         </IonPage>
     );
 };
 
-export default perfilProfissional;
+export default PerfilProfissional;
