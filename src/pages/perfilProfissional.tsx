@@ -1,134 +1,111 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router-dom';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
+import axios from 'axios';
 
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import { auth, firestore } from "../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import '../theme/register_perfil.css';
+import '../theme/PerfilProfissional.css';
 
-
-const perfilProfissional: React.FC = () => {
-
+const PerfilProfissional: React.FC = () => {
+    const history = useHistory<any>();
     const [logado, setLogado] = useState<boolean>(true);
+    const [dados, setDados] = useState<any>({});
 
-
-    const [CPF, setCPF] = useState<any>('');
-    const [nome, setNome] = useState<any>('');
-    const [CEP, setCEP] = useState<any>('');
-    const [endereco, setEndereco] = useState<any>('');
-    const [email, setEmail] = useState<any>('');
-    const [nomemae, setNomeMae] = useState<any>('');
-    const [RG, setRG] = useState<any>('');
-    const [conta, setConta] = useState<any>('');
-    const [exames, setExames] = useState<any>([]);
-
-    const [novo, setNovo] = useState<any>({
-        titulo: 'asdf',
-        descricao: 'qwer',
-        url: 'zxcv'
-    });
-
-    const [update, setUpdate] = useState<any>(0);
-
-    useEffect(()=>{
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-
-                const dados = doc(firestore, "users", user.uid)
-                const info = await getDoc(dados);
-
-                if (info.exists()) {
-
-                    setCPF(info.data().CPF)
-                    setNome(info.data().nome)
-                    setCEP(info.data().CEP)
-                    setEndereco(info.data().endereco)
-                    setEmail(info.data().email)
-                    setNomeMae(info.data().nomeDaMae)
-                    setRG(info.data().RG)
-                    setConta(info.data().conta)
-                    setExames(info.data().exames)
-                    console.log("DADOS:", info.data());
-                    console.log("id:", dados.id);
-
-                } else {
-
-                console.log("Não exitem dados!");
-
-                }
-
-            } else {
-                return <Redirect to='/home' />
-            }
-        });
-    }, [update])
-
-    const addExames = async () => {
-            onAuthStateChanged(auth, async (user) => {
-                if (user){
-                await updateDoc(doc(firestore, "users", user.uid), {
-                    exames: []
-                });
-            }
-        });
-        setUpdate(update+1);
-    }
-
-
-
+    useEffect(() => {
+        if (history.location.state.Dados) {
+            setDados(history.location.state.Dados);
+        }
+    }, [history.location.state.Dados]);
 
     const logout = () => {
-        signOut(auth).then(() => {
-            setLogado(false)
-        }).catch((error) => {
-
-        });
+        axios.get('http://localhost:3000/logout')
+            .then(response => setLogado(response.data))
+            .catch(error => console.log(error));
     }
 
-    if (conta == 'paciente'){
-        return <Redirect to='/perfil' />
-    }
-
-    if (!logado){
-        return <Redirect to='/home' />
+    if (!logado) {
+        return <Redirect to='/home' />;
     }
 
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
-                <IonAvatar>
-                        <img alt="Imagem do perfil"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                    </IonAvatar>
-                    <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Administrativo</IonTitle>
-                    
-                    <IonTitle>{nome}</IonTitle>
+                <IonToolbar id='loginTbar'>
+
+                    <IonTitle id ='titleTbar'>{dados.nome}</IonTitle>
+                    <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
+
+                    <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
+            <IonContent id='contentPrinc' className="ion-padding">
+                <IonGrid>
+                    <IonRow>
+                        <IonCol size="4">
+                            <div id="avatarContainer">
+                            <IonAvatar style={{ width: '200px', height: '200px' }}>
+    <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+</IonAvatar>
+                            </div>
 
-                <br/>
-                E-mail: {email}<br/><br/>
-                CPF: {CPF}<br/><br/>
-                CEP: {CEP}<br/><br/>
-                Endereço: {endereco}<br/><br/>
-                Nome da mãe: {nomemae}<br/><br/>
-                RG: {RG}<br/><br/>
-                Tipo da conta: {conta}<br/><br/>
-                
-                <div className="ion-text-center">
-                <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
-                <IonButton color={'success'} href='/registrar'>Registrar Perfil</IonButton>
-                <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                <IonButton color={'light'} onClick={addExames}>aDD</IonButton>
-                </div>
+                            <div id="descriptionContainer">
+            <h2>    Descrição</h2>
+            <p>Com anos de prática clínica e constante atualização em minha área de atuação, suporte necessário para a recuperação e manutenção da saúde.</p>
+            <p>Especialidade: {dados.especialidade}</p>
+            <p>Dias de Trabalho: {dados.diasDeTrabalho}</p>
+            <p>Profissão: Médico</p>
+
+        </div>   
+                        </IonCol>
+
+                        
+                        <IonCol size="8">
+                        <div id="infoContainer">
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome da mãe:</strong> {dados.nomeDaMae}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>E-mail:</strong> {dados.email}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CPF:</strong> {dados.CPF}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CEP:</strong> {dados.CEP}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Endereço:</strong> {dados.endereco}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>RG:</strong> {dados.RG}</p>
+                            </div>
+                        </div>
+                        <IonRow>
+                            <IonCol size="15">
+                            <div id="buttonsContainer">
+                                <IonButton className="customButton" href='/lista-pacientes'>Pacientes</IonButton>
+                                <IonButton className="customButton" href='/registrar'>Registrar Perfil</IonButton>
+                                <IonButton className="customButton" onClick={() => {
+                                axios.get('http://localhost:3000/getdocs').then(response => console.log('foi')).catch(error => console.log(error));
+                                }}>aaaaaa</IonButton>
+                            </div>
+                            </IonCol>
+                            </IonRow>
+                        </IonCol>
+                    </IonRow>
+
+
+
+
+                           
+
+                </IonGrid>
 
             </IonContent>
         </IonPage>
     );
 };
 
-export default perfilProfissional;
+export default PerfilProfissional;

@@ -7,39 +7,54 @@ import {
     IonButton,
     IonInput,
     IonText,
-    IonImg,
-    IonGrid,
-    IonRow,
     IonCard,
-
 } from '@ionic/react';
 
-import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
+
+import axios from 'axios'
+
 import '../theme/login.css'
+
 const Login: React.FC = () => {
+
+    const history = useHistory<any>()
     
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
     const [logado, setLogado] = useState<boolean>(true);
 
-    const login = () => {
-        signInWithEmailAndPassword(auth, email, senha)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            setLogado(true);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMsg = error.message;
-            console.log('ERRO:', errorCode, errorMsg)
-        });
-    }
+    useEffect(()=>{
+        if (history.location.state.prof){
+            setRedirect('/perfil-adm')
+        }
+    }, [])
 
-    if (logado){
-        return <Redirect to='/perfil' />
+    const login = () => {
+        axios.get('http://localhost:3000/login',{
+            params: { 
+                email: email,
+                senha: senha,
+            }
+        })
+        .then(response => {
+
+        try {
+            setLogado(response.data.log)
+            history.push({
+                pathname: redirect,
+                state: {
+                    Dados: response.data.id
+                }
+            })
+        } finally {
+            return <Redirect to={redirect} />
+        }
+        
+        })
+        .catch(error => console.log(error))
     }
 
     return (
@@ -48,7 +63,6 @@ const Login: React.FC = () => {
             
                 
                 <IonHeader class='teste'>
-                                
                     <IonToolbar  id='loginTbar'>
                         <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
                     </IonToolbar>

@@ -33,10 +33,7 @@
   font-weight: bold; 
 }
 
-
-
-
-  .container {
+.container {
     margin-bottom: 20px;
     font-family: "Noto Sans", sans-serif;
     font-size: 30rem; /* Defina o tamanho da letra aqui ainda não funciona*/
@@ -45,7 +42,7 @@
 }
 
 
-  .ion-text-center {
+.ion-text-center {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -58,7 +55,7 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #748BA8;
-  }
+}
 
   ion-input,
   ion-label {
