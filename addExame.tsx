@@ -13,7 +13,7 @@ import {
 } from '@ionic/react';
 import { useState } from 'react';
 
-const AddExamePage = () => {
+const AddExamePage: React.FC = () => {
     const [nome, setNome] = useState('');
     const [data, setData] = useState('');
     const [tipo, setTipo] = useState('');

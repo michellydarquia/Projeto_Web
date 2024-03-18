@@ -18,10 +18,11 @@ import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router'
 import { useHistory } from 'react-router-dom'
 
-
 import '../theme/register_perfil.css';
 
 import axios from 'axios';
+
+import { keepInfo } from './perfilProfissional';
 
 const Register: React.FC = () => {
 
@@ -60,7 +61,7 @@ const Register: React.FC = () => {
         .then(response => console.log(response))
         .catch(error => console.log(error))
     }
-    
+
     return (
         <>
             <IonPage id="main-content">
@@ -179,12 +180,7 @@ const Register: React.FC = () => {
 
                             <IonButton color={'danger'} onClick={()=>{
                                 try{
-                                    history.push({
-                                    pathname: '/perfil-adm',
-                                    state: {
-                                        Dados: history.location.state.Dados
-                                    }
-                                })
+                                    keepInfo(history, '/perfil-adm')
                                 }finally{
                                     <Redirect to='/perfil-adm' />
                                 }

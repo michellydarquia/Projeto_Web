@@ -18,7 +18,7 @@ const criarExame: React.FC = () => {
             label="Título"
             labelPlacement="floating"
             fill="outline"
-            placeholder="Digite o título"
+            placeholder="Título do exame"
             // onIonChange={}
             color={'success'}
 
@@ -29,7 +29,7 @@ const criarExame: React.FC = () => {
             label="Descrição"
             labelPlacement="floating"
             fill="outline"
-            placeholder="Digite a Descrição"
+            placeholder="Descrição do exame"
             // onIonChange={}
             color={'success'}
 

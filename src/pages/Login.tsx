@@ -24,13 +24,29 @@ const Login: React.FC = () => {
     
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
-    const [logado, setLogado] = useState<boolean>(true);
+    const [redirect, setRedirect] = useState<any>('/perfil');
+    const [conta, setConta] = useState<any>('Paciente');
+
+    const [logado, setLogado] = useState<boolean>(false);
+    const [dados, setDados] = useState<any>();
+
+
+    const [undef, setUndef] = useState<boolean>(false);
 
     useEffect(()=>{
-        if (history.location.state.prof){
-            setRedirect('/perfil-adm')
+        if (history.location.state?.prof != undefined){
+            if (history.location.state.prof){
+                setRedirect('/perfil-adm')
+                setConta('Profissional')
+            }
+        } else {
+            setUndef(true)
         }
     }, [])
+
+    if (undef) {
+        return <Redirect to='/home' />
+    }
 
     const login = () => {
         axios.get('http://localhost:3000/login',{
@@ -41,21 +57,24 @@ const Login: React.FC = () => {
         })
         .then(response => {
 
-        try {
-            setLogado(response.data.log)
-            history.push({
-                pathname: redirect,
-                state: {
-                    Dados: response.data.id
+            try {
+                setLogado(response.data.log)
+                history.push({
+                    pathname: redirect,
+                    state: {
+                        Dados: response.data.id
                 }
-            })
-        } finally {
-            return <Redirect to={redirect} />
-        }
+                })
+            } finally {
+                return <Redirect to={redirect} />
+            }
+      
         
         })
         .catch(error => console.log(error))
     }
+
+    
 
     return (
         <>
@@ -64,7 +83,8 @@ const Login: React.FC = () => {
                 
                 <IonHeader class='teste'>
                     <IonToolbar  id='loginTbar'>
-                        <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
+                        {/* Acesso ao Resultado de Exames */}
+                        <IonTitle id='titleTbar'>Login como {conta}</IonTitle>
                     </IonToolbar>
                 </IonHeader>                                 
               
@@ -111,7 +131,7 @@ const Login: React.FC = () => {
 
                             ></IonInput>
                             <IonButton id='entrarBtt'
-                            // type="submit" 
+                            
                             expand='block' 
                             shape='round'
                             onClick={login}
