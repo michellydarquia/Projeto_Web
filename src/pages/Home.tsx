@@ -86,9 +86,6 @@ const Home: React.FC = () => {
                                     }}
                                     >Login como profissional</IonButton>
                                     </IonRow>   
-                                    <IonButton href='/perfil'>/perfil</IonButton>
-                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
-                                    <IonButton href='/paciente'>/paciente</IonButton>
                                 </div>
 
                                 </IonCard>                               
