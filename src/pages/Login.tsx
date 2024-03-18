@@ -27,7 +27,7 @@ const Login: React.FC = () => {
     const [redirect, setRedirect] = useState<any>('/perfil');
     const [conta, setConta] = useState<any>('Paciente');
 
-    const [logado, setLogado] = useState<boolean>(false);
+    const [logado, setLogado] = useState<boolean>(true);
     const [dados, setDados] = useState<any>();
 
 

@@ -3,7 +3,6 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import axios from 'axios';
 
-import '../theme/PerfilProfissional.css';
 
 export const keepInfo = (history: any, path: string) => {
     history.push({

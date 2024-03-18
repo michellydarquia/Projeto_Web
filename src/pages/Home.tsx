@@ -86,7 +86,6 @@ const Home: React.FC = () => {
                                     }}
                                     >Login como profissional</IonButton>
                                     </IonRow>   
-
                                 </div>
 
                                 </IonCard>                               

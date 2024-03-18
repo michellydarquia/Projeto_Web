@@ -16,6 +16,7 @@ import { storage, auth, firestore } from "../firebase"
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import '../theme/register_perfil.css';
 
 const PerfilPacienteProfissional: React.FC = () => {
 
@@ -77,33 +78,44 @@ const PerfilPacienteProfissional: React.FC = () => {
         <>
             <IonPage>
                 <IonHeader>
-                    <IonToolbar>
+                    <IonToolbar id='perfilTbar'>
                         <IonAvatar>
                             <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente-Profissional</IonTitle>
-                        <IonTitle>NOME COMPLETO</IonTitle>
+                        <IonTitle className="ion-text-end">Perfil Paciente-Profissional</IonTitle>
+
                     </IonToolbar>
                 </IonHeader>
+
                 <IonContent className="ion-padding">
+                    <div className="container-perfilpp">
+
+                    <div className='dadosPP'>
                     <br />
-                    <br />
-                    <br />
+                    NOME: <br />
                     NOME DA MÃE: <br />
                     CPF: <br />
                     RG: <br />
                     CEP: <br />
                     ENDEREÇO: <br />
                     E-MAIL: <br />
-                    
-                    <div className="ion-text-center" style={{ marginTop: '200px' }}>
-                    <IonButton color={'success'}>Exames</IonButton>
-                    <IonButton color={'success'}>Marcar exames</IonButton>
+                    </div>
 
-                    <IonCardContent>
-                        <IonIcon icon={cloudUploadOutline} size="large" />
-                        <IonInput type='file' onInput={handleFileChange} />
-                        <IonButton onClick={handleUpload}>Enviar Arquivo</IonButton>
+                    <IonCardContent style={{ marginTop: '100px' }}>
+                    <div className="ion-text-center" >
+
+                    <IonButton className='buttonExamePP' expand='block' shape='round'>Exames</IonButton>
+
+                    <IonButton className='buttonExamePP' expand='block' shape='round'>Marcar exames</IonButton>
+
+                    <div className="upload-container">
+                    <IonIcon icon={cloudUploadOutline} size="large" />
+                    <IonInput type='file' onInput={handleFileChange} />
+                    </div>
+
+                    <IonButton className='buttonExamePP' expand='block' shape='round' onClick={handleUpload}>Enviar Arquivo</IonButton>
+
+                    </div>
                     </IonCardContent>
                     </div>
                 </IonContent>
