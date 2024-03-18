@@ -8,6 +8,7 @@ import * as admauth from "firebase-admin/auth";
 import admCert from './exames-9598c-firebase-adminsdk-cvzs6-761da459ad.json' with { type: "json" };
 
 import * as fs from 'fs'
+import * as path from 'path'
 
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
@@ -15,7 +16,7 @@ import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase
 const app = express();
 app.use(cors());
 
-const server = app.listen(3000);
+app.listen(3000);
 
 const config = {
     apiKey: "AIzaSyAIdICA1fmRb0s7KLgnW_LN3LKOug9fyvo",
@@ -104,7 +105,6 @@ app.get('/logout', function (req, res) {
   return
 })
 
-
 app.get('/getdocs', function (req, res) {
   const doclist = [];
   getalldocs()
@@ -114,7 +114,7 @@ app.get('/getdocs', function (req, res) {
       if (doc.data().email != req.query.email){
         doclist.push({
           info: doc.data(),
-          id: doc.id
+          uid: doc.id
         })
       }
     });
@@ -127,5 +127,68 @@ app.get('/getdocs', function (req, res) {
   return
 })
 
+app.get('/listexams', function (req, res) {
+  const list = []
 
+  if (fs.readdirSync(`./exames/${req.query.id}`).length == 0){
+    list.push('none')
+  } else {
+    fs.readdirSync(`./exames/${req.query.id}`)
+    .map(exam => {
+      fs.readdirSync(`./exames/${req.query.id}/${exam}`)
+      .map(file => {
+        if (path.extname(file) == '.json'){
+          try {
+
+            const data = fs.readFileSync(`./exames/${req.query.id}/${exam}/${file}`);
+            list.push(JSON.parse(data))
+
+          } catch (error) {
+
+            console.error(error);
+            throw error;
+
+          }
+        }
+      })
+    })
+  }
+
+
+  res.send(list)
+  return
+})
+
+app.get('/exams', function (req, res) {
+  //GBCK2LsGjNZMEQLe66Zs3PnXAY42
+  res.send(fs.readdirSync(`./exames/GBCK2LsGjNZMEQLe66Zs3PnXAY42`))
+  return
+})
+
+
+app.get('/createexam', function (req, res) {
+
+  const num = req.query.howmany
+
+  const content = JSON.stringify(req.query.exam)
+
+  fs.mkdirSync(`./exames/${req.query.id}/exame${num}`)
+
+  fs.writeFile(`./exames/${req.query.id}/exame${num}/info.json`, content, err => {
+    if (err) {
+      console.error(err);
+    } else {
+      // file written successfully
+    }
+  });
+
+
+  return
+})
+
+app.get('/deleteexam', function (req, res) {
+
+
+  return
+})
 
