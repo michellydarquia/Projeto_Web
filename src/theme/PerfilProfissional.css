@@ -1,5 +1,3 @@
-/* Estilização do avatar */
-/* Adicione este estilo ao seu arquivo CSS */
 
 #contentPrinc{
   --background:var(--ion-color-powderBlue, #A7B6C8);
@@ -9,24 +7,29 @@
 #avatarContainer {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px; /* Espaçamento inferior do avatar */
+    margin-bottom: 10px; 
+    width: 100%;
+    margin-top: 20px; 
+
 }
 
 #avatarIcon {
-    font-size: 300rem; /* Tamanho do ícone do avatar */
-    color: #3498db; /* Cor azul claro */
+    font-size: 300rem; 
+    color: #3498db; 
+
 }
 
-/* Estilização do container de informações */
-#infoContainer {
-    background: /*#F6F5F8*//*#E9E7EE*/#ffffff;
-    border-radius: 10px; /* Borda arredondada */
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.34);
-    padding: 20px; /* Espaçamento interno do container de informações */
+.infoItemContainer {
+    background-color: #f9f9f9; /* Cor de fundo */
+    border-radius: 8px; /* Borda arredondada */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Espaçamento inferior */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 .infoItem {
-    margin-bottom: 10px; /* Espaçamento inferior entre os itens de informação */
+    margin: 0; /* Remove margens padrão */
+    font-size: 16px; /* Tamanho da fonte */
     color: #333; /* Cor do texto */
 }
 
@@ -34,11 +37,14 @@
     color: #c0392b; /* Cor vermelho clarinho para o texto forte (negrito) */
 }
 
-/* Estilização dos botões */
 #buttonsContainer {
     display: flex; /* Faz os botões ficarem lado a lado */
     justify-content: space-around; /* Distribui os botões igualmente no espaço disponível */
     margin-top: 100px; /* Espaçamento superior dos botões */
+    margin: 150px; /* Espaçamento entre os botões */
+    margin-bottom: 10px; 
+
+    
 ;}
 
 .customButton {
@@ -56,3 +62,11 @@
 
 }
 
+#descriptionContainer {
+    background-color: #000829; /* Cor de fundo branca */
+    border-radius: 20px; /* Borda arredondada */
+    padding: 20px; /* Espaçamento interno */
+    margin-top: 40px; /* Espaçamento superior */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.34); /* Sombra */
+
+}

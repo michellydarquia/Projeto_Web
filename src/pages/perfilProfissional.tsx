@@ -40,11 +40,14 @@ const PerfilProfissional: React.FC = () => {
     }
 
     return (
-        <IonPage className="page-background"> {/* Adicionando a classe para a cor de fundo */}
+        <IonPage>
             <IonHeader>
-                <IonToolbar>
-                    <IonTitle>{dados.nome}</IonTitle>
-                    <IonButton slot="end" color="danger" onClick={logout}>Logout</IonButton>
+                <IonToolbar id='loginTbar'>
+
+                    <IonTitle id ='titleTbar'>{dados.nome}</IonTitle>
+                    <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
+
+                    <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
             </IonHeader>
             <IonContent id='contentPrinc' className="ion-padding">
@@ -52,23 +55,48 @@ const PerfilProfissional: React.FC = () => {
                     <IonRow>
                         <IonCol size="4">
                             <div id="avatarContainer">
-                                <IonAvatar>
-                                    <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                                </IonAvatar>
+                            <IonAvatar style={{ width: '200px', height: '200px' }}>
+    <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+</IonAvatar>
                             </div>
+
+                            <div id="descriptionContainer">
+            <h2>    Descrição</h2>
+            <p>Com anos de prática clínica e constante atualização em minha área de atuação, suporte necessário para a recuperação e manutenção da saúde.</p>
+            <p>Especialidade: {dados.especialidade}</p>
+            <p>Dias de Trabalho: {dados.diasDeTrabalho}</p>
+            <p>Profissão: Médico</p>
+
+        </div>   
                         </IonCol>
+
+                        
                         <IonCol size="8">
-                            <div id="infoContainer">
+                        <div id="infoContainer">
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>Nome da mãe:</strong> {dados.nomeDaMae}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>E-mail:</strong> {dados.email}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>CPF:</strong> {dados.CPF}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>CEP:</strong> {dados.CEP}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>Endereço:</strong> {dados.endereco}</p>
+                            </div>
+                            <div className="infoItemContainer">
                                 <p className="infoItem"><strong>RG:</strong> {dados.RG}</p>
                             </div>
-                        </IonCol>
-                    </IonRow>
-                    <IonRow>
+                        </div>
+                        <IonRow>
+                            <IonCol size="15">
                             <div id="buttonsContainer">
                                 <IonButton className="customButton" 
                                 onClick={()=>{
@@ -90,8 +118,18 @@ const PerfilProfissional: React.FC = () => {
                                 }}
                                 >Registrar Perfil</IonButton>
                             </div>
-                        </IonRow>
+                            </IonCol>
+                            </IonRow>
+                        </IonCol>
+                    </IonRow>
+
+
+
+
+                           
+
                 </IonGrid>
+
             </IonContent>
         </IonPage>
     );
