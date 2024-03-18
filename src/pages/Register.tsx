@@ -66,23 +66,28 @@ const Register: React.FC = () => {
         <>
             <IonPage id="main-content">
                 <IonHeader>
+                <div className="container-title">
                 <IonRow>
                 <IonCol>
-                <div className="container">
                     <IonTitle> Cadastro </IonTitle>
-                </div>
                </IonCol>
                </IonRow>
+               </div>
 
                 </IonHeader>
                
                 <IonContent className='ion-padding'>
+                    
                     <div className="form-container">
+
                     <IonGrid className='grid-container'>
                     <IonRow>
-                        <IonCol size="12" size-md="3" offsetMd="5" className="ion-align-items-center">
+                        <IonCol className="ion-align-items-center">
                         <div className='ion-text-center'>
+                            <div className='dados-register'>
 
+                            <div id='txt-register'><IonLabel position="floating">Informe os dados:</IonLabel></div>
+                            <br />
 
                             <IonLabel position="floating">Nome</IonLabel>
                             <IonInput
@@ -176,15 +181,29 @@ const Register: React.FC = () => {
                                 </IonItem>
                             </IonRadioGroup>
 
-                            <IonButton onClick={registrar}>Registrar</IonButton>
+       
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <IonButton
+                            className='buttonRegister' 
+                            expand='block' 
+                            shape='round'
+                            onClick={registrar}>Registrar</IonButton>
 
-                            <IonButton color={'danger'} onClick={()=>{
+                            <IonButton 
+                            className='buttonRegister' 
+                            expand='block' 
+                            shape='round'
+                            onClick={()=>{                 
                                 try{
                                     keepInfo(history, '/perfil-adm')
                                 }finally{
                                     <Redirect to='/perfil-adm' />
                                 }
-                            }}>Voltar</IonButton>
+                            }}>Voltar
+                            </IonButton>
+                            </div>
+                            </div>
+
                         </div>
                         </IonCol>
                         </IonRow>
