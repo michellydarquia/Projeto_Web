@@ -37,6 +37,24 @@ const listaPacientes: React.FC = () => {
     
     },[])
 
+    const seeExams = (name: string, uid: string) => {
+        try{
+            history.push({
+                pathname: '/lista-exames',
+                state: {
+                    Dados: history.location.state.Dados,
+                    paciente: {
+                        nome: name,
+                        Id: uid
+                    }  
+                }
+            })
+            
+        } finally {
+            return <Redirect to='/lista-exames' />
+        }
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -49,36 +67,24 @@ const listaPacientes: React.FC = () => {
                 {
                 alldocs.map((doc, index) => (
                     
-                    <IonCard key={doc.email}>
+                    <IonCard key={doc.info.email}>
                         <IonCardHeader>
-                            <IonCardTitle>{index+1} - {doc.nome}</IonCardTitle>
+                            <IonCardTitle>{index+1} - {doc.info.nome}</IonCardTitle>
                         </IonCardHeader>
 
                         <IonCardContent>
-                        Data de criação: {doc.data}<br/>
-                        E-mail: {doc.email}<br/>
-                        CPF: {doc.CPF}<br/>
-                        CEP: {doc.CEP}<br/>
-                        Endereço: {doc.endereco}<br/>
-                        Nome da mãe: {doc.nomeDaMae}<br/>
-                        RG: {doc.RG}<br/>
-                        Tipo da conta: {doc.conta}<br/>
+                        Data de criação: {doc.info.data}<br/>
+                        E-mail: {doc.info.email}<br/>
+                        CPF: {doc.info.CPF}<br/>
+                        CEP: {doc.info.CEP}<br/>
+                        Endereço: {doc.info.endereco}<br/>
+                        Nome da mãe: {doc.info.nomeDaMae}<br/>
+                        RG: {doc.info.RG}<br/>
+                        Tipo da conta: {doc.info.conta}<br/>
                         </IonCardContent>
 
-                        <IonButton fill="clear" 
-                        onClick={()=>{
-                            try{
-                                history.push({
-                                pathname: '/lista-exames',
-                                state: {
-                                    Dados: history.location.state.Dados,
-                                    paciente: doc.nome
-                                }
-                                })
-                            } finally {
-                                <Redirect to='/lista-exames' />
-                            }
-                        }}>Ver exames</IonButton>
+                        <IonButton fill="clear"
+                        onClick={()=>{seeExams(doc.info.nome, doc.uid)}}>Ver exames</IonButton>
                         <IonButton fill="clear" color='danger'>Excluir perfil</IonButton>
                     </IonCard>
                 ))
