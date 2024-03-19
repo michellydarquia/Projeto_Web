@@ -73,18 +73,18 @@ app.get('/registrar', function (req, res) {
 
 app.get('/login', function (req, res) {
 
-  signInWithEmailAndPassword(auth, 'qweasd@gmail.com', 'qweasd')
+  signInWithEmailAndPassword(auth, 'abc@gmail.com', 'admin1')
   .then((userCredential) => {
 
       const user = userCredential.user;
       console.log('a');
-      return doc(firestore, "users", user.uid);
+      return [doc(firestore, "users", user.uid), user.uid];
 
   })
   .then(async (dados)=>{
 
-    const info = await getDoc(dados);
-    return res.send({ log: true, id: info.data() })
+    const info = await getDoc(dados[0]);
+    return res.send({ log: true, uData: info.data(), id: dados[1] })
 
   })
   .catch((error) => {
@@ -129,7 +129,6 @@ app.get('/getdocs', function (req, res) {
 
 app.get('/listexams', function (req, res) {
   const list = []
-  const indexes = []
 
   if (fs.readdirSync(`./exames/${req.query.id}`).length == 0){
     list.push('none')

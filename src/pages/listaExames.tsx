@@ -93,7 +93,7 @@ const listaExames: React.FC = () => {
                 {msg}
 
                 {
-                exames?.map((info, index) =>(
+                exames?.map((info) =>(
                 <IonCard>
                     <IonCardHeader>
                         <IonCardTitle>{info.exame.title}</IonCardTitle>

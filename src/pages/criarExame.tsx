@@ -14,8 +14,6 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { keepInfo } from './perfilProfissional';
-
 const criarExame: React.FC = () => {
 
     const history = useHistory<any>()
@@ -47,9 +45,10 @@ const criarExame: React.FC = () => {
             .then(response => {
                 console.log(response.data)
                 history.push({
-                    pathname: '/lista-exames',
+                    pathname: '/lista-exames-adm',
                     state: {
                         Dados: history.location.state.Dados,
+                        id: history.location.state.id,
                         paciente: {
                             nome: paciente,
                             Id: history.location.state.paciente.Id
@@ -59,7 +58,7 @@ const criarExame: React.FC = () => {
             })
             .catch(error => console.log(error));
         } finally {
-            return <Redirect to='/lista-exames' />
+            return <Redirect to='/lista-exames-adm' />
         }
     }
 

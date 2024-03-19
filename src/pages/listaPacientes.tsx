@@ -40,18 +40,19 @@ const listaPacientes: React.FC = () => {
     const seeExams = (name: string, uid: string) => {
         try{
             history.push({
-                pathname: '/lista-exames',
+                pathname: '/lista-exames-adm',
                 state: {
                     Dados: history.location.state.Dados,
+                    id: history.location.state.id,
                     paciente: {
                         nome: name,
                         Id: uid
-                    }  
+                    }
                 }
             })
             
         } finally {
-            return <Redirect to='/lista-exames' />
+            return <Redirect to='/lista-exames-adm' />
         }
     }
 
