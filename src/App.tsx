@@ -38,17 +38,18 @@ const App: React.FC = () => (
   <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route component={Home} path="/home" exact />
-          <Route component={Login} path="/login" exact />
-          <Route component={Register} path="/registrar" exact />
-          <Route component={listaPacientes} path="/lista-pacientes" exact />
-          <Route component={listaExames} path="/lista-exames" exact />
-          <Route component={Exame} path="/exame" exact />
-          <Route component={perfilPaciente} path="/perfil" exact />
-          <Route component={perfilProfissional} path="/perfil-adm" exact />
-          <Route component={perfilPacienteProfissional} path="/paciente" exact />
-          <Route component={criarExame} path="/criar-exame" exact />
-          <Redirect from='/' to='/home' exact/>
+        <Route component={Home} path="/home" exact />
+        <Route component={Login} path="/login" exact />
+        <Route component={Register} path="/registrar" exact />
+        <Route component={listaPacientes} path="/lista-pacientes" exact />
+        <Route component={listaExames} path="/lista-exames" exact />
+        <Route component={Exame} path="/exame" exact />
+        <Route component={perfilPaciente} path="/perfil" />
+        <Route component={perfilProfissional} path="/perfil-adm" exact />
+        <Route component={perfilPacienteProfissional} path="/paciente" exact />
+        <Route component={criarExame} path="/criar-exame" exact />
+        <Redirect from='/' to='/home' exact/>
+
         </IonRouterOutlet>
       </IonReactRouter>
   </IonApp>
