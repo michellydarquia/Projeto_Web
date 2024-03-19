@@ -1,7 +1,22 @@
+import { 
+    IonContent, 
+    IonHeader, 
+    IonPage, 
+    IonTitle, 
+    IonToolbar, 
+    IonAvatar, 
+    IonButton, 
+    IonGrid, 
+    IonRow, 
+    IonCol 
+} from '@ionic/react';
+
 import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
+
 import axios from 'axios';
+
+import '../theme/PerfilProfissional.css';
 
 
 export const keepInfo = (history: any, path: string) => {
@@ -55,18 +70,18 @@ const PerfilProfissional: React.FC = () => {
                         <IonCol size="4">
                             <div id="avatarContainer">
                             <IonAvatar style={{ width: '200px', height: '200px' }}>
-    <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-</IonAvatar>
+                                <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            </IonAvatar>
                             </div>
 
-                            <div id="descriptionContainer">
-            <h2>    Descrição</h2>
-            <p>Com anos de prática clínica e constante atualização em minha área de atuação, suporte necessário para a recuperação e manutenção da saúde.</p>
-            <p>Especialidade: {dados.especialidade}</p>
-            <p>Dias de Trabalho: {dados.diasDeTrabalho}</p>
-            <p>Profissão: Médico</p>
+                            {/* <div id="descriptionContainer">
+                                <h2>    Descrição</h2>
+                                <p>Com anos de prática clínica e constante atualização em minha área de atuação, suporte necessário para a recuperação e manutenção da saúde.</p>
+                                <p>Especialidade: {dados.especialidade}</p>
+                                <p>Dias de Trabalho: {dados.diasDeTrabalho}</p>
+                                <p>Profissão: Médico</p>
 
-        </div>   
+                            </div>    */}
                         </IonCol>
 
                         
@@ -110,7 +125,7 @@ const PerfilProfissional: React.FC = () => {
                                 <IonButton className="customButton" 
                                 onClick={()=>{
                                     try{
-                                        keepInfo(history, '/registrar')
+                                        keepInfo(history, '/registrar')    
                                     }finally{
                                         <Redirect to='/registrar' />
                                     }

@@ -14,7 +14,7 @@ import {
     IonItem,
 } from '@ionic/react';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router'
 import { useHistory } from 'react-router-dom'
 

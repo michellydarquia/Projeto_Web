@@ -129,12 +129,14 @@ app.get('/getdocs', function (req, res) {
 
 app.get('/listexams', function (req, res) {
   const list = []
+  const indexes = []
 
   if (fs.readdirSync(`./exames/${req.query.id}`).length == 0){
     list.push('none')
   } else {
     fs.readdirSync(`./exames/${req.query.id}`)
     .map(exam => {
+
       fs.readdirSync(`./exames/${req.query.id}/${exam}`)
       .map(file => {
         if (path.extname(file) == '.json'){
@@ -159,35 +161,46 @@ app.get('/listexams', function (req, res) {
   return
 })
 
-app.get('/exams', function (req, res) {
-  //GBCK2LsGjNZMEQLe66Zs3PnXAY42
-  res.send(fs.readdirSync(`./exames/GBCK2LsGjNZMEQLe66Zs3PnXAY42`))
-  return
-})
-
-
 app.get('/createexam', function (req, res) {
 
-  const num = req.query.howmany
+  var num
+  var i = 1
 
-  const content = JSON.stringify(req.query.exam)
+  while (true){
+    if (!fs.readdirSync(`./exames/${req.query.id}`).includes(`exame${i}`)){
+      num = i
+      break
+    }
+    i++
+  }
+
+  const details = {
+    exame: req.query.exam,
+    index: num
+  }
+
+  const content = JSON.stringify(details)
 
   fs.mkdirSync(`./exames/${req.query.id}/exame${num}`)
 
   fs.writeFile(`./exames/${req.query.id}/exame${num}/info.json`, content, err => {
     if (err) {
-      console.error(err);
-    } else {
-      // file written successfully
+      console.log('erro', err.message);
     }
+    res.send('success')
   });
-
 
   return
 })
 
 app.get('/deleteexam', function (req, res) {
 
+  fs.rm(`./exames/${req.query.id}/exame${req.query.index}`, { recursive: true, force: true }, err => {
+    if (err) {
+      throw err;
+    }
+    res.send('success')
+  });
 
   return
 })

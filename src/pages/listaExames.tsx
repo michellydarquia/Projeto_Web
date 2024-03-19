@@ -31,19 +31,18 @@ const listaExames: React.FC = () => {
 
     useEffect(()=>{
         
-        if (history.location.state?.paciente){
+        //if (history.location.state?.paciente){
 
             try {
                 
-                uid = history.location.state.paciente.Id
                 setPaciente(history.location.state.paciente.nome)
                 
             } finally {
                 
                 axios.get('http://localhost:3000/listexams', {
-                params: {
-                    id: uid
-                }
+                    params: {
+                        id: history.location.state.paciente.Id
+                    }
                 })
                 .then(response => {
                     if (response.data != 'none'){
@@ -55,7 +54,7 @@ const listaExames: React.FC = () => {
                 .catch(error => console.log(error));
                
             }
-        }
+        //}
             
     }, [])
 
@@ -68,15 +67,19 @@ const listaExames: React.FC = () => {
                     </IonTitle>
                     <IonButton fill="clear" color='success'
                     onClick={()=>{
+                        console.log(uid)
                         try {
                             history.push({
-                                pathname: '/lista-exames',
+                                pathname: '/criar-exame',
                                 state: {
                                     Dados: history.location.state.Dados,
-                                    paciente: paciente,
-                                    docId: uid
+                                    paciente: {
+                                        nome: paciente,
+                                        Id: history.location.state.paciente.Id
+                                    }
                                 }
                             })
+                            history.go(0)
                         } finally {
                             <Redirect to='/criar-exame' />
                         }
@@ -90,18 +93,31 @@ const listaExames: React.FC = () => {
                 {msg}
 
                 {
-                exames?.map((exame) =>(
+                exames?.map((info, index) =>(
                 <IonCard>
                     <IonCardHeader>
-                        <IonCardTitle>{exame.title}</IonCardTitle>
-                        <IonCardSubtitle>dr francisico</IonCardSubtitle>
+                        <IonCardTitle>{info.exame.title}</IonCardTitle>
+                        <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
                     </IonCardHeader>
 
-                    <IonCardContent>{exame.desc}</IonCardContent>
+                    <IonCardContent>
+                        Descrição: {info.exame.desc}<br/><br/>
+                        Resultado:
+                    </IonCardContent>
 
-                    <IonButton fill="clear" href='/exame'>Ver detalhes</IonButton>
                     <IonButton fill="clear" >Adicionar resultado</IonButton>
-                    <IonButton fill="clear" color='danger'>Excluir exame</IonButton>
+                    <IonButton fill="clear" color='danger'
+                    onClick={()=>{
+                        axios.get('http://localhost:3000/deleteexam', {
+                            params: {
+                                id: history.location.state.paciente.Id,
+                                index: info.index
+                            }
+                        })
+                        .then(()=>history.go(0))
+                        .catch(error => console.log(error));
+                    }}
+                    >Excluir exame</IonButton>
                 </IonCard>))
                 }
 
@@ -111,6 +127,7 @@ const listaExames: React.FC = () => {
                 onClick={()=>{
                     try {
                         keepInfo(history, '/lista-pacientes')
+                        history.go(0)
                     } finally {
                         <Redirect to='/lista-pacientes' />
                     }
