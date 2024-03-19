@@ -24,11 +24,12 @@ export const keepInfo = (history: any, path: string) => {
         pathname: path,
         state: {
             Dados: history.location.state.Dados,
+            id: history.location.state.id
         }
     })
 }
 
-const PerfilProfissional: React.FC = () => {
+const perfilProfissional: React.FC = () => {
     const history = useHistory<any>();
     const [logged, setLogged] = useState<boolean>(true);
     const [dados, setDados] = useState<any>({});
@@ -43,11 +44,9 @@ const PerfilProfissional: React.FC = () => {
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-            .then(response => setLogged(response.data))
+            .then(response => setLogged(false))
             .catch(error => console.log(error));
     }
-
-    
 
     if (!logged) {
         return <Redirect to='/home' />;
@@ -57,10 +56,8 @@ const PerfilProfissional: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar id='loginTbar'>
-
                     <IonTitle id ='titleTbar'>{dados.nome}</IonTitle>
                     <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
-
                     <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
             </IonHeader>
@@ -73,18 +70,7 @@ const PerfilProfissional: React.FC = () => {
                                 <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                             </IonAvatar>
                             </div>
-
-                            {/* <div id="descriptionContainer">
-                                <h2>    Descrição</h2>
-                                <p>Com anos de prática clínica e constante atualização em minha área de atuação, suporte necessário para a recuperação e manutenção da saúde.</p>
-                                <p>Especialidade: {dados.especialidade}</p>
-                                <p>Dias de Trabalho: {dados.diasDeTrabalho}</p>
-                                <p>Profissão: Médico</p>
-
-                            </div>    */}
                         </IonCol>
-
-                        
                         <IonCol size="8">
                         <div id="infoContainer">
                             <div className="infoItemContainer">
@@ -113,40 +99,22 @@ const PerfilProfissional: React.FC = () => {
                             <IonCol size="15">
                             <div id="buttonsContainer">
                                 <IonButton className="customButton" 
-                                onClick={()=>{
-                                    try{
-                                        keepInfo(history, '/lista-pacientes')
-                                    }finally{
-                                        <Redirect to='/lista-pacientes' />
-                                    }
-                                }}
+                                    onClick={() => keepInfo(history, '/lista-pacientes')}
                                 >Pacientes</IonButton>
-
                                 <IonButton className="customButton" 
-                                onClick={()=>{
-                                    try{
-                                        keepInfo(history, '/registrar')    
-                                    }finally{
-                                        <Redirect to='/registrar' />
-                                    }
-                                }}
+                                    onClick={() => keepInfo(history, '/registrar')}
                                 >Registrar Perfil</IonButton>
                             </div>
                             </IonCol>
                             </IonRow>
                         </IonCol>
                     </IonRow>
-
-
-
-
-                           
-
                 </IonGrid>
-
             </IonContent>
         </IonPage>
     );
 };
 
-export default PerfilProfissional;
+export default perfilProfissional;
+
+
