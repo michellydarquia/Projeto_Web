@@ -82,7 +82,7 @@ const PerfilPacienteProfissional: React.FC = () => {
                         <IonAvatar>
                             <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle className="ion-text-end">Perfil Paciente-Profissional</IonTitle>
+                        <IonTitle className="ion-text-end">PERFIL</IonTitle>
 
                     </IonToolbar>
                 </IonHeader>
@@ -91,7 +91,8 @@ const PerfilPacienteProfissional: React.FC = () => {
                     <div className="container-perfilpp">
 
                     <div className='dadosPP'>
-                    <br />
+                    <div id='dado'>
+                    <h4>Dados  Pessoais</h4></div>
                     NOME: <br />
                     NOME DA MÃE: <br />
                     CPF: <br />
@@ -104,7 +105,7 @@ const PerfilPacienteProfissional: React.FC = () => {
                     <IonCardContent style={{ marginTop: '100px' }}>
                     <div className="ion-text-center" >
 
-                    <IonButton className='buttonExamePP' expand='block' shape='round'>Exames</IonButton>
+                    <IonButton href='/lista-exames' className='buttonExamePP' expand='block' shape='round'>Exames</IonButton>
 
                     <IonButton className='buttonExamePP' expand='block' shape='round'>Marcar exames</IonButton>
 

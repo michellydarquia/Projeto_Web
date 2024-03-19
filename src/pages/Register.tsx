@@ -184,6 +184,7 @@ const Register: React.FC = () => {
        
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <IonButton
+                            href='/login'
                             className='buttonRegister' 
                             expand='block' 
                             shape='round'

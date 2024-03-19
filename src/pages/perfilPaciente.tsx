@@ -53,7 +53,7 @@ const perfilPaciente: React.FC = () => {
                             <img alt="Imagem do perfil"
                             src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                         </IonAvatar>
-                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente</IonTitle>
+                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">PERFIL PACIENTE</IonTitle>
                         <IonTitle>{dados.nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>

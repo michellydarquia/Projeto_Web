@@ -1,23 +1,8 @@
-import { 
-    IonContent, 
-    IonHeader, 
-    IonPage, 
-    IonTitle, 
-    IonToolbar, 
-    IonAvatar, 
-    IonButton, 
-    IonGrid, 
-    IonRow, 
-    IonCol 
-} from '@ionic/react';
-
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-
+import { useHistory, Redirect } from 'react-router-dom';
 import axios from 'axios';
-
-import '../theme/PerfilProfissional.css';
-
+import '../theme/register_perfil.css';
 
 export const keepInfo = (history: any, path: string) => {
     history.push({
@@ -116,5 +101,4 @@ const perfilProfissional: React.FC = () => {
 };
 
 export default perfilProfissional;
-
 
