@@ -50,18 +50,16 @@
 }
 
 
-.dados-register{
+.dados-register {
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   background-color: #ffffff;
-  border: 2px solid #d5d5d5;
   width: 80%;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .buttonRegister{
   width: 10rem;
   --background:var(--ion-color-darkRed, #8C1C13);
@@ -103,8 +101,9 @@
   }
 
 .dadosPP {
-  border: 2px solid #494949; /* Borda sólida de 2px em azul */
+  border: 2px solid #e1e1e1; 
   border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   padding: 20px; /* Espaçamento interno */
   margin-top: 20px; /* Espaçamento superior */
   background-color: #e1e1e1;
@@ -129,7 +128,7 @@
   ion-button {
     margin-top: 15px;
   }
-  
+
   ion-button[href='/perfil-adm'] {
     margin-right: 10px;
   }
