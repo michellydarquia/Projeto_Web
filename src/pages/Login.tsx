@@ -62,8 +62,9 @@ const Login: React.FC = () => {
                 history.push({
                     pathname: redirect,
                     state: {
-                        Dados: response.data.id
-                }
+                        Dados: response.data.uData,
+                        id: response.data.id
+                    }
                 })
             } finally {
                 return <Redirect to={redirect} />
