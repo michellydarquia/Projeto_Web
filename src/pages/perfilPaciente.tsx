@@ -15,6 +15,8 @@ import { useHistory } from 'react-router-dom'
 
 import axios from 'axios'
 
+import { keepInfo } from './perfilProfissional'
+
 import '../theme/register_perfil.css'
 
 const perfilPaciente: React.FC = () => {
@@ -23,16 +25,13 @@ const perfilPaciente: React.FC = () => {
 
     const [logado, setLogado] = useState<boolean>(true)
     const [dados, setDados] = useState<any>({})
-
-    setDados(history.location.state.data)
+    const [uid, setUid] = useState<any>('')
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/getinfo')
-        .then(response => {
-            setDados(response.data.Data)
-        })
-        .catch(error => console.log(error))
-
+       
+        setDados(history.location.state.Dados)
+        setUid(history.location.state.id)
+    
     }, [])
 
     const logout = () => {
@@ -75,7 +74,15 @@ const perfilPaciente: React.FC = () => {
                     </div>
                 </IonContent>
                 <IonFooter className='ion-text-center'>
-                    <IonButton color={'success'} href='/lista-exames'>Exames</IonButton>
+                    <IonButton color={'success'} 
+                    onClick={()=>{
+                        try {
+                            keepInfo(history, '/lista-exames')
+                        } finally {
+                            <Redirect to='/lista-exames' />
+                        }
+                    }}
+                    >Exames</IonButton>
                     <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
                 </IonFooter>
 
