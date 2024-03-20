@@ -5,8 +5,10 @@ import {
     IonTitle, 
     IonToolbar, 
     IonAvatar, 
-    IonButton,
-    IonFooter
+    IonButton, 
+    IonIcon, 
+    IonCardContent, 
+    IonInput 
 } from '@ionic/react'
 
 import React, { useState, useEffect } from 'react'
@@ -52,12 +54,12 @@ const perfilPaciente: React.FC = () => {
                         <IonTitle>{dados.nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
+
                 <IonContent  className="ion-padding">
                     <div className="dados-paciente">
                     <div id='dado'>
                         <h2>Dados  Pessoais</h2>
                     </div>
-                    <br/>
                     Data de criação: {dados.data}<br/><br/>
                     E-mail: {dados.email}<br/><br/>
                     CPF: {dados.CPF}<br/><br/>
@@ -68,11 +70,12 @@ const perfilPaciente: React.FC = () => {
                     Tipo da conta: {dados.conta}<br/><br/>
                     </div>
                 </IonContent>
-                <IonFooter className='ion-text-center'>
-                    <IonButton color={'success'} 
-                    onClick={()=>keepInfo(history, '/lista-exames')}
-                    >Exames</IonButton>
-                </IonFooter>
+                <IonCardContent className="botao-container">
+                <div className="ion-text-center button-container">
+                <IonButton href='/lista-exames' className='buttonPaciente' expand='block' shape='round'>Exames</IonButton>
+                <IonButton className='buttonPaciente' expand='block' shape='round'>Marcar exames</IonButton>
+                </div>
+                </IonCardContent>
 
             </IonPage>
         </>
