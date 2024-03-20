@@ -24,7 +24,6 @@ const criarExame: React.FC = () => {
     const [hour, setHour] = useState<string | number | null | undefined>()
     const [paciente, setPaciente] = useState<string>(history.location.state.paciente.nome)
 
-
     const createExam = () => {
 
         const day = new Date()

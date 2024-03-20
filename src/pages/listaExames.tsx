@@ -23,21 +23,15 @@ const listaExames: React.FC = () => {
 
     const history = useHistory<any>()
     
-
     const [paciente, setPaciente] = useState<string>()
     const [exames, setExames] = useState<any[]>()
     const [resultado, setResultado] = useState<any[]>()
     const [msg, setMsg] = useState<string>('')
-    const [disable, setDisable] = useState<boolean>(false)
 
-    let indexProInput: number
-
-    let uid: string
+    let indexParaInput: number
 
     useEffect(()=>{
         
-        //if (history.location.state?.paciente){
-
             try {
                 
                 setPaciente(history.location.state.paciente.nome)
@@ -50,7 +44,7 @@ const listaExames: React.FC = () => {
                     }
                 })
                 .then(response => {
-                    if (response.data != 'none'){
+                    if (response.data[0][0] != 'none'){
                         setExames(response.data[0])
                         setResultado(response.data[1])
                     } else {
@@ -60,7 +54,6 @@ const listaExames: React.FC = () => {
                 .catch(error => console.log(error));
                
             }
-        //}
             
     }, [])
 
@@ -82,7 +75,7 @@ const listaExames: React.FC = () => {
             params: {id: id, index: index}
           }
         );
-        setDisable(result.data)
+        console.log(result.data)
     }
 
     const isAvailable = (index: number) => {
@@ -103,22 +96,17 @@ const listaExames: React.FC = () => {
                     </IonTitle>
                     <IonButton fill="clear" color='success'
                     onClick={()=>{
-                        console.log(uid)
-                        try {
-                            history.push({
-                                pathname: '/criar-exame',
-                                state: {
-                                    Dados: history.location.state.Dados,
-                                    paciente: {
-                                        nome: paciente,
-                                        Id: history.location.state.paciente.Id
-                                    }
+                        history.push({
+                            pathname: '/criar-exame',
+                            state: {
+                                Dados: history.location.state.Dados,
+                                paciente: {
+                                    nome: paciente,
+                                    Id: history.location.state.paciente.Id
                                 }
-                            })
-                            history.go(0)
-                        } finally {
-                            <Redirect to='/criar-exame' />
-                        }
+                            }
+                        })
+                        history.go(0)
                     }}
                     >Adicionar exame</IonButton>
                 </IonToolbar>
@@ -130,7 +118,7 @@ const listaExames: React.FC = () => {
 
                 {
                 exames?.map((info, index) =>(
-                <IonCard key={indexProInput = index}>
+                <IonCard key={indexParaInput = index}>
                     <IonCardHeader>
                         <IonCardTitle>{info.exame.title}</IonCardTitle>
                         <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
@@ -147,7 +135,7 @@ const listaExames: React.FC = () => {
                     onChange={(e) => {
 
                         if (e.target.files){
-                            addResult(e.target.files[0], history.location.state.paciente.Id, indexProInput+1)
+                            addResult(e.target.files[0], history.location.state.paciente.Id, indexParaInput+1)
                         }
 
                     }}

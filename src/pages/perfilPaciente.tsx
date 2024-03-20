@@ -72,7 +72,9 @@ const perfilPaciente: React.FC = () => {
                 </IonContent>
                 <IonCardContent className="botao-container">
                 <div className="ion-text-center button-container">
-                <IonButton href='/lista-exames' className='buttonPaciente' expand='block' shape='round'>Exames</IonButton>
+                <IonButton className='buttonPaciente' expand='block' shape='round'
+                onClick={()=>keepInfo(history, '/lista-exames')}
+                >Exames</IonButton>
                 <IonButton className='buttonPaciente' expand='block' shape='round'>Marcar exames</IonButton>
                 </div>
                 </IonCardContent>

@@ -27,6 +27,7 @@
   --background: var(--ion-color-oxfordBlue, #000829); /* Cor de fundo */
   color: rgb(255, 255, 255);
   background-color: var(--background); 
+  height: 50px;
 }
 
 
@@ -210,9 +211,7 @@
       display: flex;
       justify-content: center;
       margin-bottom: 10px; 
-      width: 50%;
-      margin-top: 20px; 
-  
+      margin-top: 20px;
   }
   
   #avatarIcon {
@@ -224,7 +223,7 @@
   .infoItemContainer {
       background-color: #f9f9f9; 
       border-radius: 8px; 
-      padding: 10px; 
+      padding: 10px;
       margin-bottom: 10px; 
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
   }
@@ -243,7 +242,7 @@
   .customButton {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.34); 
     color: white;
-    margin-right: 100px; 
+    margin-right: 215px; 
     --background:var(--ion-color-darkRed, #8C1C13);
     width: 100%;
     border: none;
@@ -254,9 +253,9 @@
   }
   #buttonsContainer {
       display: flex; 
-      justify-content: flex-start; 
-      margin-top: 100px;
-      margin-bottom: 10px; 
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
   }
   
   #descriptionContainer {

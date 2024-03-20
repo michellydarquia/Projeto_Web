@@ -74,7 +74,7 @@ app.get('/registrar', function (req, res) {
 
 app.get('/login', function (req, res) {
 
-  signInWithEmailAndPassword(auth, 'qweasd@gmail.com', 'qweasd')
+  signInWithEmailAndPassword(auth, 'abc@gmail.com', 'admin1')
   .then((userCredential) => {
 
       const user = userCredential.user;
@@ -227,6 +227,11 @@ const upload = multer({ storage: storage })
 app.post('/addresult', upload.single("file"), async (req, res) => {
   console.log(req.file);
   res.send(true)
+  return
+})
+
+app.get('/pdf', (req, res) => {
+  fs.
   return
 })
 

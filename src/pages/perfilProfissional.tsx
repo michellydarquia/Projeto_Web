@@ -41,7 +41,6 @@ const perfilProfissional: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar id='loginTbar'>
-                    <IonTitle id ='titleTbar'>{dados.nome}</IonTitle>
                     <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
                     <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
@@ -51,7 +50,8 @@ const perfilProfissional: React.FC = () => {
                     <IonRow>
                         <IonCol size="4">
                             <div id="avatarContainer">
-                            <IonAvatar style={{ width: '200px', height: '200px' }}>
+                            <IonAvatar style={{ width: '200px', height: '200px' }}
+                            >
                                 <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                             </IonAvatar>
                             </div>
@@ -86,6 +86,10 @@ const perfilProfissional: React.FC = () => {
                                 <IonButton className="customButton" 
                                     onClick={() => keepInfo(history, '/lista-pacientes')}
                                 >Pacientes</IonButton>
+
+                            </div>
+                            <div id="buttonsContainer">
+
                                 <IonButton className="customButton" 
                                     onClick={() => keepInfo(history, '/registrar')}
                                 >Registrar Perfil</IonButton>

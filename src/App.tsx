@@ -7,10 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import listaPacientes from './pages/listaPacientes';
 import listaExames from './pages/listaExames';
-import Exame from './pages/Exame';
 import perfilPaciente from './pages/perfilPaciente';
 import perfilProfissional from './pages/perfilProfissional';
-import perfilPacienteProfissional from './pages/perfilPacienteProfissional';
 import criarExame from './pages/criarExame';
 import listaExamesPaciente from './pages/listaExamesPaciente';
 
@@ -44,10 +42,8 @@ const App: React.FC = () => (
           <Route component={Register} path="/registrar" exact />
           <Route component={listaPacientes} path="/lista-pacientes" exact />
           <Route component={listaExames} path="/lista-exames-adm" exact />
-          <Route component={Exame} path="/exame" exact />
           <Route component={perfilPaciente} path="/perfil" exact />
           <Route component={perfilProfissional} path="/perfil-adm" exact />
-          <Route component={perfilPacienteProfissional} path="/paciente" exact />
           <Route component={criarExame} path="/criar-exame" exact />
           <Route component={listaExamesPaciente} path="/lista-exames" exact />
           <Redirect from='/' to='/home' exact/>
