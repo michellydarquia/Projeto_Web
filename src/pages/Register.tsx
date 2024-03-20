@@ -15,7 +15,6 @@ import {
 } from '@ionic/react';
 
 import { useState } from 'react';
-import { Redirect } from 'react-router'
 import { useHistory } from 'react-router-dom'
 
 import '../theme/register_perfil.css';
@@ -184,7 +183,6 @@ const Register: React.FC = () => {
        
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <IonButton
-                            href='/login'
                             className='buttonRegister' 
                             expand='block' 
                             shape='round'
@@ -194,14 +192,8 @@ const Register: React.FC = () => {
                             className='buttonRegister' 
                             expand='block' 
                             shape='round'
-                            onClick={()=>{                 
-                                try{
-                                    keepInfo(history, '/perfil-adm')
-                                }finally{
-                                    <Redirect to='/perfil-adm' />
-                                }
-                            }}>Voltar
-                            </IonButton>
+                            onClick={()=>keepInfo(history, '/perfil-adm')}
+                            >Voltar</IonButton>
                             </div>
                             </div>
 

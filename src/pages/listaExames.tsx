@@ -9,7 +9,8 @@ import {
     IonCardTitle, 
     IonCardSubtitle, 
     IonCardContent, 
-    IonButton 
+    IonButton,
+    IonInput
 } from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import {useHistory, Redirect} from 'react-router-dom';
@@ -25,7 +26,11 @@ const listaExames: React.FC = () => {
 
     const [paciente, setPaciente] = useState<string>()
     const [exames, setExames] = useState<any[]>()
+    const [resultado, setResultado] = useState<any[]>()
     const [msg, setMsg] = useState<string>('')
+    const [disable, setDisable] = useState<boolean>(false)
+
+    let indexProInput: number
 
     let uid: string
 
@@ -46,7 +51,8 @@ const listaExames: React.FC = () => {
                 })
                 .then(response => {
                     if (response.data != 'none'){
-                        setExames(response.data)
+                        setExames(response.data[0])
+                        setResultado(response.data[1])
                     } else {
                         setMsg('Este paciente não possui exames agendados.')
                     }
@@ -58,6 +64,36 @@ const listaExames: React.FC = () => {
             
     }, [])
 
+    const uploadFile = () => {
+        (document as any).getElementById("file-upload").click();
+    };
+
+    const addResult = async (file: any, id: string, index: number) => {
+
+        const formData = new FormData();
+        formData.append("file", file);
+        console.log(file);
+    
+        const result = await axios.post(
+          "http://localhost:3000/addresult",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+            params: {id: id, index: index}
+          }
+        );
+        setDisable(result.data)
+    }
+
+    const isAvailable = (index: number) => {
+        if(resultado && resultado[index] == 'Disponível'){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    
     return (
         <IonPage>            
             <IonHeader>
@@ -93,8 +129,8 @@ const listaExames: React.FC = () => {
                 {msg}
 
                 {
-                exames?.map((info) =>(
-                <IonCard>
+                exames?.map((info, index) =>(
+                <IonCard key={indexProInput = index}>
                     <IonCardHeader>
                         <IonCardTitle>{info.exame.title}</IonCardTitle>
                         <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
@@ -102,10 +138,27 @@ const listaExames: React.FC = () => {
 
                     <IonCardContent>
                         Descrição: {info.exame.desc}<br/><br/>
-                        Resultado:
+                        Resultado: {resultado ? resultado[index] : ''}
                     </IonCardContent>
 
-                    <IonButton fill="clear" >Adicionar resultado</IonButton>
+                    <input
+                    type="file"
+                    id="file-upload"
+                    onChange={(e) => {
+
+                        if (e.target.files){
+                            addResult(e.target.files[0], history.location.state.paciente.Id, indexProInput+1)
+                        }
+
+                    }}
+                    style={{ display: "none" }}
+                    />
+
+                    <IonButton type='submit' fill="clear"
+                    disabled={isAvailable(index)}
+                    onClick={uploadFile}
+                    >Inserir pdf do resultado</IonButton>
+
                     <IonButton fill="clear" color='danger'
                     onClick={()=>{
                         axios.get('http://localhost:3000/deleteexam', {
@@ -118,6 +171,7 @@ const listaExames: React.FC = () => {
                         .catch(error => console.log(error));
                     }}
                     >Excluir exame</IonButton>
+
                 </IonCard>))
                 }
 

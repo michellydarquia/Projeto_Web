@@ -8,10 +8,11 @@ import * as admauth from "firebase-admin/auth";
 import admCert from './exames-9598c-firebase-adminsdk-cvzs6-761da459ad.json' with { type: "json" };
 
 import * as fs from 'fs'
-import * as path from 'path'
 
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
+
+import multer from 'multer'
 
 const app = express();
 app.use(cors());
@@ -73,7 +74,7 @@ app.get('/registrar', function (req, res) {
 
 app.get('/login', function (req, res) {
 
-  signInWithEmailAndPassword(auth, 'abc@gmail.com', 'admin1')
+  signInWithEmailAndPassword(auth, 'qweasd@gmail.com', 'qweasd')
   .then((userCredential) => {
 
       const user = userCredential.user;
@@ -129,6 +130,7 @@ app.get('/getdocs', function (req, res) {
 
 app.get('/listexams', function (req, res) {
   const list = []
+  const results = []
 
   if (fs.readdirSync(`./exames/${req.query.id}`).length == 0){
     list.push('none')
@@ -138,7 +140,7 @@ app.get('/listexams', function (req, res) {
 
       fs.readdirSync(`./exames/${req.query.id}/${exam}`)
       .map(file => {
-        if (path.extname(file) == '.json'){
+        if (file == 'info.json'){
           try {
 
             const data = fs.readFileSync(`./exames/${req.query.id}/${exam}/${file}`);
@@ -150,13 +152,19 @@ app.get('/listexams', function (req, res) {
             throw error;
 
           }
+
+          results.push('Inisponível')
+
+        } else if (file == 'resultado.pdf'){
+          results.pop()
+          results.push('Disponível')
         }
       })
     })
   }
 
 
-  res.send(list)
+  res.send([list, results])
   return
 })
 
@@ -203,4 +211,33 @@ app.get('/deleteexam', function (req, res) {
 
   return
 })
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, `./exames/${req.query.id}/exame${req.query.index}`)
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now()
+    cb(null, 'resultado.pdf')
+  }
+})
+
+const upload = multer({ storage: storage })
+
+app.post('/addresult', upload.single("file"), async (req, res) => {
+  console.log(req.file);
+  res.send(true)
+  return
+})
+
+  
+
+
+
+
+
+
+
+
+
 

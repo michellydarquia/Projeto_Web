@@ -25,13 +25,11 @@ const perfilPaciente: React.FC = () => {
 
     const [logado, setLogado] = useState<boolean>(true)
     const [dados, setDados] = useState<any>({})
-    const [uid, setUid] = useState<any>('')
 
     useEffect(()=>{
        
         setDados(history.location.state.Dados)
-        setUid(history.location.state.id)
-    
+
     }, [])
 
     const logout = () => {
@@ -75,13 +73,7 @@ const perfilPaciente: React.FC = () => {
                 </IonContent>
                 <IonFooter className='ion-text-center'>
                     <IonButton color={'success'} 
-                    onClick={()=>{
-                        try {
-                            keepInfo(history, '/lista-exames')
-                        } finally {
-                            <Redirect to='/lista-exames' />
-                        }
-                    }}
+                    onClick={()=>keepInfo(history, '/lista-exames')}
                     >Exames</IonButton>
                     <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
                 </IonFooter>
