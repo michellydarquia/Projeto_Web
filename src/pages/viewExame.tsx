@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, IonList, IonItem, IonLabel, IonButton } from '@ionic/react';
 
-// Defina a interface Exame aqui
+
 interface Exame {
   id: number;
   nome: string;
@@ -13,10 +13,9 @@ const VisualizarExamesPage = () => {
     const [exames, setExames] = useState<Exame[]>([]);
   
     useEffect(() => {
-      // Simulação de uma chamada para o servidor para obter os exames
+      
       const fetchExames = async () => {
-        // Aqui você faria a chamada real para o backend para obter os exames
-        // Por enquanto, vamos simular alguns dados de exemplo
+      
         const response = await fetch('https://api.example.com/exames');
         const data = await response.json();
         setExames(data);
