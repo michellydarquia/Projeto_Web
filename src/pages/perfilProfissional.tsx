@@ -1,71 +1,104 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router';
-
+import { useHistory, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import '../theme/register_perfil.css';
 
+export const keepInfo = (history: any, path: string) => {
+    history.push({
+        pathname: path,
+        state: {
+            Dados: history.location.state.Dados,
+            id: history.location.state.id
+        }
+    })
+}
 
 const perfilProfissional: React.FC = () => {
-
-    const [logado, setLogado] = useState<boolean>(true);
+    const history = useHistory<any>();
+    const [logged, setLogged] = useState<boolean>(true);
     const [dados, setDados] = useState<any>({});
 
-    
-    useEffect(()=>{
-        axios.get('http://localhost:3000/getinfo')
-        .then(response => {
-            setDados(response.data);
-            if (dados.conta != 'profissional'){
-                return <Redirect to='/perfil' />
-            }
-        })
-        .catch(error => console.log(error))
-    }, [])
+    useEffect(() => {
+        if (history.location.state?.Dados != undefined){
+            setDados(history.location.state.Dados);
+        } else {
+            setLogged(false)
+        }
+    }, []);
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-        .then(response => setLogado(response.data))
-        .catch(error => console.log(error));
+            .then(response => setLogged(false))
+            .catch(error => console.log(error));
     }
 
-    if (!logado || dados.nullOrNotLogged){
-        return <Redirect to='/home' />
+    if (!logged) {
+        return <Redirect to='/home' />;
     }
 
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
-                    <IonAvatar>
-                        <img alt="Imagem do perfil"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                    </IonAvatar>
-                    <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Administrativo</IonTitle>
-                    
-                    <IonTitle>{dados.nome}</IonTitle>
+                <IonToolbar id='loginTbar'>
+                    <IonTitle id ='titleTbar'>{dados.nome}</IonTitle>
+                    <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
+                    <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
-
-                <br/>
-                E-mail: {dados.email}<br/><br/>
-                CPF: {dados.CPF}<br/><br/>
-                CEP: {dados.CEP}<br/><br/>
-                Endereço: {dados.endereco}<br/><br/>
-                Nome da mãe: {dados.nomeDaMae}<br/><br/>
-                RG: {dados.RG}<br/><br/>
-                Tipo da conta: {dados.conta}<br/><br/>
-                
-                <div className="ion-text-center">
-                <IonButton color={'success'} href='/lista-pacientes' >Pacientes</IonButton>
-                <IonButton color={'success'} href='/registrar'>Registrar Perfil</IonButton>
-                <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                {/* <IonButton color={'light'} onClick={addExames}>aDD</IonButton> */}
-                </div>
-
+            <IonContent id='contentPrinc' className="ion-padding">
+                <IonGrid>
+                    <IonRow>
+                        <IonCol size="4">
+                            <div id="avatarContainer">
+                            <IonAvatar style={{ width: '200px', height: '200px' }}>
+                                <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            </IonAvatar>
+                            </div>
+                        </IonCol>
+                        <IonCol size="8">
+                        <div id="infoContainer">
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome da mãe:</strong> {dados.nomeDaMae}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>E-mail:</strong> {dados.email}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CPF:</strong> {dados.CPF}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CEP:</strong> {dados.CEP}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Endereço:</strong> {dados.endereco}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>RG:</strong> {dados.RG}</p>
+                            </div>
+                        </div>
+                        <IonRow>
+                            <IonCol size="15">
+                            <div id="buttonsContainer">
+                                <IonButton className="customButton" 
+                                    onClick={() => keepInfo(history, '/lista-pacientes')}
+                                >Pacientes</IonButton>
+                                <IonButton className="customButton" 
+                                    onClick={() => keepInfo(history, '/registrar')}
+                                >Registrar Perfil</IonButton>
+                            </div>
+                            </IonCol>
+                            </IonRow>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
             </IonContent>
         </IonPage>
     );
 };
 
 export default perfilProfissional;
+

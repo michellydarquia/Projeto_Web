@@ -5,28 +5,33 @@ import {
     IonTitle, 
     IonToolbar, 
     IonAvatar, 
-    IonButton,
-    IonFooter
+    IonButton, 
+    IonIcon, 
+    IonCardContent, 
+    IonInput 
 } from '@ionic/react'
 
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 import axios from 'axios'
+
+import { keepInfo } from './perfilProfissional'
 
 import '../theme/register_perfil.css'
 
 const perfilPaciente: React.FC = () => {
 
+    const history = useHistory<any>()
+
     const [logado, setLogado] = useState<boolean>(true)
     const [dados, setDados] = useState<any>({})
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/getinfo')
-        .then(response => {
-            setDados(response.data)
-        })
-        .catch(error => console.log(error))
+       
+        setDados(history.location.state.Dados)
+
     }, [])
 
     const logout = () => {
@@ -43,18 +48,19 @@ const perfilPaciente: React.FC = () => {
         <>
             <IonPage>
                 <IonHeader>
-                    <IonToolbar>
-                        <IonAvatar>
-                            <img alt="Imagem do perfil"
-                            src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                        </IonAvatar>
-                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">Perfil Paciente</IonTitle>
+                    <IonToolbar id= 'perfilTbar'>
+                        <IonTitle id ='titleTbar' slot="start" >PERFIL DO PACIENTE</IonTitle>
+                        <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                         <IonTitle>{dados.nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent className="ion-padding">
-                    
-                    <br/>
+
+                <IonContent  className="ion-padding">
+                    <div className="dados-paciente">
+                    <div id='dado'>
+                        <h2>Dados  Pessoais</h2>
+                    </div>
+                    Data de criação: {dados.data}<br/><br/>
                     E-mail: {dados.email}<br/><br/>
                     CPF: {dados.CPF}<br/><br/>
                     CEP: {dados.CEP}<br/><br/>
@@ -62,16 +68,15 @@ const perfilPaciente: React.FC = () => {
                     Nome da mãe: {dados.nomeDaMae}<br/><br/>
                     RG: {dados.RG}<br/><br/>
                     Tipo da conta: {dados.conta}<br/><br/>
-                    
-                    {/* <div className="ion-text-center" style={{ marginTop: '200px' }}>
-                    
-                    </div> */}
+                    </div>
                 </IonContent>
+                <IonCardContent className="botao-container">
+                <div className="ion-text-center button-container">
+                <IonButton href='/lista-exames' className='buttonPaciente' expand='block' shape='round'>Exames</IonButton>
+                <IonButton className='buttonPaciente' expand='block' shape='round'>Marcar exames</IonButton>
+                </div>
+                </IonCardContent>
 
-                <IonFooter className='ion-text-center'>
-                    <IonButton color={'success'} href='/lista-exames'>Exames</IonButton>
-                    <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-                </IonFooter>
             </IonPage>
         </>
     );
@@ -82,30 +87,3 @@ export default perfilPaciente;
 
 
 
-// const PerfilPaciente: React.FC<{ dados: any }> = ({ dados }) => {
-//     return (
-//         <IonPage>
-//             <IonHeader>
-//                 <IonToolbar>
-//                 <IonAvatar>
-//                          <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-//                 </IonAvatar>
-//                     <IonTitle>{dados.nomeCompleto}</IonTitle>
-//                 </IonToolbar>
-//             </IonHeader>
-//             <IonContent className="ion-padding">
-//                 {/* Exibe os outros dados inseridos pelo paciente */}
-//                 <p>Endereço: {dados.nome}</p>
-//                 <p>CPF: {dados.CPF}</p>
-//                 <p>CEP: {dados.CEP}</p>
-//                 <p>Endereço: {dados.endereco}</p>
-//                 <p>Endereço: {dados.email}</p>
-//                 <p>Endereço: {dados.endereco}</p>
-//                 <p>Endereço: {dados.nomemae}</p>
-//                 <p>Endereço: {dados.RG}</p>
-//                 <IonButton color={'success'} href='/listaexames'>Exames</IonButton>
-//                 <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
-//             </IonContent>
-//         </IonPage>
-//     );
-// };

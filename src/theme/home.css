@@ -23,13 +23,7 @@
   }
 
 
-/*.grid-container{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-}*/
+/*****IMAGEM*****/
 
 .colImg {
     height: 98vh;
@@ -39,13 +33,6 @@
     align-items: center;
     padding: 0px;
 }
-
-/*.container{
-    display: block;
-    text-align: center; 
-    margin-top: auto; 
-    margin-bottom: auto;
-}*/
 
 #imagem{
     width: 85%;
@@ -60,6 +47,8 @@
     margin-left: 60px;
     margin-right: 20px;
 }
+
+/*****BUTTONS AREA****/
 
 .colBtt{
     height: 98vh;
@@ -104,9 +93,6 @@
     text-align: center;
     margin-top: 10px;
     margin-bottom: 16px;
-   
-
-    
 }
 
 .buttonPacMed{
@@ -123,13 +109,13 @@
 #bttMed{
     margin-top: 15px;
 }
+
 #lineText{
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
 }
+
 #linha_separacao{
     border-bottom: 1px solid gray; /* Estilo da linha */
     width: 8rem; 

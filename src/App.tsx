@@ -12,6 +12,7 @@ import perfilPaciente from './pages/perfilPaciente';
 import perfilProfissional from './pages/perfilProfissional';
 import perfilPacienteProfissional from './pages/perfilPacienteProfissional';
 import criarExame from './pages/criarExame';
+import listaExamesPaciente from './pages/listaExamesPaciente';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,12 +43,13 @@ const App: React.FC = () => (
           <Route component={Login} path="/login" exact />
           <Route component={Register} path="/registrar" exact />
           <Route component={listaPacientes} path="/lista-pacientes" exact />
-          <Route component={listaExames} path="/lista-exames" exact />
+          <Route component={listaExames} path="/lista-exames-adm" exact />
           <Route component={Exame} path="/exame" exact />
           <Route component={perfilPaciente} path="/perfil" exact />
           <Route component={perfilProfissional} path="/perfil-adm" exact />
           <Route component={perfilPacienteProfissional} path="/paciente" exact />
           <Route component={criarExame} path="/criar-exame" exact />
+          <Route component={listaExamesPaciente} path="/lista-exames" exact />
           <Redirect from='/' to='/home' exact/>
         </IonRouterOutlet>
       </IonReactRouter>

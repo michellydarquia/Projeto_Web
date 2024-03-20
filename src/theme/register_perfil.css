@@ -7,21 +7,54 @@
     height: 100vh; /*Isso garante que a página ocupe toda a altura da tela */
   }
 
-.container {
-    margin-bottom: 20px;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 30rem; /* Defina o tamanho da letra aqui ainda não funciona*/
-    font-weight: normal; 
-    font-style: normal;
+
+.ion-text-end {
+  font-size: 30px; 
 }
 
 
-.ion-text-center {
-  padding: 20px;
+#dado {
+  font-size: 15px;
+  font-weight: bold;
+  color: #a09f9f; 
+}
+
+
+.container-title {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: normal; 
+  font-style: normal;
+  --background: var(--ion-color-oxfordBlue, #000829); /* Cor de fundo */
+  color: rgb(255, 255, 255);
+  background-color: var(--background); 
+}
+
+
+#txt-register {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  color: #bababa;
+  text-align: left; /* Alinhando o texto à esquerda */
+}
+
+
+.dados-register {
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   background-color: #ffffff;
-  border: 2px solid #d5d5d5; 
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.buttonRegister{
+  width: 10rem;
+  --background:var(--ion-color-darkRed, #8C1C13);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .form-container {
@@ -30,7 +63,60 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #748BA8;
 }
+/*perfil*/
+.dados-paciente {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  padding: 10px;
+  background-color: #e4e3e3; 
+}
 
+#perfilTbar {
+  --background: var(--ion-color-oxfordBlue, #000829);
+  background-color: var(--background); 
+  color: #fff; 
+}
+#perfilTbar ion-title {
+  font-size: 22px; 
+  font-weight: bold; 
+  margin-left: 10px; 
+}
+
+#perfilTbar ion-avatar img {
+  border-radius: 50%; /* Torna a imagem do avatar redonda */
+  width: 60px; 
+  height: 60px; 
+}
+
+.container-perfilpp{
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #748BA8;
+  }
+
+.dadosPP {
+  border: 2px solid #e1e1e1; 
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+  padding: 20px; /* Espaçamento interno */
+  margin-top: 20px; /* Espaçamento superior */
+  background-color: #e1e1e1;
+}
+
+.buttonExamePP{
+  width: 15rem;
+  --background:var(--ion-color-darkRed, #8C1C13);
+}
+.ion-text-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
   ion-input,
   ion-label {
     margin-bottom: 15px;
@@ -40,7 +126,7 @@
   ion-button {
     margin-top: 15px;
   }
-  
+
   ion-button[href='/perfil-adm'] {
     margin-right: 10px;
   }
@@ -51,6 +137,135 @@
 
   ion-radio {
     margin-right: 5px;
+  }
+  /*Perfil paciente*/
+  
+  #perfilTbar {
+    --background: var(--ion-color-oxfordBlue, #000829);
+    background-color: var(--background); 
+    color: #fff; 
+  }
+  
+  #perfilTbar ion-title {
+    font-size: 22px; 
+    font-weight: bold; 
+    margin-left: 10px; 
+  }
+
+
+  
+  .dados-paciente {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    border: 2px solid #748BA8; 
+    border-radius: 1px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+    margin-top: 2px;
+    background-color: #e1e1e1;
+    width: 100%;
+  }
+  
+  .buttonPaciente {
+    width: 15rem;
+    --background: var(--ion-color-darkRed, #8C1C13);
+  }
+  .botao-container {
+    margin-top: 100px; 
+    display: flex; 
+    justify-content: space-around; 
+  }
+  .botao-container {
+  margin-top: 100px; 
+  display: flex; 
+  justify-content: space-around; 
+}
+.botao-container .button-container {
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #748BA8; 
+  border-radius: 3px;
+  background-color: #748BA8;
+  display: inline-block; 
+}
+
+
+  .ion-text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+    /*Perfil Profissional*/
+
+  #contentPrinc{
+    --background:var(--ion-color-powderBlue, #A7B6C8);
+  
+  }
+  
+  #avatarContainer {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px; 
+      width: 50%;
+      margin-top: 20px; 
+  
+  }
+  
+  #avatarIcon {
+      font-size: 100rem; 
+      color: #3498db; 
+  
+  }
+  
+  .infoItemContainer {
+      background-color: #f9f9f9; 
+      border-radius: 8px; 
+      padding: 10px; 
+      margin-bottom: 10px; 
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .infoItem {
+      margin: 0; 
+      font-size: 15px; 
+      color: #333;
+  }
+  
+  .infoItem strong {
+    color: #4e4e4e; 
+    font-weight: normal;
+}
+  
+  .customButton {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.34); 
+    color: white;
+    margin-right: 100px; 
+    --background:var(--ion-color-darkRed, #8C1C13);
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer; 
+    outline: none;
+  
+  }
+  #buttonsContainer {
+      display: flex; 
+      justify-content: flex-start; 
+      margin-top: 100px;
+      margin-bottom: 10px; 
+  }
+  
+  #descriptionContainer {
+      background-color: #000829; 
+      border-radius: 20px; 
+      padding: 20px; 
+      margin-top: 40px; 
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.34); 
+      justify-content: flex-start;
   }
   
 

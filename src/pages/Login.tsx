@@ -11,7 +11,8 @@ import {
 } from '@ionic/react';
 
 import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import axios from 'axios'
 
@@ -24,13 +25,28 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState<any>('');
     const [senha, setSenha] = useState<any>('');
     const [redirect, setRedirect] = useState<any>('/perfil');
-    const [logado, setLogado] = useState<boolean>(false);
+    const [conta, setConta] = useState<any>('Paciente');
+
+    const [logado, setLogado] = useState<boolean>(true);
+    const [dados, setDados] = useState<any>();
+
+
+    const [undef, setUndef] = useState<boolean>(false);
 
     useEffect(()=>{
-        if (history.location.state.prof){
-            setRedirect('/perfil-adm')
+        if (history.location.state?.prof != undefined){
+            if (history.location.state.prof){
+                setRedirect('/perfil-adm')
+                setConta('Profissional')
+            }
+        } else {
+            setUndef(true)
         }
     }, [])
+
+    if (undef) {
+        return <Redirect to='/home' />
+    }
 
     const login = () => {
         axios.get('http://localhost:3000/login',{
@@ -39,13 +55,27 @@ const Login: React.FC = () => {
                 senha: senha,
             }
         })
-        .then(response => setLogado(response.data))
+        .then(response => {
+
+            try {
+                setLogado(response.data.log)
+                history.push({
+                    pathname: redirect,
+                    state: {
+                        Dados: response.data.uData,
+                        id: response.data.id
+                    }
+                })
+            } finally {
+                return <Redirect to={redirect} />
+            }
+      
+        
+        })
         .catch(error => console.log(error))
     }
 
-    if (logado){
-        return <Redirect to={redirect} />
-    }
+    
 
     return (
         <>
@@ -54,7 +84,8 @@ const Login: React.FC = () => {
                 
                 <IonHeader class='teste'>
                     <IonToolbar  id='loginTbar'>
-                        <IonTitle id='titleTbar'>Acesso ao Resultado de Exames</IonTitle>
+                        {/* Acesso ao Resultado de Exames */}
+                        <IonTitle id='titleTbar'>Login como {conta}</IonTitle>
                     </IonToolbar>
                 </IonHeader>                                 
               
@@ -101,7 +132,7 @@ const Login: React.FC = () => {
 
                             ></IonInput>
                             <IonButton id='entrarBtt'
-                            // type="submit" 
+                            
                             expand='block' 
                             shape='round'
                             onClick={login}

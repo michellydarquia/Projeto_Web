@@ -55,14 +55,16 @@ const Home: React.FC = () => {
                                     expand='block'
                                     shape='round'
                                     onClick={()=>{
-                                        history.push({
-                                            pathname: '/login',
-                                            state: { prof: false }
-                                        })
+                                        if (history){
+                                            history.push({
+                                                pathname: '/login',
+                                                state: { prof: false }
+                                            })
+                                        }
                                     }}
                                     >Login como paciente</IonButton>
                                     </IonRow>
-
+                                    
                                     <IonRow id='lineText'>
                                         <div id='linha_separacao'></div>
                                         <IonText>
@@ -84,7 +86,6 @@ const Home: React.FC = () => {
                                     }}
                                     >Login como profissional</IonButton>
                                     </IonRow>   
-
                                 </div>
 
                                 </IonCard>                               
@@ -98,7 +99,8 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-/* <IonButton href='/registrar'>/registrar</IonButton> 
+/* 
+                                  <IonButton href='/registrar'>/registrar</IonButton> 
                                     <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
                                     <IonButton href='/lista-exames'>/lista-exames</IonButton>
                                     <IonButton href='/exame'>/exame</IonButton>
@@ -106,4 +108,5 @@ export default Home;
                                     <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
                                     <IonButton href='/paciente'>/paciente</IonButton>
                                     <IonButton href='/criar-exame'>/criar-exame</IonButton> 
+
 */ 
