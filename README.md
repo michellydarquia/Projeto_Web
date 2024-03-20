@@ -19,7 +19,6 @@ O objetivo principal deste sistema é fornecer funcionalidades de login e logoff
 
 ## Autores
 - Beatriz Maria
-- Guilherme Burle 
 - Ian Pimentel
 - Isabella Vitoria
 - Julia Andrade
