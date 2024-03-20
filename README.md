@@ -21,7 +21,6 @@ O objetivo principal deste sistema é fornecer funcionalidades de login e logoff
 - Beatriz Maria
 - Ian Pimentel
 - Isabella Vitoria
-- Julia Andrade
 - Kaua 
 - Michelly Darquia
 

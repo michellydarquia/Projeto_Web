@@ -47,11 +47,8 @@ const perfilPaciente: React.FC = () => {
             <IonPage>
                 <IonHeader>
                     <IonToolbar id= 'perfilTbar'>
-                        <IonAvatar>
-                            <img alt="Imagem do perfil"
-                            src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                        </IonAvatar>
-                        <IonTitle style={{ fontWeight: 'bold', fontFamily: 'Arial' }} className="ion-text-end">PERFIL PACIENTE</IonTitle>
+                        <IonTitle id ='titleTbar' slot="start" >PERFIL DO PACIENTE</IonTitle>
+                        <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                         <IonTitle>{dados.nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
@@ -75,7 +72,6 @@ const perfilPaciente: React.FC = () => {
                     <IonButton color={'success'} 
                     onClick={()=>keepInfo(history, '/lista-exames')}
                     >Exames</IonButton>
-                    <IonButton color={'danger'} onClick={logout}>Logout</IonButton>
                 </IonFooter>
 
             </IonPage>
