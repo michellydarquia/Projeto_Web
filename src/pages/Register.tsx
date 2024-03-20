@@ -12,7 +12,7 @@ import {
     IonLabel,
     IonInput,
     IonItem,
-    IonToolbar
+    IonToast
 } from '@ionic/react';
 
 import { useState } from 'react';
@@ -37,6 +37,9 @@ const Register: React.FC = () => {
     const [nomemae, setNomeMae] = useState<any>('');
     const [RG, setRG] = useState<any>('');
     const [conta, setConta] = useState<any>('paciente');
+    const [msg, setMsg] = useState<any>('')
+
+    const toast = document.getElementById('open-toast')
  
     const registrar = () => {
 
@@ -58,8 +61,34 @@ const Register: React.FC = () => {
                 senha: senha
             }
         })
-        .then(response => console.log(response))
+        .then((response) => {
+            console.log(response.data)
+            setMsg('Registrado')
+            toast?.click()
+        })
         .catch(error => console.log(error))
+    }
+
+    const checkAllInputs = () => {
+        if (nome != '' &&
+            endereco != '' &&
+            nomemae != '' &&
+            email != '' &&
+            senha != '' &&
+            CPF.length == 11 &&
+            !isNaN(parseInt(CPF, 10)) &&
+            CEP.length == 8 &&
+            !isNaN(parseInt(CEP, 10)) &&
+            RG.length == 9 &&
+            !isNaN(parseInt(RG, 10)))
+            {
+                registrar()
+                return
+            } else {
+                setMsg('Digite dados válidos!')
+                toast?.click()
+                return
+            }
     }
 
     return (
@@ -183,14 +212,21 @@ const Register: React.FC = () => {
                             className='buttonRegister' 
                             expand='block' 
                             shape='round'
-                            onClick={registrar}>Registrar</IonButton>
-
+                            onClick={checkAllInputs}>Registrar</IonButton>
+                            
                             <IonButton 
                             className='buttonRegister' 
                             expand='block' 
                             shape='round'
                             onClick={()=>keepInfo(history, '/perfil-adm')}
                             >Voltar</IonButton>
+
+                            <IonButton 
+                            id='open-toast'
+                            style={{ display: "none" }}
+                            ></IonButton>
+                            <IonToast trigger="open-toast" message={msg} duration={5000}></IonToast>
+
                             </div>
                             </div>
 

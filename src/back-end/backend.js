@@ -10,7 +10,7 @@ import admCert from './exames-9598c-firebase-adminsdk-cvzs6-761da459ad.json' wit
 import * as fs from 'fs'
 
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, getDocs, collection, setDoc, deleteDoc } from "firebase/firestore";
 
 import multer from 'multer'
 
@@ -44,6 +44,10 @@ const createUserDoc = async (user, Info) => {
   await setDoc(doc(firestore, "users", user.uid), Info);
 }
 
+const deleteUserDoc = async (uid) => {
+  await deleteDoc(doc(firestore, "users", uid));
+}
+
 const getalldocs = async () => {
   const alldocs = await getDocs(collection(firestore, "users"));
   return alldocs
@@ -53,22 +57,20 @@ const getalldocs = async () => {
 
 app.get('/registrar', function (req, res) {
 
-  let sendStuff = '';
-
   admAuth.createUser({
     email: req.query.uData.email,
     password: req.query.senha,
   })
   .then((userRecord) => {
+
     createUserDoc(userRecord, req.query.uData)
     .then(()=>{fs.mkdirSync(`./exames/${userRecord.uid}`)})
-    
-    sendStuff = 'Registrado';
+    res.send('sucesso')
   })
   .catch((error) => {
-    sendStuff = `Erro: ${error}`;
+    console.log(`Erro: ${error}`)
   });
-  res.send(sendStuff);
+
   return
 })
 
@@ -85,13 +87,13 @@ app.get('/login', function (req, res) {
   .then(async (dados)=>{
 
     const info = await getDoc(dados[0]);
-    return res.send({ log: true, uData: info.data(), id: dados[1] })
+    return res.send({ uData: info.data(), id: dados[1] })
 
   })
   .catch((error) => {
       const errorCode = error.code;
       const errorMsg = error.message;
-      console.log('ERRO:', errorCode, errorMsg);
+      return res.send('ERRO: ' + errorCode + ' => ' + errorMsg)
   });
   return
 })
@@ -99,7 +101,7 @@ app.get('/login', function (req, res) {
 app.get('/logout', function (req, res) {
 
   signOut(auth)
-  .then(res.send(false))
+  .then(res.send('desconectado'))
   .catch((error) => {
     console.log(error);
   });
@@ -200,6 +202,22 @@ app.get('/createexam', function (req, res) {
   return
 })
 
+app.get('/deleteuser', function (req, res) {
+ 
+  fs.rm(`./exames/${req.query.uid}`, { recursive: true, force: true }, err => {
+    if (err) {
+      throw err;
+    } else {
+      deleteUserDoc(req.query.uid)
+
+      admAuth.deleteUser(req.query.uid)
+      .catch((error)=>console.log(error))
+    }
+  });
+
+  return
+})
+
 app.get('/deleteexam', function (req, res) {
 
   fs.rm(`./exames/${req.query.id}/exame${req.query.index}`, { recursive: true, force: true }, err => {
@@ -230,12 +248,6 @@ app.post('/addresult', upload.single("file"), async (req, res) => {
   return
 })
 
-app.get('/pdf', (req, res) => {
-  fs.
-  return
-})
-
-  
 
 
 

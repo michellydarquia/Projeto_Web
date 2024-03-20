@@ -23,14 +23,16 @@ const perfilProfissional: React.FC = () => {
         if (history.location.state?.Dados != undefined){
             setDados(history.location.state.Dados);
         } else {
-            setLogged(false)
+            axios.get('http://localhost:3000/logout')
+            .then(()=>setLogged(false))
+            .catch(error => console.log(error.data));
         }
     }, []);
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-            .then(response => setLogged(false))
-            .catch(error => console.log(error));
+        .then(() => setLogged(false))
+        .catch(error => console.log(error.data));
     }
 
     if (!logged) {
@@ -84,7 +86,10 @@ const perfilProfissional: React.FC = () => {
                             <IonCol size="15">
                             <div id="buttonsContainer">
                                 <IonButton className="customButton" 
-                                    onClick={() => keepInfo(history, '/lista-pacientes')}
+                                    onClick={() => {
+                                        keepInfo(history, '/lista-pacientes')
+                                        window.location.reload()
+                                    }}
                                 >Pacientes</IonButton>
 
                             </div>

@@ -56,6 +56,15 @@ const listaPacientes: React.FC = () => {
         }
     }
 
+    const deleteuser = (userId: string) => {
+        axios.get('http://localhost:3000/deleteuser',{
+            params: {
+                uid: userId
+            }
+        })
+        .catch((error)=>console.log(error.data))
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -86,7 +95,12 @@ const listaPacientes: React.FC = () => {
 
                         <IonButton fill="clear"
                         onClick={()=>{seeExams(doc.info.nome, doc.uid)}}>Ver exames</IonButton>
-                        <IonButton fill="clear" color='danger'>Excluir perfil</IonButton>
+                        <IonButton fill="clear" color='danger'
+                        onClick={()=>{
+                            deleteuser(doc.uid)
+                            window.location.reload()
+                        }}
+                        >Excluir perfil</IonButton>
                     </IonCard>
                 ))
                 }

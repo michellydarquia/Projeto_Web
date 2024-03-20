@@ -8,6 +8,7 @@ import {
     IonInput,
     IonText,
     IonCard,
+    IonToast
 } from '@ionic/react';
 
 import React, { useState, useEffect } from 'react';
@@ -26,10 +27,7 @@ const Login: React.FC = () => {
     const [senha, setSenha] = useState<any>('');
     const [redirect, setRedirect] = useState<any>('/perfil');
     const [conta, setConta] = useState<any>('Paciente');
-
-    const [logado, setLogado] = useState<boolean>(true);
-    const [dados, setDados] = useState<any>();
-
+    const [msg, setMsg] = useState<any>('');
 
     const [undef, setUndef] = useState<boolean>(false);
 
@@ -57,25 +55,24 @@ const Login: React.FC = () => {
         })
         .then(response => {
 
-            try {
-                setLogado(response.data.log)
-                history.push({
-                    pathname: redirect,
-                    state: {
-                        Dados: response.data.uData,
-                        id: response.data.id
-                    }
-                })
-            } finally {
-                return <Redirect to={redirect} />
+            if (typeof response.data === 'string'){
+                setMsg('Usuário não identificado. ' + response.data)
+                const a = document.getElementById('open-toast')
+                a?.click()
+                return
             }
-      
-        
+
+            history.push({
+                pathname: redirect,
+                state: {
+                    Dados: response.data.uData,
+                    id: response.data.id
+                }
+            })
+
         })
         .catch(error => console.log(error))
     }
-
-    
 
     return (
         <>
@@ -138,6 +135,12 @@ const Login: React.FC = () => {
                             onClick={login}
                             className='ion-padding-top'
                             >Entrar</IonButton>
+
+                            <IonButton 
+                            id='open-toast'
+                            style={{ display: "none" }}
+                            ></IonButton>
+                            <IonToast trigger="open-toast" message={msg} duration={5000}></IonToast>
 
                             <IonText className='ion-padding-top'>
                             <IonButton id='esqueciBtt'
