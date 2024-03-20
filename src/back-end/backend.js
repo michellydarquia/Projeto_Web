@@ -74,7 +74,7 @@ app.get('/registrar', function (req, res) {
 
 app.get('/login', function (req, res) {
 
-  signInWithEmailAndPassword(auth, 'abc@gmail.com', 'admin1')
+  signInWithEmailAndPassword(auth, req.query.email, req.query.senha)
   .then((userCredential) => {
 
       const user = userCredential.user;
