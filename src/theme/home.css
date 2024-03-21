@@ -9,18 +9,23 @@
     font-variation-settings:
       "wdth" 100;
   }
-  
+
+.ion-padding{
+    --ion-padding:0px;
+  }
+
+/****TEXTO INICIAL***/
 
 #introText{
+    text-align: center;
     font-family: "Poppins", sans-serif;
     font-size: 25px;
     font-weight: 700;
     font-style: normal;
     color: #000829;
+    padding-left: 40px;
 }
-.ion-padding{
-    --ion-padding:0px;
-  }
+
 
 
 /*****IMAGEM*****/
@@ -43,10 +48,7 @@
     
 }
 
-#introText{
-    margin-left: 60px;
-    margin-right: 20px;
-}
+
 
 /*****BUTTONS AREA****/
 
@@ -59,14 +61,6 @@
     padding: 0px;
 }
 
-
-#loginTitle{
-    display: block;
-    text-align: center;
-    margin-top: 16px;
-    margin-bottom: 4rem;
-}
-
 #homeCard {
    
     width: 30rem;
@@ -76,16 +70,26 @@
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: /*#F6F5F8*//*#E9E7EE*/#A7B6C8;
+    margin-left: 30px;
+    background: #A7B6C8;
     border-radius: 20px;
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.34);
 
 }
 
-#rowPac{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#loginTitle{
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 4rem;
+    
+}
+#loginTitleStyle {
+    font-size: 23px;
+    font-weight: 600;
+    font-style: normal;
+    color: #45424D;
+    
 }
 
 #buttonsDiv {
@@ -95,6 +99,14 @@
     margin-bottom: 16px;
 }
 
+#rowPac{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*GERAL*/
 .buttonPacMed{
     width: 20rem;
     --background:var(--ion-color-darkRed, #8C1C13);
@@ -110,6 +122,7 @@
     margin-top: 15px;
 }
 
+/**OU**/
 #lineText{
     display: flex;
     justify-content: center;
@@ -121,4 +134,40 @@
     width: 8rem; 
     margin-left: 10px ; 
     margin-right: 10px;
+}
+
+
+
+@media screen and (max-width: 1143px) {
+
+    #container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    #imageContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #introText{
+        order: 2;
+        font-size: 35px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #imagem{
+        order: 1;
+        width: 60%;
+        margin-top: 0px;
+        margin-bottom: 15%;
+    }
+   
+
 }

@@ -30,9 +30,9 @@ const Home: React.FC = () => {
                     <IonGrid className='grid-container'>
                         <IonRow>
                             <IonCol class='colImg'>
-                                <div className="container">
-                                    <IonTitle id='introText'>Acesse o resultado de seus exames aqui</IonTitle>
-                                    <div className='image-container'>
+                                <div id='container'>
+                                    <IonTitle id='introText'>Veja os resultados de seus exames aqui!</IonTitle>
+                                    <div id='imageContainer'>
                                         <IonImg 
                                         src={schImg} 
                                         id="imagem" class='ion-float-left'/>
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
                                 <IonCard id='homeCard'>
                                 <IonRow>
                                         <IonTitle id='loginTitle'>
-                                            <h2>Escolha seu tipo de login:</h2>
+                                            <h2 id='loginTitleStyle'>Escolha seu acesso:</h2>
                                         </IonTitle>
                                     </IonRow>
                                 <div id='buttonsDiv' className='ion-text-right'>
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
                                             })
                                         }
                                     }}
-                                    >Login como paciente</IonButton>
+                                    >Entrar como paciente</IonButton>
                                     </IonRow>
                                     
                                     <IonRow id='lineText'>
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
                                             state: { prof: true }
                                         })
                                     }}
-                                    >Login como profissional</IonButton>
+                                    >Entrar como profissional</IonButton>
                                     </IonRow>   
                                 </div>
 
