@@ -10,7 +10,7 @@ import {
     IonCardSubtitle, 
     IonCardContent, 
     IonButton,
-    IonInput
+    IonToast
 } from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import {useHistory, Redirect} from 'react-router-dom';
@@ -30,8 +30,9 @@ const listaExames: React.FC = () => {
     const [exames, setExames] = useState<any[]>()
     const [resultado, setResultado] = useState<any[]>()
     const [msg, setMsg] = useState<string>('')
+    const [toastMsg, setToastMsg] = useState<string>('')
 
-    let indexParaInput: number
+    const toast = document.getElementById('open-toast')
 
     useEffect(()=>{
         
@@ -78,7 +79,9 @@ const listaExames: React.FC = () => {
             params: {id: id, index: index}
           }
         );
-        console.log(result.data)
+        setToastMsg(result.data)
+        toast?.click()
+        history.go(0)
     }
 
     const isAvailable = (index: number) => {
@@ -88,8 +91,7 @@ const listaExames: React.FC = () => {
             return false
         }
     }
-
-    
+   
     return (
         <IonPage>            
             <IonHeader>
@@ -104,9 +106,9 @@ const listaExames: React.FC = () => {
 
                 {
                 exames?.map((info, index) =>(
-                <IonCard key={indexParaInput = index} >
+                <IonCard key={index} >
                     <IonCardHeader>
-                        <IonCardTitle>{info.exame.title}</IonCardTitle>
+                        <IonCardTitle>{index+1} - {info.exame.title}</IonCardTitle>
                         <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
                     </IonCardHeader>
 
@@ -119,9 +121,9 @@ const listaExames: React.FC = () => {
                     type="file"
                     id="file-upload"
                     onChange={(e) => {
-
+                        
                         if (e.target.files){
-                            addResult(e.target.files[0], history.location.state.paciente.Id, indexParaInput+1)
+                            addResult(e.target.files[0], history.location.state.paciente.Id, info.index)
                         }
 
                     }}
@@ -181,6 +183,12 @@ const listaExames: React.FC = () => {
                 className='customButton'
                 >voltar</IonButton>
                 </div>
+
+                <IonButton 
+                id='open-toast'
+                style={{ display: "none" }}
+                ></IonButton>
+                <IonToast trigger="open-toast" message={toastMsg} duration={5000}></IonToast>
 
                 
 

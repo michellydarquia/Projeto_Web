@@ -224,7 +224,7 @@ app.get('/deleteexam', function (req, res) {
     if (err) {
       throw err;
     }
-    res.send('success')
+    res.send()
   });
 
   return
@@ -243,8 +243,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.post('/addresult', upload.single("file"), async (req, res) => {
-  console.log(req.file);
-  res.send(true)
+  res.send('Resultado adicionado.')
   return
 })
 
