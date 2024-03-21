@@ -112,7 +112,7 @@ const listaExamesPaciente: React.FC = () => {
                 <IonButton
                 onClick={()=>keepInfo(history, '/perfil')}
                 className='customButton'
-                >voltar</IonButton>
+                >Voltar</IonButton>
                 </div>
 
             </IonContent>

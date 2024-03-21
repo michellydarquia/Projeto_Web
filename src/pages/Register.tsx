@@ -12,7 +12,8 @@ import {
     IonLabel,
     IonInput,
     IonItem,
-    IonToast
+    IonToast,
+    IonToolbar
 } from '@ionic/react';
 
 import { useState } from 'react';
@@ -95,10 +96,11 @@ const Register: React.FC = () => {
         <>
             <IonPage id="main-content">
                 <IonHeader>
-                <div className="container-title">
-                <IonTitle> Cadastro </IonTitle>
-                </div>
-               
+                {/* <div className="container-title"> */}
+                <IonToolbar id='mainTbar'>
+                    <IonTitle> Cadastro </IonTitle>
+                </IonToolbar>
+                {/* </div> */}
                 </IonHeader>
                
                 <IonContent className='ion-padding'>

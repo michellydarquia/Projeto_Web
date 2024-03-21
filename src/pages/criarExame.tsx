@@ -32,6 +32,8 @@ const criarExame: React.FC = () => {
     const [paciente, setPaciente] = useState<string>(history.location.state.paciente.nome)
     const [msg, setMsg] = useState<string>('')
 
+    const toast = document.getElementById('open-toast')
+
     const createExam = () => {
 
         const day = new Date()
@@ -68,6 +70,20 @@ const criarExame: React.FC = () => {
         }
     }
 
+    const checkAllInputs = () => {
+        if (title != '' &&
+            desc != '' &&
+            dia != '' &&
+            hour != '')
+            {
+                createExam()
+            } else {
+                setMsg('Preencha todos os campos.')
+                toast?.click()  
+            }
+        return
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -75,9 +91,9 @@ const criarExame: React.FC = () => {
                     <IonTitle>Adicionar exame para {paciente}</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
-            <div className="form-container">
+            <IonContent id='contentPrinc' className="ion-padding">
 
+            <div>
             <IonGrid className='grid-container'>
             <IonRow>
                 <IonCol className="ion-align-items-center">
@@ -138,7 +154,7 @@ const criarExame: React.FC = () => {
 
                         <IonButton
                         color='tertiary'
-                        onClick={createExam}
+                        onClick={checkAllInputs}
                         >Criar</IonButton>
 
                         <IonButton
@@ -157,21 +173,12 @@ const criarExame: React.FC = () => {
                             history.go(0)
                         }}
                         >Voltar</IonButton>
-
                     </div>
-
                 </div>
                 </IonCol>
                 </IonRow>
             </IonGrid>
             </div>
-
-
-            
-
-            
-
-
             </IonContent>
         </IonPage>
     );

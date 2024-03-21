@@ -101,8 +101,10 @@ const listaExames: React.FC = () => {
             </IonHeader>
 
             <IonContent id='contentPrinc' className="ion-padding">
-
+                
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <br/>{msg}
+                </div>
 
                 {
                 exames?.map((info, index) =>(
@@ -181,7 +183,7 @@ const listaExames: React.FC = () => {
                     }
                 }}
                 className='customButton'
-                >voltar</IonButton>
+                >Voltar</IonButton>
                 </div>
 
                 <IonButton 

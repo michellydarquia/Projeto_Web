@@ -12,8 +12,7 @@ import {
 } from '@ionic/react';
 
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import axios from 'axios'
 
@@ -29,7 +28,7 @@ const Login: React.FC = () => {
     const [conta, setConta] = useState<any>('Paciente');
     const [msg, setMsg] = useState<any>('');
 
-    const [undef, setUndef] = useState<boolean>(false);
+    const toast = document.getElementById('open-toast')
 
     useEffect(()=>{
         if (history.location.state?.prof != undefined){
@@ -38,11 +37,11 @@ const Login: React.FC = () => {
                 setConta('Profissional')
             }
         } else {
-            setUndef(true)
+            returnHome()
         }
     }, [])
 
-    if (undef) {
+    const returnHome = () => {
         return <Redirect to='/home' />
     }
 
@@ -57,8 +56,7 @@ const Login: React.FC = () => {
 
             if (typeof response.data === 'string'){
                 setMsg('Usuário não identificado. ' + response.data)
-                const a = document.getElementById('open-toast')
-                a?.click()
+                toast?.click()
                 return
             }
 
@@ -81,7 +79,6 @@ const Login: React.FC = () => {
                 
                 <IonHeader class='teste'>
                     <IonToolbar  id='mainTbar'>
-                        {/* Acesso ao Resultado de Exames */}
                         <IonTitle id='titleTbar'>Login como {conta}</IonTitle>
                     </IonToolbar>
                 </IonHeader>                                 
@@ -126,13 +123,20 @@ const Login: React.FC = () => {
                                 
 
                             ></IonInput>
+
                             <IonButton id='entrarBtt'
-                            
                             expand='block' 
                             shape='round'
                             onClick={login}
                             className='ion-padding-top'
                             >Entrar</IonButton>
+
+                            <IonButton id='entrarBtt'
+                            expand='block' 
+                            shape='round'
+                            onClick={()=>history.push('/home')}
+                            className='ion-padding-top'
+                            >Voltar</IonButton>
 
                             <IonButton 
                             id='open-toast'
