@@ -51,10 +51,18 @@
     --background:var(--ion-color-darkRed, #8C1C13);
 }
 
-#esqueciBtt{
-    color: gray;
+@media  screen and (max-width: 530px) {
+    #loginCard{
+        width: 23rem;
+        height: 27rem;
+    }
 }
 
-#esqueciBtt:hover{
-    color: #8C1C13;
+@media screen and (max-width: 450px) {
+    #loginCard{
+        width: 20rem;
+        height: 24rem;
+    }
 }
+
+
