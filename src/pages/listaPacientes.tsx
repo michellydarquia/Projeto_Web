@@ -72,7 +72,7 @@ const listaPacientes: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar id='mainTbar'>
-                    <IonTitle>Pacientes</IonTitle>
+                    <IonTitle>PACIENTES</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent id='contentPrinc' className="ion-padding">

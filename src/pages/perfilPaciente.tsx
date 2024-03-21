@@ -19,7 +19,8 @@ import axios from 'axios'
 
 import { keepInfo } from './perfilProfissional'
 
-import '../theme/register_perfil.css'
+/*import '../theme/register_perfil.css'*/
+import '../theme/perfil.css'
 
 const perfilPaciente: React.FC = () => {
 
@@ -65,7 +66,7 @@ const perfilPaciente: React.FC = () => {
                             </IonAvatar>
                             </div>
                         </IonCol>
-                        <IonCol size="8">
+                        <IonCol size="8" id='infoContainer'>
                         {/* <div id="infoContainer"> */}
                             <div className="infoItemContainer">
                                 <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
@@ -93,9 +94,12 @@ const perfilPaciente: React.FC = () => {
                             <IonCol size="15">
 
                             <div id="buttonsContainer">
-                            <IonButton className='customButton2' expand='block'
+                            <IonButton 
+                            className='customButton2' 
+                            expand='block'
+                            shape='round'
                             onClick={()=>keepInfo(history, '/lista-exames')}
-                            >Exames</IonButton>
+                            >Ver Exames</IonButton>
                             </div>
 
                             </IonCol>

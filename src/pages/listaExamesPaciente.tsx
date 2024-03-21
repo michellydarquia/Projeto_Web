@@ -74,7 +74,7 @@ const listaExamesPaciente: React.FC = () => {
             <IonHeader>
                 <IonToolbar id='mainTbar'>
                     <IonTitle id ='titleTbar'>
-                        Seus exames agendados
+                        Seus exames
                     </IonTitle>
                 </IonToolbar>
             </IonHeader>
