@@ -104,7 +104,7 @@ const perfilProfissional: React.FC = () => {
                                         keepInfo(history, '/lista-pacientes')
                                         window.location.reload()
                                     }}
-                                >Pacientes</IonButton>
+                                >Lista de Pacientes</IonButton>
 
                             </div>
 
