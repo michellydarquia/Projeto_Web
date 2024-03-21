@@ -139,6 +139,15 @@
 
 
 @media screen and (max-width: 1143px) {
+    .colImg{
+        height: 88vh;
+        padding-bottom: 100px;
+    }
+    .colBtt{
+        height: 68vh;
+        
+    }
+
 
     #container{
         display: flex;
@@ -176,15 +185,7 @@
     color: #45424D;
     
     }
-    .colImg{
-        height: 88vh;
-        padding-bottom: 100px;
-    }
-    .colBtt{
-        height: 88vh;
-        
-    }
-
+ 
     .buttonPacMed{
         font-weight: 400;
     }
@@ -192,10 +193,6 @@
 }
 
 @media screen and (max-width: 810px) {
-    #introText{
-        font-size: 27px;
-    }
-
     .colImg{
         height: 68vh;
         padding-bottom: 100px;
@@ -204,8 +201,22 @@
         height: 68vh;
         
     }
+
+    #introText{
+        font-size: 27px;
+    }
+
+   
 }
 @media screen and (max-width: 630px){
+    .colImg{
+        height: 48vh;
+        padding-bottom: 100px;
+    }
+    .colBtt{
+        height: 48vh;
+        
+    }
     #introText{
         font-size: 20px;
     }
@@ -227,14 +238,6 @@
         font-size: 17px;
     }
 
-    .colImg{
-        height: 48vh;
-        padding-bottom: 100px;
-    }
-    .colBtt{
-        height: 48vh;
-        
-    }
     #homeCard {
    
         width: 23rem;

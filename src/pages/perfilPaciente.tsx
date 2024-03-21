@@ -19,7 +19,8 @@ import axios from 'axios'
 
 import { keepInfo } from './perfilProfissional'
 
-import '../theme/register_perfil.css'
+/*import '../theme/register_perfil.css'*/
+import '../theme/perfil.css'
 
 const perfilPaciente: React.FC = () => {
 
@@ -65,7 +66,7 @@ const perfilPaciente: React.FC = () => {
                             </IonAvatar>
                             </div>
                         </IonCol>
-                        <IonCol size="8">
+                        <IonCol size="8" id='infoContainer'>
                         {/* <div id="infoContainer"> */}
                             <div className="infoItemContainer">
                                 <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
