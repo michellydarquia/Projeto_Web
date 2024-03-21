@@ -41,8 +41,7 @@ const criarExame: React.FC = () => {
                     }
                 }
             })
-            .then(response => {
-                console.log(response.data)
+            .then(() => {
                 history.push({
                     pathname: '/lista-exames-adm',
                     state: {

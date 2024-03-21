@@ -19,6 +19,9 @@ import axios from 'axios';
 
 import { keepInfo } from './perfilProfissional';
 
+import '../theme/register_perfil.css';
+import '../theme/login.css';
+
 const listaExames: React.FC = () => {
 
     const history = useHistory<any>()
@@ -90,35 +93,18 @@ const listaExames: React.FC = () => {
     return (
         <IonPage>            
             <IonHeader>
-                <IonToolbar>
-                    <IonTitle>
-                        Exames de {paciente}
-                    </IonTitle>
-                    <IonButton fill="clear" color='success'
-                    onClick={()=>{
-                        history.push({
-                            pathname: '/criar-exame',
-                            state: {
-                                Dados: history.location.state.Dados,
-                                paciente: {
-                                    nome: paciente,
-                                    Id: history.location.state.paciente.Id
-                                }
-                            }
-                        })
-                        history.go(0)
-                    }}
-                    >Adicionar exame</IonButton>
+                <IonToolbar id='mainTbar'>
+                    <IonTitle id ='titleTbar'>Exames de {paciente}</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent className="ion-padding">
+            <IonContent id='contentPrinc' className="ion-padding">
 
-                {msg}
+                <br/>{msg}
 
                 {
                 exames?.map((info, index) =>(
-                <IonCard key={indexParaInput = index}>
+                <IonCard key={indexParaInput = index} >
                     <IonCardHeader>
                         <IonCardTitle>{info.exame.title}</IonCardTitle>
                         <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
@@ -142,7 +128,7 @@ const listaExames: React.FC = () => {
                     style={{ display: "none" }}
                     />
 
-                    <IonButton type='submit' fill="clear"
+                    <IonButton type='submit' fill="clear" color='dark'
                     disabled={isAvailable(index)}
                     onClick={uploadFile}
                     >Inserir pdf do resultado</IonButton>
@@ -163,8 +149,26 @@ const listaExames: React.FC = () => {
                 </IonCard>))
                 }
 
+                <div id='buttonsContainer' >
+                <IonButton
+                onClick={()=>{
+                    history.push({
+                        pathname: '/criar-exame',
+                        state: {
+                            Dados: history.location.state.Dados,
+                            paciente: {
+                                nome: paciente,
+                                Id: history.location.state.paciente.Id
+                            }
+                        }
+                    })
+                    history.go(0)
+                }}
+                className='customButton'
+                >Adicionar exame</IonButton>
+                </div>
 
-                <br/>
+                <div id='buttonsContainer' >
                 <IonButton
                 onClick={()=>{
                     try {
@@ -174,7 +178,12 @@ const listaExames: React.FC = () => {
                         <Redirect to='/lista-pacientes' />
                     }
                 }}
+                className='customButton'
                 >voltar</IonButton>
+                </div>
+
+                
+
 
             </IonContent>
             

@@ -80,7 +80,7 @@ const Login: React.FC = () => {
             
                 
                 <IonHeader class='teste'>
-                    <IonToolbar  id='loginTbar'>
+                    <IonToolbar  id='mainTbar'>
                         {/* Acesso ao Resultado de Exames */}
                         <IonTitle id='titleTbar'>Login como {conta}</IonTitle>
                     </IonToolbar>
@@ -110,11 +110,9 @@ const Login: React.FC = () => {
                                 fill="outline"
                                 placeholder="Digite seu email"
                                 onIonChange={(e) => setEmail(e.target.value)}
-                                color={'success'}
+                                color='tertiary'
                                 
                             ></IonInput>
-                           
-                           
 
                             <IonInput id='senhaBtt'
                                 className='ion-margin-top'
@@ -124,7 +122,7 @@ const Login: React.FC = () => {
                                 fill="outline"
                                 placeholder="Digite sua senha"
                                 onIonChange={(e) => setSenha(e.target.value)}
-                                color={'success'}
+                                color='tertiary'
                                 
 
                             ></IonInput>
@@ -141,16 +139,6 @@ const Login: React.FC = () => {
                             style={{ display: "none" }}
                             ></IonButton>
                             <IonToast trigger="open-toast" message={msg} duration={5000}></IonToast>
-
-                            <IonText className='ion-padding-top'>
-                            <IonButton id='esqueciBtt'
-                            fill="clear" 
-                            href='/'
-                            expand='block'
-                            className='ion-padding-center'
-                            >Esqueci minha senha</IonButton> 
-                            </IonText>
-
                         </form>
                         </IonCard>
                         

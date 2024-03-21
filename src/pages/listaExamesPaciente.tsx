@@ -18,23 +18,26 @@ import axios from 'axios';
 
 import { keepInfo } from './perfilProfissional';
 
+import '../theme/register_perfil.css';
+import '../theme/login.css';
+
 const listaExamesPaciente: React.FC = () => {
 
     const history = useHistory<any>()
     
-    const [exames, setExames] = useState<any[]>()
-    const [results, setResults] = useState<any[]>()
+    const [exames, setExames] = useState<any[]>([])
+    const [results, setResults] = useState<any[]>([])
     const [msg, setMsg] = useState<string>('')
 
     useEffect(()=>{
-       
+        console.log(exames)
         axios.get('http://localhost:3000/listexams', {
             params: {
                 id: history.location.state.id
             }
         })
         .then(response => {
-            if (response.data != 'none'){
+            if (response.data[0][0] != 'none'){
                 setExames(response.data[0])
                 setResults(response.data[1])
             } else {
@@ -42,6 +45,8 @@ const listaExamesPaciente: React.FC = () => {
             }
         })
         .catch(error => console.log(error));
+
+        console.log(exames)
                
     }, [])
 
@@ -64,23 +69,23 @@ const listaExamesPaciente: React.FC = () => {
 
       }
 
-    return (
+    return (    
         <IonPage>            
             <IonHeader>
-                <IonToolbar>
-                    <IonTitle>
-                        Seus exames agendados.
+                <IonToolbar id='mainTbar'>
+                    <IonTitle id ='titleTbar'>
+                        Seus exames agendados
                     </IonTitle>
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent className="ion-padding">
+            <IonContent id='contentPrinc' className="ion-padding">
 
-                {msg}
+                <br/>{msg}
 
                 {
                 exames?.map((info, index) =>(
-                <IonCard>
+                <IonCard key={index}>
                     <IonCardHeader>
                         <IonCardTitle>{info.exame.title}</IonCardTitle>
                         <IonCardSubtitle>Realização: {info.exame.day} {info.exame.hour}</IonCardSubtitle>
@@ -92,6 +97,7 @@ const listaExamesPaciente: React.FC = () => {
                     </IonCardContent>
 
                     <IonButton
+                    color='dark'
                     disabled={isAvailable(index)}
                     onClick={()=>download(index+1, history.location.state.id)}
                     fill='clear'
@@ -101,15 +107,13 @@ const listaExamesPaciente: React.FC = () => {
                 }
 
                 <br/>
+
+                <div id='buttonsContainer' >
                 <IonButton
-                onClick={()=>{
-                    try {
-                        keepInfo(history, '/perfil')
-                    } finally {
-                        <Redirect to='/perfil' />
-                    }
-                }}
+                onClick={()=>keepInfo(history, '/perfil')}
+                className='customButton'
                 >voltar</IonButton>
+                </div>
 
             </IonContent>
             

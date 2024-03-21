@@ -19,6 +19,9 @@ import axios from 'axios';
 
 import { keepInfo } from './perfilProfissional';
 
+import '../theme/register_perfil.css';
+import '../theme/login.css';
+
 const listaPacientes: React.FC = () => {
 
     const history = useHistory<any>()
@@ -68,11 +71,11 @@ const listaPacientes: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
+                <IonToolbar id='mainTbar'>
                     <IonTitle>Pacientes</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
+            <IonContent id='contentPrinc' className="ion-padding">
           
                 {
                 alldocs.map((doc, index) => (
@@ -93,7 +96,7 @@ const listaPacientes: React.FC = () => {
                         Tipo da conta: {doc.info.conta}<br/>
                         </IonCardContent>
 
-                        <IonButton fill="clear"
+                        <IonButton fill="clear" color='dark'
                         onClick={()=>{seeExams(doc.info.nome, doc.uid)}}>Ver exames</IonButton>
                         <IonButton fill="clear" color='danger'
                         onClick={()=>{
@@ -105,6 +108,7 @@ const listaPacientes: React.FC = () => {
                 ))
                 }
 
+                <div id='buttonsContainer' >
                 <IonButton
                 onClick={()=>{
                     try {
@@ -113,7 +117,9 @@ const listaPacientes: React.FC = () => {
                         <Redirect to='/perfil-adm' />
                     }
                 }}
+                className='customButton'
                 >voltar</IonButton>
+                </div>
 
             </IonContent>
         </IonPage>

@@ -99,14 +99,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-/* 
-                                  <IonButton href='/registrar'>/registrar</IonButton> 
-                                    <IonButton href='/lista-pacientes'>/lista-pacientes</IonButton>
-                                    <IonButton href='/lista-exames'>/lista-exames</IonButton>
-                                    <IonButton href='/exame'>/exame</IonButton>
-                                    <IonButton href='/perfil'>/perfil</IonButton>
-                                    <IonButton href='/perfil-adm'>/perfil-adm</IonButton>
-                                    <IonButton href='/paciente'>/paciente</IonButton>
-                                    <IonButton href='/criar-exame'>/criar-exame</IonButton> 
-
-*/ 

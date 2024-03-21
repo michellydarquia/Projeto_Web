@@ -1,7 +1,21 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { 
+    IonContent, 
+    IonHeader, 
+    IonPage, 
+    IonTitle, 
+    IonToolbar, 
+    IonAvatar, 
+    IonButton, 
+    IonGrid, 
+    IonRow, 
+    IonCol 
+} from '@ionic/react';
+
 import React, { useState, useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
+
 import axios from 'axios';
+
 import '../theme/register_perfil.css';
 
 export const keepInfo = (history: any, path: string) => {
@@ -42,7 +56,7 @@ const perfilProfissional: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar id='loginTbar'>
+                <IonToolbar id='perfilTbar'>
                     <IonTitle id ='titleTbar' slot="start" >PERFIL DO PROFISSIONAL</IonTitle>
                     <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
                 </IonToolbar>
@@ -52,7 +66,7 @@ const perfilProfissional: React.FC = () => {
                     <IonRow>
                         <IonCol size="4">
                             <div id="avatarContainer">
-                            <IonAvatar style={{ width: '200px', height: '200px' }}
+                            <IonAvatar style={{ width: '100px', height: '100px' }}
                             >
                                 <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                             </IonAvatar>
@@ -85,7 +99,7 @@ const perfilProfissional: React.FC = () => {
                         <IonRow>
                             <IonCol size="15">
                             <div id="buttonsContainer">
-                                <IonButton className="customButton" 
+                                <IonButton className="customButton2" 
                                     onClick={() => {
                                         keepInfo(history, '/lista-pacientes')
                                         window.location.reload()
@@ -93,12 +107,14 @@ const perfilProfissional: React.FC = () => {
                                 >Pacientes</IonButton>
 
                             </div>
-                            <div id="buttonsContainer">
 
-                                <IonButton className="customButton" 
-                                    onClick={() => keepInfo(history, '/registrar')}
+                            <div id="buttonsContainer">
+                                <IonButton 
+                                className="customButton2" 
+                                onClick={() => keepInfo(history, '/registrar')}
                                 >Registrar Perfil</IonButton>
                             </div>
+
                             </IonCol>
                             </IonRow>
                         </IonCol>

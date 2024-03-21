@@ -6,9 +6,9 @@ import {
     IonToolbar, 
     IonAvatar, 
     IonButton, 
-    IonIcon, 
-    IonCardContent, 
-    IonInput 
+    IonCol,
+    IonRow,
+    IonGrid
 } from '@ionic/react'
 
 import React, { useState, useEffect } from 'react'
@@ -36,7 +36,7 @@ const perfilPaciente: React.FC = () => {
 
     const logout = () => {
         axios.get('http://localhost:3000/logout')
-        .then(response => setLogado(response.data))
+        .then(() => setLogado(false))
         .catch(error => console.log(error))
     }
 
@@ -51,34 +51,60 @@ const perfilPaciente: React.FC = () => {
                     <IonToolbar id= 'perfilTbar'>
                         <IonTitle id ='titleTbar' slot="start" >PERFIL DO PACIENTE</IonTitle>
                         <IonButton slot="end" color="#8C1C13" onClick={logout}>SAIR</IonButton>
-                        <IonTitle>{dados.nome}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
 
-                <IonContent  className="ion-padding">
-                    <div className="dados-paciente">
-                    <div id='dado'>
-                        <h2>Dados  Pessoais</h2>
-                    </div>
-                    Data de criação: {dados.data}<br/><br/>
-                    E-mail: {dados.email}<br/><br/>
-                    CPF: {dados.CPF}<br/><br/>
-                    CEP: {dados.CEP}<br/><br/>
-                    Endereço: {dados.endereco}<br/><br/>
-                    Nome da mãe: {dados.nomeDaMae}<br/><br/>
-                    RG: {dados.RG}<br/><br/>
-                    Tipo da conta: {dados.conta}<br/><br/>
-                    </div>
-                </IonContent>
-                <IonCardContent className="botao-container">
-                <div className="ion-text-center button-container">
-                <IonButton className='buttonPaciente' expand='block' shape='round'
-                onClick={()=>keepInfo(history, '/lista-exames')}
-                >Exames</IonButton>
-                <IonButton className='buttonPaciente' expand='block' shape='round'>Marcar exames</IonButton>
-                </div>
-                </IonCardContent>
+                <IonContent id='contentPrinc' className="ion-padding">
+                <IonGrid>
+                    <IonRow>
+                        <IonCol size="4">
+                            <div id="avatarContainer">
+                            <IonAvatar style={{ width: '100px', height: '100px' }}
+                            >
+                                <img alt="Imagem do perfil" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            </IonAvatar>
+                            </div>
+                        </IonCol>
+                        <IonCol size="8">
+                        {/* <div id="infoContainer"> */}
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome completo:</strong> {dados.nome}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Nome da mãe:</strong> {dados.nomeDaMae}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>E-mail:</strong> {dados.email}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CPF:</strong> {dados.CPF}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>CEP:</strong> {dados.CEP}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>Endereço:</strong> {dados.endereco}</p>
+                            </div>
+                            <div className="infoItemContainer">
+                                <p className="infoItem"><strong>RG:</strong> {dados.RG}</p>
+                            </div>
+                        {/* </div> */}
+                        <IonRow>
+                            <IonCol size="15">
 
+                            <div id="buttonsContainer">
+                            <IonButton className='customButton2' expand='block'
+                            onClick={()=>keepInfo(history, '/lista-exames')}
+                            >Exames</IonButton>
+                            </div>
+
+                            </IonCol>
+                            </IonRow>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
+            </IonContent>              
+                
             </IonPage>
         </>
     );
