@@ -94,9 +94,12 @@ const perfilPaciente: React.FC = () => {
                             <IonCol size="15">
 
                             <div id="buttonsContainer">
-                            <IonButton className='customButton2' expand='block'
+                            <IonButton 
+                            className='customButton2' 
+                            expand='block'
+                            shape='round'
                             onClick={()=>keepInfo(history, '/lista-exames')}
-                            >Exames</IonButton>
+                            >Ver Exames</IonButton>
                             </div>
 
                             </IonCol>
