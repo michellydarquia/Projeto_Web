@@ -14,6 +14,8 @@
     --ion-padding:0px;
   }
 
+
+
 /****TEXTO INICIAL***/
 
 #introText{
@@ -26,7 +28,9 @@
     
 }
 
-
+.grid-container{
+    background-color: #F6F5F8;
+}
 
 /*****IMAGEM*****/
 
